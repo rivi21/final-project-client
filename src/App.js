@@ -1,10 +1,12 @@
-import logo from './logo.svg';
+import Router from "./Router";
+import Footer from "./components/Footer";
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-     
+      <Router />
+      <Footer />
     </div>
   );
 }
