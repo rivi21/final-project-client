@@ -1,0 +1,133 @@
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/inter/v3/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2) format('woff2');
+     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+*{ 
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Inter',system-ui,'Roboto',Helvetica,Arial;
+}
+.wrapper {
+    /*height: 90vh;
+     margin: 2em 10%;
+    border: solid 2px;
+    border-color: rgb(234, 235, 237);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 8px 8px 8px rgb(236, 231, 231); */
+}
+.imagen {
+    height: 100vh;
+    /* background-image:url(https://images.pexels.com/photos/163146/tablet-notes-coffee-work-desk-163146.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) ; */
+    background-image:url(../images/factory.jpeg);
+    
+    filter: blur(6px);
+}
+.titulo-idioma{
+    display: flex;
+    justify-content:space-between;
+}
+.datos {
+    margin: 1em;
+    padding:0 5%;
+    background-color: aqua;
+    position: absolute;
+    top: 20%;
+    left: 25%;
+}
+.formulario{
+    margin-bottom: 0.5em;
+}
+.title{
+    padding: 0.5em 0;
+}
+.content-select select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+.esp-flag   { 
+    background-image: url(../images/ESP32.png);   
+}
+/* .language-option{
+    display: flex;
+    justify-content:start;
+} */
+/* .flag{
+    background-image: url(../images/GB.png);
+} */
+.form-section, .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5em 0;
+}
+.section-part {
+    margin-bottom: 0.5em;
+}
+.section-part-2 {
+    padding: 1em 0;
+    border: solid 2px;
+    border-color: rgb(234, 235, 237);
+    border-radius: 10px;
+}
+.links{
+    margin: 1em 0;
+}
+.inline {
+    border: solid 2px;
+    border-color: rgb(234, 235, 237);
+    border-radius: 10px;
+}
+.login {
+    background-color: #d92b34;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+.login a h3 {
+    color: white;
+}
+/* .line{
+    margin: 1em 0;
+    color: rgb(246, 247, 249);
+} */
+.button{
+    margin: 0.5em 0;
+    padding: 1em;
+    color: black;
+    background-color: white;
+    border: solid 2px;
+    border-color: rgb(234, 235, 237);
+    border-radius: 10px;
+}
+.enlace{
+    color: #d92b34;
+    padding: 0.5em 0;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+a {
+    text-decoration: none;
+}
+@media only screen and (min-width: 550px) {
+   /*  .wrapper{
+        flex-direction: row;
+    } */
+  /*   .imagen{
+        display: inline-block;
+        width: 50%;
+        height: 100%;
+        background-position: center bottom;
+    } */
+    .datos{
+        display:inline-block;
+        width: 50%;
+        margin-top: 3em;
+    }
+}
