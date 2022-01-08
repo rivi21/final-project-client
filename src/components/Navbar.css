@@ -1,0 +1,15 @@
+.Navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    background-color: aqua;
+}
+.Navbar-element-one{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+
+}
+.hamburguesa{
+    padding-left: 3em;
+}
