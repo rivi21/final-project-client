@@ -1,0 +1,16 @@
+.btn-language{    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    background-color: rgb(44, 44, 44);
+    color: rgb(255, 255, 255);
+
+    width: 7em;
+    padding-top:0.3em;
+    font-size: 1em;
+}
+
+.btn-text{
+    padding-top: 0.2em;
+}
