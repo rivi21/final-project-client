@@ -2,10 +2,17 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    padding-block: 3em;
+    padding-block: 1em;
+    margin-inline: 3em;
 }
 .block-section{
-    height: 3em;
-    padding-inline: 3em;
-    background-color: rgb(122, 122, 231);
+    height: 5em; 
+    width: 15%;  
+    background-color: rgb(75, 75, 224);
+    padding-top: 1em;
+    margin-left: 1em;
+
+    font-size: 1.5em;
+    color: white;
+    text-align:center;
 }

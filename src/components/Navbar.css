@@ -1,15 +1,19 @@
-.Navbar{
+.navbar{
     display: flex;
     flex-direction: row;
     justify-content:space-between;
     background-color: aqua;
 }
-.Navbar-element-one{
+.navbar-elements{
     display: flex;
     flex-direction: row;
     justify-content:space-between;
 
 }
-.hamburguesa{
+.element{
     padding-left: 3em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+    font-size: 1em;
 }
