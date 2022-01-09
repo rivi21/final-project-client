@@ -1,15 +1,11 @@
+import SalesForm from "../components/SalesForm";
 
 
 export default function Invoices() {
     return (
         <>
-            <div>
-                <h2>Facturas</h2>
-                <input type="text" placeholder="Número" />
-                <input type="text" placeholder="iD_Cliente" />
-                <input type="text" placeholder="Nombre Cliente" />
-                <button type="submit">Buscar</button>
-            </div>
+            <h2>Facturas</h2>
+            <SalesForm />
             <div>
                 <table>
                     <thead>
@@ -24,9 +20,12 @@ export default function Invoices() {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Luis</td>
-                            <td>luis@gmail.com</td>
-                            <td>45</td>
+                            <td>001</td>
+                            <td>iD-001</td>
+                            <td>Acme LTD</td>
+                            <td>01/01/2022/</td>
+                            <td>1000</td>
+
                         </tr>
                     </tbody>
                 </table>

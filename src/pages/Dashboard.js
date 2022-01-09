@@ -4,7 +4,12 @@ import { useNavigate } from "react-router-dom";
 export default function Dashboard() {
 
     let navigate = useNavigate();
+
     const handleClickInvoices = () => navigate(`/Invoices`);
+    const handleClickSalesOffers = () => navigate(`/Offers`);
+    const handleClickPendingOrders = () => navigate(`/PendingOrders`);
+  /*   const handleClickSalesOffers = () => navigate(`/Offers`);
+    const handleClickSalesOffers = () => navigate(`/Offers`); */
 
     return (
         <>
@@ -25,10 +30,10 @@ export default function Dashboard() {
             <div>
                 <h2>Ventas</h2>
                 <div className="dashboard-section">
-                    <div className="block-section">Ofertas: </div>
-                    <div className="block-section">Pendientes: </div>
-                    <div className="block-section">En preparación: </div>
-                    <div className="block-section">Preparados: </div>
+                    <div className="block-section" onClick={handleClickSalesOffers}>Ofertas: </div>
+                    <div className="block-section" onClick={handleClickPendingOrders}>Pedidos pendientes: </div>
+                    <div className="block-section">Pedidos en preparación: </div>
+                    <div className="block-section">Pedidos preparados: </div>
                     <div className="block-section" onClick={handleClickInvoices}>Facturas: </div>
                     <div className="block-section" >Abonos: </div>
                 </div>
