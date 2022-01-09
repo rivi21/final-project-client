@@ -1,4 +1,4 @@
-import SalesForm from '../components/SalesForm'
+import SalesForm from '../../components/SalesForm'
 
 export default function PendingOrders() {
     return (

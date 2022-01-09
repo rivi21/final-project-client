@@ -8,8 +8,8 @@ export default function Dashboard() {
     const handleClickInvoices = () => navigate(`/Invoices`);
     const handleClickSalesOffers = () => navigate(`/Offers`);
     const handleClickPendingOrders = () => navigate(`/PendingOrders`);
-  /*   const handleClickSalesOffers = () => navigate(`/Offers`);
-    const handleClickSalesOffers = () => navigate(`/Offers`); */
+    const handleClickPreparingOrders = () => navigate(`/PreparingOrders`);
+    const handleClickPreparedOrders = () => navigate(`/PreparedOrders`);
 
     return (
         <>
@@ -32,8 +32,8 @@ export default function Dashboard() {
                 <div className="dashboard-section">
                     <div className="block-section" onClick={handleClickSalesOffers}>Ofertas: </div>
                     <div className="block-section" onClick={handleClickPendingOrders}>Pedidos pendientes: </div>
-                    <div className="block-section">Pedidos en preparación: </div>
-                    <div className="block-section">Pedidos preparados: </div>
+                    <div className="block-section" onClick={handleClickPreparingOrders}>Pedidos en preparación: </div>
+                    <div className="block-section" onClick={handleClickPreparedOrders}>Pedidos preparados: </div>
                     <div className="block-section" onClick={handleClickInvoices}>Facturas: </div>
                     <div className="block-section" >Abonos: </div>
                 </div>
