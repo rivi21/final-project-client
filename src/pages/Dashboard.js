@@ -1,6 +1,11 @@
 import "./Dashboard.css"
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
+
+    let navigate = useNavigate();
+    const handleClickInvoices = () => navigate(`/Invoices`);
+
     return (
         <>
             <div>
@@ -24,8 +29,8 @@ export default function Dashboard() {
                     <div className="block-section">Pendientes: </div>
                     <div className="block-section">En preparación: </div>
                     <div className="block-section">Preparados: </div>
-                    <div className="block-section">Facturas: </div>
-                    <div className="block-section">Abonos: </div>
+                    <div className="block-section" onClick={handleClickInvoices}>Facturas: </div>
+                    <div className="block-section" >Abonos: </div>
                 </div>
             </div>
             <div>

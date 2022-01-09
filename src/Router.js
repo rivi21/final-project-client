@@ -3,6 +3,7 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
 import Error from "./pages/Error";
+import Invoices from "./pages/Invoices";
 
 export default function Router() {
 
@@ -13,7 +14,8 @@ export default function Router() {
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/dashboard" element={<Dashboard />} />
-                    
+                    <Route path="/invoices" element={<Invoices />} />
+
                     <Route path="*" element={<Error />} />
                 </Routes>
             </BrowserRouter>
