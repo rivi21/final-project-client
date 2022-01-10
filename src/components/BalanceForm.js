@@ -1,6 +1,6 @@
 
 
-export default function balanceForm() {
+export default function BalanceForm() {
     return (
         <div>
             <input type="text" placeholder="iD_Cliente" />

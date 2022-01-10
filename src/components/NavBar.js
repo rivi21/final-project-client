@@ -14,8 +14,8 @@ export default function NavBar() {
                 <option value="Cesta 1">Cesta 1</option>
             </select>
             <div>
-                <NavLink exact to="/" className="" activeClassName="active">Log In</NavLink>
-                <NavLink to="/dashboard" className="" activeClassName="active">Dashboard</NavLink>
+                <NavLink exact to="/" className="" /* activeClassName="active" */>Log In</NavLink>
+                <NavLink to="/dashboard" className="" /* activeClassName="active" */>Dashboard</NavLink>
             </div>
         </nav>
     )

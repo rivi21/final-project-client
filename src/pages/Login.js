@@ -13,7 +13,7 @@ export default function Login() {
             <div className="datos">
                 <div className="titulo-idioma">
                     <h2 className="title">Login</h2>
-                    <div class="content-select">
+                    <div className="content-select">
                         {/*  <select>
                             <option value="es-ES" data-content="<span className='esp-flag'></span> ">Español</option>
                             <option>English</option>
