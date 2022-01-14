@@ -1,17 +1,18 @@
+import { useState } from "react";
 import "./LanguageSelect.css"
 
 export default function LanguageSelect() {
 
-    /*  function handleclick() {} */
+    const [isActive, setActive] = useState("false");
+
+    const handleToggle = () => {
+        setActive(!isActive);
+    };
 
     return (
-        <button className="btn-language">
-            <div>
-                <img width="25" src="https://cdn-icons-png.flaticon.com/512/330/330557.png" alt="" />
-            </div>
-            <div className="btn-text">
-                Español
-            </div>
+
+        <button onClick={handleToggle} className={isActive ? "btn-language english" : "btn-language español"}>
+            <span>{isActive ? "English" : "Español"}</span>
         </button>
     );
 };
