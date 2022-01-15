@@ -1,8 +1,9 @@
+import "./Forms.css";
 
-
-export default function BalanceForm() {
+export default function SalesForm() {
     return (
-        <div>
+        <div className="components-forms">
+            <input type="text" placeholder="Número" />
             <input type="text" placeholder="iD_Cliente" />
             <input type="text" placeholder="Nombre Cliente" />
             <button type="submit">Buscar</button>

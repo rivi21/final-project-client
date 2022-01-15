@@ -1,5 +1,5 @@
-import SalesForm from "../../components/SalesForm";
-
+import SalesForm from "../../components/forms/SalesForm";
+import "../FormPages.css";
 
 export default function PreparingOrders() {
     return (

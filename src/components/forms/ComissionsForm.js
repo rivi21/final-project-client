@@ -1,4 +1,4 @@
-import "./Forms.css"
+import "./Forms.css";
 
 export default function ComissionsForm() {
 

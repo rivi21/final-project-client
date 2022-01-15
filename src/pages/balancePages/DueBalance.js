@@ -1,4 +1,5 @@
-import BalanceForm from "../../components/BalanceForm";
+import BalanceForm from "../../components/forms/BalanceForm";
+import "../FormPages.css";
 
 export default function DueBalance() {
     return (

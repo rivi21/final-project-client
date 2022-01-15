@@ -1,13 +1,36 @@
-import SalesForm from "../../components/SalesForm";
-
+import { useState, useEffect } from "react";
+import { URL_DUMMY } from "../../Settings";
+import SalesForm from "../../components/forms/SalesForm";
+import "../FormPages.css";
 
 export default function Invoices() {
+
+    const [invoices, setInvoices] = useState([])
+
+    useEffect(() => {
+        fetch(URL_DUMMY)
+            .then(response => response.json()
+                .then(json => setInvoices(json)))
+    }, [])
+
+    let dummyDay = new Date();
+    function dummyDate() {
+        return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 1} - ${dummyDay.getFullYear()}`;
+    }
+    let dummyPrice = new Number()
+    function randomPrice() {
+        return dummyPrice = Math.floor(Math.random() * 10000);
+    }
+
     return (
-        <>
-            <h2>Facturas</h2>
+
+        <div className="container-page">
+            <div className="page-title">
+                <h2>Facturas</h2>
+            </div>
             <SalesForm />
-            <div>
-                <table>
+            <div className="page-table">
+                <table className="table">
                     <thead>
                         <tr>
                             <th>Número</th>
@@ -19,17 +42,21 @@ export default function Invoices() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>001</td>
-                            <td>iD-001</td>
-                            <td>Acme LTD</td>
-                            <td>01/01/2022/</td>
-                            <td>1000</td>
-
-                        </tr>
+                        {invoices.map((data) => {
+                            return (
+                                <tr key={data.id}>
+                                    <td>{data.address.zipcode}</td>
+                                    <td>{data.id}</td>
+                                    <td>{data.company.name}</td>
+                                    <td>{dummyDate()}</td>
+                                    <td>{randomPrice()}</td>
+                                    <button>PDF</button>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </table>
             </div>
-        </>
+        </div>
     )
 }

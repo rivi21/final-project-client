@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { URL_DUMMY } from "../../Settings";
-import ComissionsForm from "../../components/ComissionsForm";
-import "./ComissionsPages.css";
+import ComissionsForm from "../../components/forms/ComissionsForm";
+import "../FormPages.css";
 
 export default function CurrentMonth() {
 
