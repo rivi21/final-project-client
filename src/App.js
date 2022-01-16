@@ -1,12 +1,18 @@
+/* import React, { useState } from "react"; */
 import Router from "./Router";
 import Footer from "./components/Footer";
 import './App.css';
+import { LanguageProvider } from "./context/LanguageContext";
 
 function App() {
+
+
   return (
     <div className="App">
-      <Router />
-      <Footer />
+      <LanguageProvider>
+        <Router />
+        <Footer />
+      </LanguageProvider>
     </div>
   );
 }

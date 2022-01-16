@@ -24,10 +24,8 @@
 }
 .imagen {
     height: 100vh;
-    /* background-image:url(https://images.pexels.com/photos/163146/tablet-notes-coffee-work-desk-163146.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) ; */
-    background-image:url(../images/factory.jpeg);
-    
-    filter: blur(6px);
+    background-image:url(../images/factory.jpeg);    
+    filter: blur(5px);
 }
 .titulo-idioma{
     display: flex;
@@ -47,21 +45,68 @@
 .title{
     padding: 0.5em 0;
 }
-.content-select select{
+/* .content-select select{
 	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
-}
-.esp-flag   { 
-    background-image: url(../images/ESP32.png);   
-}
-/* .language-option{
-    display: flex;
-    justify-content:start;
 } */
-/* .flag{
-    background-image: url(../images/GB.png);
-} */
+
+/* lista de idioma 
+.menu {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;  
+}
+.menu-item{
+    
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(230, 10, 10);
+    
+    background-color: rgb(250, 244, 244);
+    padding-left: 0.5em;
+    padding-right: 0.3em;
+    padding-top: .3em;
+    padding-bottom: .5em; 
+    font-size: .9em;
+    text-align: center;
+    
+    cursor: pointer;
+}
+.menu>li>ul{
+    display: none;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+.menu>li:hover>ul{
+    z-index: index 1;
+    display:block;
+    
+}
+
+.submenu-item{
+   
+    cursor: pointer;
+    padding-left: 2.4em;
+    padding-right: 0.3em;
+    background-position: .3em 40%;
+    background-size: 1.8em 1.8em;
+    background-repeat: no-repeat;
+    background-color: rgb(250, 244, 244);
+    padding-top: .3em;
+    padding-bottom: .5em;
+    border-radius: .5em;
+    font-size: .9em;
+
+}
+.es{     
+    background-image: url(../images/ESP32.png);  
+}
+.en{
+    background-image: url(../images/GBR32.png);
+    
+}  */
 .form-section, .links {
     display: flex;
     flex-direction: column;
