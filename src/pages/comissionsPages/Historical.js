@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
+import { useContext } from "react";
+import LanguageContext from "../../context/LanguageContext";
 import { URL_DUMMY } from "../../Settings";
 import ComissionsForm from "../../components/forms/ComissionsForm";
 import "../FormPages.css";
 
 export default function CurrentMonth() {
+
+    const { texts } = useContext(LanguageContext);
 
     const [comissions, setComissions] = useState([])
 
@@ -16,16 +20,16 @@ export default function CurrentMonth() {
     return (
         <div className="container-page">
             <div className="page-title">
-                <h2>Histórico</h2>
+                <h2>{texts.comissions[3]}</h2>
             </div>
             <ComissionsForm />
             <div className="page-table">
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
+                            <th>{texts.table[0]}</th>
+                            <th>{texts.table[1]}</th>
+                            <th>{texts.table[2]}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,7 +45,6 @@ export default function CurrentMonth() {
                     </tbody>
                 </table>
             </div>
-
         </div>
     )
 }

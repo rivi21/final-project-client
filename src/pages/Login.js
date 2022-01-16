@@ -30,23 +30,14 @@ export default function Login() {
                             value={ }>
                             <span>{isActive ? "English" : "Español"}</span>
                         </button> */}
-                        <label for="language-select">Choose Language:</label>
-                        <select name="language-selection" id="language-select">                         
+                        <label for="language-select">{texts.select}</label>
+                        <select name="language-selection" id="language-select"> 
+                                                    
                             <option onClick={handleLanguage} className="language-option" value="es">Español</option>
                             <option onClick={handleLanguage} className="language-option" value="en">English</option>
                         </select>
-                        {/*   <ul className="menu">
-                            <li className="menu-item">Idioma
-                                <ul className="submenu">
-                                    <li className="submenu-item es">Español</li>
-                                    <li className="submenu-item en">Ingles</li>
-                                </ul>
-                            </li>
-
-                        </ul> */}
                     </div>
                 </div>
-                {/* FORMULARIO */}
                 <form className="formulario">
                     <div className="form-section">
                         <label className="section-part" for="input name">{texts.user}</label>
