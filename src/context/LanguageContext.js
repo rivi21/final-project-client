@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
 
-
 const LanguageContext = createContext();
 
 const initialLanguage = "en";
@@ -27,7 +26,6 @@ const translations = {
         balance: ["Balance", "Total Balance", "Due balance"],
         form: ["Document Number", "Customer number", "Customer Name", "Search"],
         table: ["ID", "Name", "Email"],
-
     }
 };
 

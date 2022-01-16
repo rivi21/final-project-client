@@ -9,54 +9,40 @@ export default function Dashboard() {
 
     let navigate = useNavigate();
 
-    const handleClickCurrentMonth = () => navigate(`/CurrentMonth`);
-    const handleClickCurrentYear = () => navigate(`/CurrentYear`);
-    const handleClickHistorical = () => navigate(`/Historical`);
-
-    const handleClickShoppingCart = () => navigate(`/ShoppingCart`);
-
-    const handleClickInvoices = () => navigate(`/Invoices`);
-    const handleClickSalesOffers = () => navigate(`/Offers`);
-    const handleClickPendingOrders = () => navigate(`/PendingOrders`);
-    const handleClickPreparingOrders = () => navigate(`/PreparingOrders`);
-    const handleClickPreparedOrders = () => navigate(`/PreparedOrders`);
-    const handleClickPayments = () => navigate(`/Payments`);
-
-    const handleClickTotalBalance = () => navigate(`/TotalBalance`);
-    const handleClickDueBalance = () => navigate(`/DueBalance`);
+    const handleClick = (e) => navigate(`/${e.target.id}`);
 
     return (
         <>
             <div>
                 <h2>{texts.comissions[0]}</h2>
                 <div className="dashboard-section">
-                    <div className="block-section" onClick={handleClickCurrentMonth}>{texts.comissions[1]}</div>
-                    <div className="block-section" onClick={handleClickCurrentYear}>{texts.comissions[2]}</div>
-                    <div className="block-section" onClick={handleClickHistorical}>{texts.comissions[3]}</div>
+                    <div className="block-section" id="CurrentMonth" onClick={(e) => handleClick(e)}>{texts.comissions[1]}</div>
+                    <div className="block-section" id="CurrentYear" onClick={(e) => handleClick(e)}>{texts.comissions[2]}</div>
+                    <div className="block-section" id="Historical" onClick={(e) => handleClick(e)}>{texts.comissions[3]}</div>
                 </div>
             </div>
             <div>
                 <h2>{texts.shoppingcart}</h2>
                 <div className="dashboard-section">
-                    <div className="block-section" onClick={handleClickShoppingCart}>{texts.shoppingcart}: </div>
+                    <div className="block-section" id="ShoppingCart" onClick={(e) => handleClick(e)}>{texts.shoppingcart}: </div>
                 </div>
             </div>
             <div>
                 <h2>{texts.sales[0]}</h2>
                 <div className="dashboard-section">
-                    <div className="block-section" onClick={handleClickSalesOffers}>{texts.sales[1]}: </div>
-                    <div className="block-section" onClick={handleClickPendingOrders}>{texts.sales[2]}: </div>
-                    <div className="block-section" onClick={handleClickPreparingOrders}>{texts.sales[3]}: </div>
-                    <div className="block-section" onClick={handleClickPreparedOrders}>{texts.sales[4]}: </div>
-                    <div className="block-section" onClick={handleClickInvoices}>{texts.sales[5]}: </div>
-                    <div className="block-section" onClick={handleClickPayments}>{texts.sales[6]}: </div>
+                    <div className="block-section" id="Offers" onClick={(e) => handleClick(e)}>{texts.sales[1]}: </div>
+                    <div className="block-section" id="PendingOrders" onClick={(e) => handleClick(e)}>{texts.sales[2]}: </div>
+                    <div className="block-section" id="PreparingOrders" onClick={(e) => handleClick(e)}>{texts.sales[3]}: </div>
+                    <div className="block-section" id="PreparedOrders" onClick={(e) => handleClick(e)}>{texts.sales[4]}: </div>
+                    <div className="block-section" id="Invoices" onClick={(e) => handleClick(e)}>{texts.sales[5]}: </div>
+                    <div className="block-section" id="Payments" onClick={(e) => handleClick(e)}>{texts.sales[6]}: </div>
                 </div>
             </div>
             <div>
                 <h2>{texts.balance[0]}</h2>
                 <div className="dashboard-section">
-                    <div className="block-section" onClick={handleClickTotalBalance}>{texts.balance[1]}</div>
-                    <div className="block-section" onClick={handleClickDueBalance}>{texts.balance[2]}</div>
+                    <div className="block-section" id="TotalBalance" onClick={(e) => handleClick(e)}>{texts.balance[1]}</div>
+                    <div className="block-section" id="DueBalance" onClick={(e) => handleClick(e)}>{texts.balance[2]}</div>
                 </div>
             </div>
         </>
