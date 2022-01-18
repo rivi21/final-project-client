@@ -29,7 +29,7 @@ export default function Router() {
                 <NavBar />
                 <Routes>
                     <Route exact path="/" element={<Login />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/Dashboard" element={<Dashboard />} />
 
                     <Route path="/CurrentMonth" element={<CurrentMonth />} />
                     <Route path="/CurrentYear" element={<CurrentYear />} />

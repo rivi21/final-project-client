@@ -15,6 +15,9 @@ const translations = {
         balance: ["Saldo", "Saldo Acumulado", "Saldo vencido"],
         form: ["Nº Documento", "Nº de Cliente", "Nombre del Cliente", "Buscar"],
         table: ["ID", "Nombre", "Email"],
+        products: "Productos",
+        customers: ["Clientes", "Nuevo cliente"],
+        settings: ["Configuración", "Usuarios", "Modificar contraseña"]
     },
     en: {
         select: "Choose a language",
@@ -26,6 +29,9 @@ const translations = {
         balance: ["Balance", "Total Balance", "Due balance"],
         form: ["Document Number", "Customer number", "Customer Name", "Search"],
         table: ["ID", "Name", "Email"],
+        products: "Products",
+        customers: ["Customers", "New customer"],
+        settings: ["Settings", "Users", "Change password"]
     }
 };
 

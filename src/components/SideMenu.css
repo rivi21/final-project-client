@@ -1,0 +1,35 @@
+.side-nav{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left:-300px; /* Escondemos nuestro menú con un valor negativo */ 
+	width: 300px;
+	z-index: 1;
+	padding: 90px 30px 30px;
+	background: #0f0f0f;
+	opacity: 0;
+	transition: all 0.75s ease;
+	font-size: 1.2em;
+	overflow-y: auto;
+}
+.hidden{
+    left:-300px;
+}
+.visible{
+    left: 0px;
+	opacity: 1;
+}
+	
+.side-nav>div{
+	display:block;
+	text-decoration: none;
+	padding: 10px;
+	color: rgba(255,255,255,0.75);
+	border-bottom: 1px solid rgba(255,255,255,0.2);
+	transition: all ease 0.25s;
+}
+ 
+.side-nav>div:hover{
+	color: rgba(255,255,255,1);
+	border-bottom-color:rgba(255,255,255,0.4);
+}
