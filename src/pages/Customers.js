@@ -40,6 +40,7 @@ export default function Customers() {
                                         <p>{data.company.name}</p>
                                     </td>
                                     <td>{data.phone}</td>
+                                    <td>{data.email}</td>
                                     <td>{data.website}</td>
                                 </tr>
                             );

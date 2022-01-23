@@ -9,8 +9,8 @@ export default function CustomersForm() {
     return (
         <div className="components-forms">
             <form action="">
-                <input type="text" placeholder={texts.form[1]} />
-                <input type="text" placeholder={texts.form[2]} />
+                <p><input type="text" placeholder={texts.form[1]} /></p>
+                <p><input type="text" placeholder={texts.form[2]} /></p>
                 <button type="submit">{texts.form[3]}</button>
             </form>
         </div>
