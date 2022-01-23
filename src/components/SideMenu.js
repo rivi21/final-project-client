@@ -5,7 +5,6 @@ import "./SideMenu.css"
 export default function SideMenu(props) {
 
 
-
     const { texts } = useContext(LanguageContext);
 
     return (
@@ -35,7 +34,7 @@ export default function SideMenu(props) {
                     </li>
                 </ul>
             </div>
-            <div>{texts.products[0]}</div>
+            <div>{texts.products}</div>
             <div>{texts.customers[0]}</div>
             <div>{texts.customers[1]}</div>
             <div>{texts.settings[0]}

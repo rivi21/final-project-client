@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
 import Dashboard from "./pages/Dashboard";
-import Login from "./pages/Login";
+import Footer from "./components/Footer";
 
 import CurrentMonth from "./pages/comissionsPages/CurrentMonth";
 import CurrentYear from "./pages/comissionsPages/CurrentYear";
@@ -28,7 +29,7 @@ export default function Router() {
             <BrowserRouter>
                 <NavBar />
                 <Routes>
-                    <Route exact path="/" element={<Login />} />
+                    <Route path="/" element={<Login />} />
                     <Route path="/Dashboard" element={<Dashboard />} />
 
                     <Route path="/CurrentMonth" element={<CurrentMonth />} />
@@ -49,6 +50,7 @@ export default function Router() {
 
                     <Route path="*" element={<Error />} />
                 </Routes>
+                <Footer />
             </BrowserRouter>
         </div>
     );

@@ -16,11 +16,9 @@ export default function Invoices() {
     let dummyDay = new Date();
     function dummyDate() {
         return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 1} - ${dummyDay.getFullYear()}`;
-    }
-    let dummyPrice = new Number()
-    function randomPrice() {
-        return dummyPrice = Math.floor(Math.random() * 10000);
-    }
+    };
+    
+    let randomPrice = () => Math.floor(Math.random() * 10000);
 
     return (
 

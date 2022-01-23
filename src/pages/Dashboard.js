@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import LanguageContext from "../context/LanguageContext";
 import { useNavigate } from "react-router-dom";
+/* import NavBar from "../components/NavBar"; */
 import "./Dashboard.css"
 
 export default function Dashboard() {
