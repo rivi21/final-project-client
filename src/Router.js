@@ -8,6 +8,7 @@ import CurrentMonth from "./pages/comissionsPages/CurrentMonth";
 import CurrentYear from "./pages/comissionsPages/CurrentYear";
 import Historical from "./pages/comissionsPages/Historical";
 
+import Customers from "./pages/Customers"
 import ShoppingCart from "./pages/ShoppingCart";
 
 import Offers from "./pages/salesPages/Offers";
@@ -36,6 +37,7 @@ export default function Router() {
                     <Route path="/CurrentYear" element={<CurrentYear />} />
                     <Route path="/Historical" element={<Historical />} />
 
+                    <Route path="/Customers" element={<Customers />} />
                     <Route path="/ShoppingCart" element={<ShoppingCart />} />
 
                     <Route path="/Offers" element={<Offers />} />

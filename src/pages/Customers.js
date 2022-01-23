@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { URL_DUMMY } from "../../Settings";
+import { URL_DUMMY } from "../Settings";
 import CustomersForm from "../components/forms/CustomersForm";
+import "./FormPages.css";
 
 export default function Customers() {
 
