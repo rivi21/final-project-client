@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from 'react'
 import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
 import Dashboard from "./pages/Dashboard";
@@ -24,7 +25,7 @@ import DueBalance from "./pages/balancePages/DueBalance";
 import Error from "./pages/Error";
 
 export default function Router() {
-
+    const [isLogged, setLogged] = useState(0)
     return (
         <div>
             <BrowserRouter>
@@ -51,6 +52,7 @@ export default function Router() {
                     <Route path="/DueBalance" element={<DueBalance />} />
 
                     <Route path="*" element={<Error />} />
+
                 </Routes>
                 <Footer />
             </BrowserRouter>

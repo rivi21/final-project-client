@@ -34,10 +34,14 @@
 .datos {
     margin: 1em;
     padding:0 5%;
-    background-color: aqua;
+    background-color: rgb(159, 163, 163);
     position: absolute;
     top: 20%;
     left: 25%;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: white;
+    border-style: solid;
 }
 .formulario{
     margin-bottom: 0.5em;
