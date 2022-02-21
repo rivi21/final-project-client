@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from 'react'
 import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
 import Dashboard from "./pages/Dashboard";
@@ -10,6 +9,8 @@ import CurrentYear from "./pages/comissionsPages/CurrentYear";
 import Historical from "./pages/comissionsPages/Historical";
 
 import Customers from "./pages/Customers"
+import NewCustomer from "./pages/NewCustomer"
+import Products from "./pages/Products"
 import ShoppingCart from "./pages/ShoppingCart";
 
 import Offers from "./pages/salesPages/Offers";
@@ -25,20 +26,22 @@ import DueBalance from "./pages/balancePages/DueBalance";
 import Error from "./pages/Error";
 
 export default function Router() {
-    const [isLogged, setLogged] = useState(0)
+    
     return (
         <div>
             <BrowserRouter>
                 <NavBar />
                 <Routes>
-                    <Route path="/" element={<Login />} />
-                    <Route path="/Dashboard" element={<Dashboard />} />
+                    {/* <Route path="/" element={<Login />} /> */}
+                    <Route path="/" element={<Dashboard />} />
 
                     <Route path="/CurrentMonth" element={<CurrentMonth />} />
                     <Route path="/CurrentYear" element={<CurrentYear />} />
                     <Route path="/Historical" element={<Historical />} />
 
                     <Route path="/Customers" element={<Customers />} />
+                    <Route path="/NewCustomer" element={<NewCustomer />} />
+                    <Route path="/Products" element={<Products />} />
                     <Route path="/ShoppingCart" element={<ShoppingCart />} />
 
                     <Route path="/Offers" element={<Offers />} />

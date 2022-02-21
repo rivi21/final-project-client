@@ -58,7 +58,7 @@ export default function PreparingOrders() {
                                     <td>FCA</td>
                                     <td>{randomPrice()}</td>
                                     <td>{randomPrice()}</td>
-                                    <button>PDF</button>
+                                    <td><button>PDF</button></td>
                                 </tr>
                             );
                         })}

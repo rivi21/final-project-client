@@ -60,7 +60,7 @@ export default function Offers() {
                                     </td>
                                     <td>Payment in advance</td>
                                     <td>{randomPrice()}</td>
-                                    <button>PDF</button>
+                                    <td><button>PDF</button></td>
                                 </tr>
                             );
                         })}

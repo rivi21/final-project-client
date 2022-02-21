@@ -41,7 +41,7 @@ export default function SideMenu(props) {
             </div>
             <div id="Products" onClick={(e) => handleClick(e)} >{texts.products}</div>
             <div id="Customers" onClick={(e) => handleClick(e)}>{texts.customers[0]}</div>
-            <div>{texts.customers[1]}</div>
+            <div id="NewCustomer" onClick={(e) => handleClick(e)}>{texts.customers[1]}</div>
             <div>{texts.settings[0]}
                 <ul>
                     <li>{texts.settings[1]}</li>

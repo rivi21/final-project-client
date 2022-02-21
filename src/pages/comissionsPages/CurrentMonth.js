@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import LanguageContext from "../../context/LanguageContext";
-import { URL_DUMMY } from "../../Settings";
+import { URL_GET_COMISSIONS } from "../../Settings";
 import ComissionsForm from "../../components/forms/ComissionsForm";
 import "../FormPages.css";
 
@@ -12,7 +12,7 @@ export default function CurrentMonth() {
     const [comissions, setComissions] = useState([])
 
     useEffect(() => {
-        fetch(URL_DUMMY)
+        fetch(URL_GET_COMISSIONS)
             .then(response => response.json()
                 .then(data => setComissions(data)))
     }, [])
@@ -27,18 +27,25 @@ export default function CurrentMonth() {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>{texts.table[0]}</th>
-                            <th>{texts.table[1]}</th>
-                            <th>{texts.table[2]}</th>
+                            <th>{/* {texts.table[0]} */}Nº de Factura</th>
+                            {/* <th>{{texts.table[1]}}Nº de cliente</th>
+                            <th>{{texts.table[2]}}Nombre Cliente</th> */}
+                            <th>{/* {texts.table[2]} */}Base imponible Comisión</th>
+                            <th>{/* {texts.table[2]} */}Porcentaje Comisión</th>
+                            <th>{/* {texts.table[2]} */}Importe Comisión</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {comissions.map((object) => {
+                        {comissions.map((data) => {
                             return (
-                                <tr key={object.id}>
-                                    <td>{object.id}</td>
-                                    <td>{object.name}</td>
-                                    <td>{object.email}</td>
+                                <tr key={data.id}>
+                                    <td>{data.id}</td>
+ {/*                                    <td>{data.name}</td>
+                                    <td>{data.email}</td> */}
+                                    <td>{data.totalPrice}</td>
+                                    <td>{data.salesComission}</td>
+                                    <td>{data.comissionAmount}</td>
+                                    <td><button>PDF</button></td>
                                 </tr>
                             );
                         })}

@@ -1,20 +1,59 @@
-
 import { useState, useContext } from "react";
 import LanguageContext from "../context/LanguageContext";
-import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { URL_POST_LOGIN } from "../Settings";
+/* import { useNavigate } from "react-router-dom"; */
+/* import { NavLink } from "react-router-dom"; */
 import "../components/LanguageSelect.css";
 import "./Login.css"
 
-export default function Login() {
 
-    const [username, setUserName] = useState();
-    const [password, setPassword] = useState();
-
-    let navigate = useNavigate();
-    const handleClick = () => navigate(`/Dashboard`);
-
+export default function Login({ setToken }) {
     const { texts, handleLanguage } = useContext(LanguageContext);
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    /* useEffect(() => {
+
+        fetchData();
+    }, []); */
+    const fetchData = async (e) => {
+        e.preventDefault();
+        const loginResponse = await fetch(URL_POST_LOGIN, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: email,
+                password: password
+            })
+        });
+        const token = await loginResponse.json();
+        setToken(token.token)
+    }
+    /*  async function loginUser(credentials) {
+         return fetch(URL_POST_LOGIN, {
+             method: 'POST',
+             headers: {
+                 'Content-Type': 'application/json',
+             },
+             body: JSON.stringify(credentials)
+         })
+             .then(response => response.json())
+             .then(data => console.log(setToken(data)));
+     };*/
+
+    /*  const handleSubmit = async (e) => {
+         e.preventDefault();
+         await loginUser({
+             email,
+             password
+         });  
+     }  */
+
+    /*  let navigate = useNavigate();
+     const handleClick = () => navigate(`/Dashboard`); */
 
     /* const [isActive, setActive] = useState("false");
     const handleToggle = () => {
@@ -39,26 +78,23 @@ export default function Login() {
                         </select>
                     </div>
                 </div>
-                <form className="formulario" /* onSubmit={handleSubmit} */>
+                <form className="formulario" onSubmit={fetchData}>
                     <div className="form-section">
                         <label className="section-part" >
-                            <p>{texts.user}{/* Username */}</p>
-                            <input className="section-part-2" type="text" placeholder="write your Username" name="username"
-                                onChange={e => setUserName(e.target.value)} />
+                            <p>{texts.user}</p>
+                            <input className="section-part-2" type="" placeholder="write your email" name="email"
+                                onChange={e => setEmail(e.target.value)} />
                         </label>
                     </div>
                     <div className="form-section">
                         <label className="section-part" >
-                            <p>{texts.password}{/* Password */}</p>
+                            <p>{texts.password}</p>
                             <input className="section-part-2" type="password" placeholder="***********" name="password"
                                 onChange={e => setPassword(e.target.value)} />
                         </label>
                     </div>
                     <div className="form-section">
-                        <button onClick={handleClick} type="submit" className="inline login">
-                            {/* <h3>Log in</h3> */}
-                            <NavLink to="/dashboard"><h3>Log in</h3></NavLink>
-                        </button>
+                        <button  type="submit" className="inline login"><h3>Log In</h3></button>
                     </div>
                 </form>
                 <div className="links"></div>
@@ -66,6 +102,7 @@ export default function Login() {
         </div>
     )
 }
+
 
 
 

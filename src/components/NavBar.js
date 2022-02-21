@@ -1,10 +1,15 @@
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import LanguageContext from "../context/LanguageContext";
 import { NavLink } from "react-router-dom";
 import SideMenu from "./SideMenu";
 import "./Navbar.css";
 
 export default function NavBar() {
+
+    let navigate = useNavigate();
+
+    const handleClick = (e) => navigate(`/${e.target.id}`);
 
     const context = useContext(LanguageContext);
 
@@ -21,17 +26,13 @@ export default function NavBar() {
                 <span></span>
             </div>
             <div className="element two">Logo</div>
-            <div className="element three">UserName</div>
-
-            {/*   <div>
-                <select name="shopping-cart" id="shopping-cart-select">
-                    <option className="language-option" value="es">Español</option>
-                    <option className="language-option" value="en">Ingles</option>
-                </select>
-            </div> */}
-            <div className="element ">
-                <NavLink to="/" className="four">Log In</NavLink>
-                <NavLink to="/Dashboard" className="four" >Dashboard</NavLink>
+            <div className="element three">UserName</div>           
+            <div className="element">
+                {/* <NavLink to="/" className="four">Log In</NavLink> */}
+                <NavLink to="/" className="four" >Dashboard</NavLink>
+            </div>
+            <div className="element shopping-cart" id="ShoppingCart" onClick={(e) => handleClick(e)}>
+                Nueva Cesta
             </div>
         </nav>
     )

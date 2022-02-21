@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { URL_DUMMY } from "../../Settings";
+import { URL_GET_INVOICES } from "../../Settings";
 import SalesForm from "../../components/forms/SalesForm";
 import "../FormPages.css";
 
@@ -12,20 +12,20 @@ import "jspdf-autotable";
 
 export default function Invoices() {
 
-    const [invoices, setInvoices] = useState([])
-    console.log(invoices)
+    const [invoicesList, setInvoicesList] = useState([]);
+
     useEffect(() => {
-        fetch(URL_DUMMY)
+        fetch(URL_GET_INVOICES)
             .then(response => response.json()
-                .then(json => setInvoices(json)))
-    }, [])
+                .then(data => setInvoicesList(data)))
+    }, []);
 
-    let dummyDay = new Date();
-    function dummyDate() {
-        return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 1} - ${dummyDay.getFullYear()}`;
-    };
+    /*  let dummyDay = new Date();
+     function dummyDate() {
+         return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 1} - ${dummyDay.getFullYear()}`;
+     }; */
 
-    let randomPrice = () => Math.floor(Math.random() * 10000);
+    /* let randomPrice = () => Math.floor(Math.random() * 10000); */
 
     const generatePDF = invoice => {
         // initialize jsPDF
@@ -36,9 +36,9 @@ export default function Invoices() {
         const tableRows = [];
         // for each ticket pass all its data into an array
         const invoiceData = [
-            invoice.address.zipcode,
             invoice.id,
-            invoice.name,
+            invoice.dueDate,
+            invoice.totalPrice,
         ];
         // push each tickcet's info into a row
         tableRows.push(invoiceData);
@@ -53,9 +53,8 @@ export default function Invoices() {
         doc.save(`report_${dateStr}.pdf`);
     };
 
-
     return (
-
+       
         <div className="container-page">
             <div className="page-title">
                 <h2>Facturas</h2>
@@ -74,14 +73,14 @@ export default function Invoices() {
                         </tr>
                     </thead>
                     <tbody>
-                        {invoices.map((invoice) => {
+                        {invoicesList.map((invoice) => {
                             return (
                                 <tr key={invoice.id}>
-                                    <td>{invoice.address.zipcode}</td>
                                     <td>{invoice.id}</td>
-                                    <td>{invoice.name}</td>
-                                    <td>{dummyDate()}</td>
-                                    <td>{randomPrice()}</td>
+                                    <td>id cliente</td>
+                                    <td>nombre cliente</td>
+                                    <td>{invoice.dueDate.date}</td>
+                                    <td>{invoice.totalPrice}</td>
                                     <td><button onClick={() => generatePDF(invoice)}>PDF</button></td>
                                 </tr>
                             );

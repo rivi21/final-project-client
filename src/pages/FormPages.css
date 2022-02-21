@@ -13,5 +13,17 @@
     padding-bottom: 5em;
 }
 
-
+.new-customer{
+    position: fixed;
+    top: 20vh;
+    right: 10vh;
+    width: 1.5em;
+    height:1.5em;
+    border-radius: 50%;
+    font-size: 3em;
+    text-align: center ;
+    color: white;
+    background-color: blue;
+    padding-top: 0.10em;
+}
 

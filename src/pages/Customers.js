@@ -1,17 +1,26 @@
 import { useState, useEffect } from "react";
-import { URL_DUMMY } from "../Settings";
+import { URL_GET_CUSTOMERS } from "../Settings";
+import { useNavigate } from "react-router-dom";
 import CustomersForm from "../components/forms/CustomersForm";
 import "./FormPages.css";
 
 export default function Customers() {
+    const [customers, setCustomers] = useState([]);
 
-    const [customers, setCustomers] = useState([])
+    let navigate = useNavigate();
+    const handleClick = (e) => navigate(`/${e.target.id}`);
 
     useEffect(() => {
-        fetch(URL_DUMMY)
+        fetch(URL_GET_CUSTOMERS)
             .then(response => response.json())
-            .then(json => setCustomers(json))
-    }, [])
+            .then(data => {
+                if (data) {
+                    setCustomers(data);
+                }else{
+                    throw alert('No se ha podido hacer la petición')
+                }
+            });
+    }, []);
 
     return (
         <div className="container-page">
@@ -35,19 +44,17 @@ export default function Customers() {
                             return (
                                 <tr key={data.id}>
                                     <td>ICON</td>
-                                    <td>
-                                        <p>{data.id}</p>
-                                        <p>{data.company.name}</p>
-                                    </td>
-                                    <td>{data.phone}</td>
+                                    <td>{data.name}</td>
+                                    <td>{data.phoneNumber}</td>
                                     <td>{data.email}</td>
-                                    <td>{data.website}</td>
+                                    <td>{data.web}</td>
                                 </tr>
                             );
                         })}
                     </tbody>
                 </table>
             </div>
+            <div className="new-customer" id="NewCustomer" onClick={(e) => handleClick(e)}>+</div>
         </div>
     );
 }

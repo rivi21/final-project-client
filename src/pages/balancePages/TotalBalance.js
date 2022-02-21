@@ -44,7 +44,6 @@ export default function TotalBalance() {
                                     <td>{data.company.name}</td>
                                     <td>{dummyDate()}</td>
                                     <td>{randomPrice()}</td>
-                                    <button>PDF</button>
                                 </tr>
                             );
                         })}
