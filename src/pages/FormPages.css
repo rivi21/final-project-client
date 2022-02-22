@@ -27,3 +27,25 @@
     padding-top: 0.10em;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+thead{   
+    border: 2px solid maroon;
+}
+th, td {
+    width: 25%;
+    text-align: left;
+}
+ td{
+     
+    border-bottom-width: 2px;
+    border-bottom-style:solid;
+    border-bottom-color: rgb(212, 211, 211);
+}
+.products-table{
+    padding-top: 1em;
+    padding-bottom:1em;
+    
+}
