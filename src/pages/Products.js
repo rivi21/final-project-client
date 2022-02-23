@@ -40,14 +40,14 @@ export default function Products() {
                                     <p>{data.type}</p>
                                 </td>
                                 <td >
-                                    <div className="products-table">
+                                    <div className="products-cells-table">
                                         <p><label htmlFor="unidad">Unidad:</label></p>
                                         <select name="unidad" id="unidad">
                                             <option value="Embalaje-12">EMBALAJE (12)</option>
                                             <option value="Embalaje-24">EMBALAJE (24)</option>
                                         </select>
                                     </div>
-                                    <div className="products-table">
+                                    <div className="products-cells-table">
                                         <p><label htmlFor="cantidad">Cantidad:</label></p>
                                         <input id="cantidad" type="text" ></input>
                                     </div>
@@ -58,6 +58,6 @@ export default function Products() {
                     })}
                 </tbody>
             </table>
-        </div >
+        </div>
     );
-}
+};

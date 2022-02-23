@@ -1,0 +1,51 @@
+.phone-cell{
+    padding-top: .9em;
+    padding-bottom: .7em;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    background-color: rgba(37, 146, 235, 0.849);
+    color:white;
+    width: 70%;
+}
+.phone-icon{
+    margin-right: 15px;
+    margin-left: 1.5em;
+    width: 24px;
+    height: 24px;
+    background-image: url(../../images/phone24.png);
+    color: white;
+}
+.phone-number{
+    font-weight: bold;
+}
+.icon-cell{
+    margin-left: 3em;
+    height: 32px;
+    width: 32px;
+    background-image: url(../../images/user.png);
+  
+}
+.mail-cell{
+    display: flex;
+    justify-content: flex-start;
+}
+.mail-icon{
+    height: 64px;
+    width: 64px;
+    background-image: url(../../images/mail64nocolor.png);
+
+}
+td:first-child{
+    width: 10%;
+}
+table td:nth-child(2) {
+    width: 30%;
+}
+.products-cells-table{
+    padding-top: 1em;
+    padding-bottom:1em;
+    
+}

@@ -13,10 +13,6 @@ export default function Login({ setToken }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    /* useEffect(() => {
-
-        fetchData();
-    }, []); */
     const fetchData = async (e) => {
         e.preventDefault();
         const loginResponse = await fetch(URL_POST_LOGIN, {

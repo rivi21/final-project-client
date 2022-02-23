@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
 import Dashboard from "./pages/Dashboard";
 import Footer from "./components/Footer";
@@ -8,8 +7,8 @@ import CurrentMonth from "./pages/comissionsPages/CurrentMonth";
 import CurrentYear from "./pages/comissionsPages/CurrentYear";
 import Historical from "./pages/comissionsPages/Historical";
 
-import Customers from "./pages/Customers"
-import NewCustomer from "./pages/NewCustomer"
+import Customers from "./pages/customerPages/Customers"
+import NewCustomer from "./pages/customerPages/NewCustomer"
 import Products from "./pages/Products"
 import ShoppingCart from "./pages/ShoppingCart";
 
@@ -32,7 +31,6 @@ export default function Router() {
             <BrowserRouter>
                 <NavBar />
                 <Routes>
-                    {/* <Route path="/" element={<Login />} /> */}
                     <Route path="/" element={<Dashboard />} />
 
                     <Route path="/CurrentMonth" element={<CurrentMonth />} />
