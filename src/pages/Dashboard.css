@@ -1,26 +1,43 @@
+.section-title{
+    padding: 1em;
+}
+
 .dashboard-section{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     padding: 1em;
-   /*  margin-inline: 3em; */
+}
+hr{
+    outline-style: solid;
+    outline-width: 1px;
+    outline-color: rgb(211, 211, 211);
+    /* margin-top: .5em; */
+}
+p{
+    padding: .4em;
 }
 .block-section{
-    height: 5em; 
-    width: 15%;  
-    background-color: rgb(75, 75, 224);
-    padding-top: 1em;
+    height: 7em; 
+    width: 25%;  
+    padding: .5em 1em ;
     margin-left: 1em;
 
-    font-size: 100%;
+    font-size: 1.5em;
+    text-align:center;
     color: rgb(245, 33, 33);
     color: brown;
-    text-align:center;
+    
+    cursor:pointer;
+    z-index: 2;
 
     border: 1px solid #333;
     border-radius: 8px;
     box-shadow: 6px 7px 6px rgba(129, 121, 243, 0.918);
     box-shadow: 6px 7px 6px rgba(37, 146, 235, 0.849);
-    padding: 8px 12px;
     background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
+}
+.block-info{
+    /* margin: .6em; */
+    font-size: smaller;
 }

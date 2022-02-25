@@ -29,12 +29,17 @@
 	transition: all ease 0.25s;
 }
  
-.side-nav>div:hover{
+.side-nav .section:hover{
 	color: rgba(255,255,255,1);
 	border-bottom-color:rgba(255,255,255,0.4);
 }
 #agent-name{
-	padding-bottom: 1em;
+	font-size: smaller;
+	padding: .5em;
+	margin-bottom: 1em;
+	border-radius: 8px;
+	color:rgb(36, 37, 35);
+	background-color: white;
 }
 .section{
 	cursor: pointer;

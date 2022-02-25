@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import LanguageContext from "../../context/LanguageContext";
-import "./Forms.css"
+import "./Forms.css";
 
 export default function BalanceForm() {
 

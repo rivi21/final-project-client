@@ -30,46 +30,46 @@ export default function Customers() {
                 <h2>Clientes</h2>
             </div>
             <CustomersForm />
-            {/* <div className="page-table"> */}
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Cliente</th>
-                        <th>Teléfono</th>
-                        <th>Email</th>
-                        <th>Web</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {customers.map((data) => {
-                        return (
-                            <tr key={data.id}>
-                                <td><div className="icon-cell"></div></td>
-                                <td>
-                                    <p>{data.name}</p>
-                                    <p>{data.address}</p>
-                                    <p>{data.country}</p>
-                                </td>
-                                <td>
-                                    <div className="phone-cell">
-                                        <div className="phone-icon"></div>
-                                        <div className="phone-number">{data.phoneNumber}</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className="mail-cell">
-                                        {/* <div>{data.email}</div> */}
-                                        <div className="mail-icon"></div>
-                                    </div>
-                                </td>
-                                <td>{data.web}</td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
-            {/* </div> */}
+            <div className="page-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Cliente</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Web</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {customers.map((data) => {
+                            return (
+                                <tr key={data.id}>
+                                    <td><div className="icon-cell"></div></td>
+                                    <td>
+                                        <p>{data.name}</p>
+                                        <p>{data.address}</p>
+                                        <p>{data.country}</p>
+                                    </td>
+                                    <td>
+                                        <div className="phone-cell">
+                                            <div className="phone-icon"></div>
+                                            <div className="phone-number">{data.phoneNumber}</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className="mail-cell">
+                                            {/* <div>{data.email}</div> */}
+                                            <div className="mail-icon"></div>
+                                        </div>
+                                    </td>
+                                    <td>{data.web}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
             <div className="new-customer" id="NewCustomer" onClick={(e) => handleClick(e)}>+</div>
         </div>
     );

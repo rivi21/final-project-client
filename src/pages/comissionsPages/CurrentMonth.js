@@ -24,7 +24,7 @@ export default function CurrentMonth() {
             </div>
             <ComissionsForm />
             <div className="page-table">
-                <table className="table">
+                <table /* className="table" */>
                     <thead>
                         <tr>
                             <th>{/* {texts.table[0]} */}Nº de Factura</th>

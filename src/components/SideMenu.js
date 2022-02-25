@@ -5,7 +5,6 @@ import "./SideMenu.css"
 
 export default function SideMenu(props) {
 
-
     const { texts } = useContext(LanguageContext);
 
     let navigate = useNavigate();

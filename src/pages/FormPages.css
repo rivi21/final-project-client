@@ -2,14 +2,18 @@
     display:flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
-    
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;   
 }
+
 .page-title{
     padding-top: 1em;
-    padding-bottom: 2em;
+    padding-bottom: 2em;  
 }
+
 .page-table{
+    width: 100%;
     margin-top: 1em;
     padding-bottom: 5em;
 }
@@ -17,7 +21,7 @@
 .new-customer{
     position: fixed;
     top: 20vh;
-    right: 10vh;
+    right: 7vh;
     width: 1.5em;
     height:1.5em;
     border-radius: 50%;
@@ -25,12 +29,13 @@
     text-align: center ;
     color: white;
     background-color: rgba(37, 146, 235, 0.849);
-    padding-top: 0.10em;
+    padding-top: .1em;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+   
 }
 thead{
     margin-bottom: 1em;
