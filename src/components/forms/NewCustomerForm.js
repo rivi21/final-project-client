@@ -23,15 +23,7 @@ export default function NewCustomerForm() {
                 <input type="text" />
             </div>
             <div className="components-forms">
-                <label>Comentarios</label>
-                <input type="text" />
-            </div>
-            <div className="components-forms">
                 <label>Idioma</label>
-                <input type="text" />
-            </div>
-            <div className="components-forms">
-                <label>Codigo de envío</label>
                 <input type="text" />
             </div>
             <div className="components-forms">
@@ -46,7 +38,6 @@ export default function NewCustomerForm() {
                 <label>Contacto *</label>
                 <input type="text" placeholder="E-mail" />
                 <input type="text" placeholder="Teléfono" />
-                <input type="text" placeholder="Móvil" />
             </div>
             <div className="components-forms">
                 <label>Domicilio de entrega</label>
@@ -64,9 +55,9 @@ export default function NewCustomerForm() {
                 <label>Término de pago *</label>
                 <input type="select" placeholder="E-mail" />
             </div>
-            <div className="components-forms">
-                <button>Volver</button>
-                <button type="submit">Aceptar</button>
+            <div className="buttons-container">
+                <button className="button-form back">Volver</button>
+                <button className="button-form go" type="submit">Aceptar</button>
             </div>
 
         </div>

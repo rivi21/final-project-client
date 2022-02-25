@@ -124,7 +124,7 @@
     padding: 1em 0;
     border: solid 2px;
     border-color: rgb(234, 235, 237);
-    border-radius: 10px;
+    border-radius: 8px;
 }
 .links{
     margin: 1em 0;
@@ -132,7 +132,7 @@
 .inline {
     border: solid 2px;
     border-color: rgb(234, 235, 237);
-    border-radius: 10px;
+    border-radius: 8px;
 }
 .login {
     background-color: #d92b34;
@@ -154,7 +154,7 @@
     background-color: white;
     border: solid 2px;
     border-color: rgb(234, 235, 237);
-    border-radius: 10px;
+    border-radius: 8px;
 }
 .enlace{
     color: #d92b34;

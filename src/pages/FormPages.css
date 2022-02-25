@@ -34,13 +34,15 @@ table {
 }
 thead{
     margin-bottom: 1em;
+    color: white;
+    background-color: rgba(37, 146, 235, 0.849);
 }
 th, td {
     text-align: left;
     vertical-align: middle;
     border-bottom-width: 2px;
     border-bottom-style:solid;
-    border-bottom-color: rgb(212, 211, 211);
+    border-bottom-color: rgb(241, 109, 109);
 }
 th{
     padding: 1em; 

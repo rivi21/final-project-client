@@ -5,12 +5,14 @@ const URL_GET_COMISSIONS = "http://localhost/final_project_server/public/index.p
 const URL_GET_INVOICES = "http://localhost/final_project_server/public/index.php/api/invoice";
 const URL_GET_PRODUCTS = 'http://localhost/final_project_server/public/index.php/api/product';
 const URL_POST_LOGIN = 'http://localhost/final_project_server/public/index.php/api/login_check';
+const URL_GET_DUEBALANCES = 'http://localhost/final_project_server/public/index.php/dueBalance/2'
 
 
 export {
     URL_DUMMY,
     URL_GET_CUSTOMERS,
     URL_GET_COMISSIONS,
+    URL_GET_DUEBALANCES,
     URL_GET_INVOICES,
     URL_GET_PRODUCTS,
     URL_POST_LOGIN

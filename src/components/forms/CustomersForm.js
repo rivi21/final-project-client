@@ -11,7 +11,7 @@ export default function CustomersForm() {
             <form action="">
                 <p><input type="text" placeholder={texts.form[1]} /></p>
                 <p><input type="text" placeholder={texts.form[2]} /></p>
-                <button type="submit">{texts.form[3]}</button>
+                <button className="button-search" type="submit">{texts.form[3]}</button>
             </form>
         </div>
     );

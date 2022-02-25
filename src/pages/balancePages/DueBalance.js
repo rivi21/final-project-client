@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { URL_DUMMY } from "../../Settings";
+import {  URL_GET_DUEBALANCES } from "../../Settings";
 import BalanceForm from "../../components/forms/BalanceForm";
 import "../FormPages.css";
 
@@ -8,7 +8,7 @@ export default function DueBalance() {
     const [dueBalance, setDueBalance] = useState([]);
 
     useEffect(() => {
-        fetch(URL_DUMMY)
+        fetch( URL_GET_DUEBALANCES)
             .then(response => response.json())
             .then(json => setDueBalance(json))
     }, []);
@@ -43,10 +43,10 @@ export default function DueBalance() {
                             return (
                                 <tr key={data.id}>
                                     <td>{data.id}</td>
-                                    <td>{data.company.name}</td>
-                                    <td>{dummyDate()}</td>
+                                    <td>{data.name}</td>
+                                    <td>{data.due_date}</td>
                                     <td>--calcular--</td>
-                                    <td>{randomPrice()}</td>
+                                    <td>{data.totalPrice}</td>
                                 </tr>
                             );
                         })}
