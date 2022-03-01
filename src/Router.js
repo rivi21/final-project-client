@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import NavBar from "./components/NavBar";
 import Dashboard from "./pages/Dashboard";
 import Footer from "./components/Footer";
@@ -25,7 +26,7 @@ import DueBalance from "./pages/balancePages/DueBalance";
 import Error from "./pages/Error";
 
 export default function Router() {
-    
+
     return (
         <div>
             <BrowserRouter>

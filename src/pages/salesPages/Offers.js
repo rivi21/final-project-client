@@ -4,13 +4,14 @@ import SalesForm from "../../components/forms/SalesForm";
 import "../FormPages.css";
 
 export default function Offers() {
-
     const [offersList, setOffersList] = useState([]);
 
     useEffect(() => {
         fetch(URL_DUMMY)
-            .then(response => response.json()
-                .then(json => setOffersList(json)))
+            .then(response => response.json())
+            .then(data => {
+                 setOffersList(data);
+            })
     }, []);
 
     let dummyDay = new Date();
@@ -48,6 +49,7 @@ export default function Offers() {
                     </thead>
                     <tbody>
                         {offersList.map((data) => {
+
                             return (
                                 <tr key={data.id}>
                                     <td>{data.address.zipcode}</td>

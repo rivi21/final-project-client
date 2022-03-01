@@ -1,21 +1,15 @@
-import { useState, useEffect } from "react";
+/* import { useState, useEffect } from "react"; */
 import { useContext } from "react";
 import LanguageContext from "../../context/LanguageContext";
-import { URL_GET_COMISSIONS } from "../../Settings";
+import DataContext from "../../context/DataContext";
+/* import { URL_GET_COMISSIONS } from "../../Settings"; */
 import ComissionsForm from "../../components/forms/ComissionsForm";
 import "../FormPages.css";
 
 export default function CurrentMonth() {
 
     const { texts } = useContext(LanguageContext);
-
-    const [comissions, setComissions] = useState([])
-
-    useEffect(() => {
-        fetch(URL_GET_COMISSIONS)
-            .then(response => response.json()
-                .then(data => setComissions(data)))
-    }, [])
+    const { comissionsUnits } = useContext(DataContext);
 
     return (
         <div className="container-page">
@@ -36,15 +30,15 @@ export default function CurrentMonth() {
                         </tr>
                     </thead>
                     <tbody>
-                        {comissions.map((data) => {
+                        {comissionsUnits.map((data) => {
                             return (
-                                <tr key={data.id}>
-                                    <td>{data.id}</td>
+                                <tr key={data.model}>
+                                    <td>{data.model}</td>
  {/*                                    <td>{data.name}</td>
                                     <td>{data.email}</td> */}
-                                    <td>{data.totalPrice}</td>
-                                    <td>{data.salesComission}</td>
-                                    <td>{data.comissionAmount}</td>
+                                    <td>{data.Price}</td>
+                                    <td>{data.type}</td>
+                                    <td>{data.stock}</td>
                                     <td><button>PDF</button></td>
                                 </tr>
                             );

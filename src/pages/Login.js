@@ -67,11 +67,11 @@ export default function Login({ setToken }) {
                             value={ }>
                             <span>{isActive ? "English" : "Español"}</span>
                         </button> */}
-                        <label htmlFor="language-select">{/* {texts.select} */}Language</label>
+                        {/* <label htmlFor="language-select">{texts.select}</label>
                         <select name="language-selection" id="language-select">
                             <option onClick={handleLanguage} className="language-option" value="es">Español</option>
                             <option onClick={handleLanguage} className="language-option" value="en">English</option>
-                        </select>
+                        </select> */}
                     </div>
                 </div>
                 <form className="formulario" onSubmit={fetchData}>
