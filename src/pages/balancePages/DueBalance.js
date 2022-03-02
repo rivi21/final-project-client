@@ -1,25 +1,27 @@
-import { useState, useEffect } from "react";
-import {  URL_GET_DUEBALANCES } from "../../Settings";
+import { useState, useEffect, useContext } from "react";
+import { URL_GET_DUEBALANCES } from "../../Settings";
+import DataContext from "../../context/DataContext";
 import BalanceForm from "../../components/forms/BalanceForm";
 import "../FormPages.css";
 
 export default function DueBalance() {
 
-    const [dueBalance, setDueBalance] = useState([]);
-
-    useEffect(() => {
-        fetch( URL_GET_DUEBALANCES)
-            .then(response => response.json())
-            .then(json => setDueBalance(json))
-    }, []);
-
-    let dummyDay = new Date();
-
-    function dummyDate() {
-        return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 1} - ${dummyDay.getFullYear()}`;
-    };
-
-    let randomPrice = () => Math.floor(Math.random() * 10000);
+    const { ordersInfo, daysLate } = useContext(DataContext);
+    /*     const [dueBalance, setDueBalance] = useState([]);
+    
+        useEffect(() => {
+            fetch( URL_GET_DUEBALANCES)
+                .then(response => response.json())
+                .then(json => setDueBalance(json))
+        }, []);
+    
+        let dummyDay = new Date();
+    
+        function dummyDate() {
+            return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 1} - ${dummyDay.getFullYear()}`;
+        };
+    
+        let randomPrice = () => Math.floor(Math.random() * 10000); */
 
     return (
         <div className="container-page">
@@ -39,16 +41,18 @@ export default function DueBalance() {
                         </tr>
                     </thead>
                     <tbody>
-                        {dueBalance.map((data) => {
-                            return (
-                                <tr key={data.id}>
-                                    <td>{data.id}</td>
-                                    <td>{data.name}</td>
-                                    <td>{data.due_date}</td>
-                                    <td>--calcular--</td>
-                                    <td>{data.totalPrice}</td>
-                                </tr>
-                            );
+                        {ordersInfo.map((data) => {
+                            if (daysLate(data.dueDate) > 0) {
+                                return (
+                                    <tr key={data.orderId}>
+                                        <td>{data.customerId}</td>
+                                        <td>{data.customerName}</td>
+                                        <td>{data.dueDate}</td>
+                                        <td>{daysLate(data.dueDate)}</td>
+                                        <td>{Math.floor(data.totalPrice * 0.7)}</td>
+                                    </tr>
+                                );
+                            }
                         })}
                     </tbody>
                 </table>

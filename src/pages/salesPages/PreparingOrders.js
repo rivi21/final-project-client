@@ -1,19 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { URL_DUMMY } from "../../Settings";
+import DataContext from "../../context/DataContext";
 import SalesForm from "../../components/forms/SalesForm";
 import "../FormPages.css";
 
 export default function PreparingOrders() {
 
-    const [preparingList, setPreparingList] = useState([]);
+    const { ordersInfo } = useContext(DataContext);
+    /* const [preparingList, setPreparingList] = useState([]);
 
     useEffect(() => {
         fetch(URL_DUMMY)
             .then(response => response.json()
                 .then(json => setPreparingList(json)))
-    }, []);
+    }, []); */
 
-    let dummyDay = new Date();
+   /*  let dummyDay = new Date();
 
     function dummyDate() {
         return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 1} - ${dummyDay.getFullYear()}`;
@@ -23,7 +25,7 @@ export default function PreparingOrders() {
         return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 2} - ${dummyDay.getFullYear()}`;
     }
 
-    let randomPrice = () => Math.floor(Math.random() * 10000);
+    let randomPrice = () => Math.floor(Math.random() * 10000); */
 
     return (
         <div className="container-page">
@@ -47,17 +49,17 @@ export default function PreparingOrders() {
                         </tr>
                     </thead>
                     <tbody>
-                        {preparingList.map((data) => {
+                        {ordersInfo.map((data) => {
                             return (
                                 <tr key={data.id}>
-                                    <td>{data.address.zipcode}</td>
-                                    <td>{data.id}</td>
-                                    <td>{data.company.name}</td>
-                                    <td>{dummyDate()}</td>
-                                    <td>{dummyDeliveryDate()}</td>
+                                    <td>{data.orderId}</td>
+                                    <td>{data.customerId}</td>
+                                    <td>{data.customerName}</td>
+                                    <td>{data.date}</td>
+                                    <td>{data.deliveryDate}</td>
                                     <td>FCA</td>
-                                    <td>{randomPrice()}</td>
-                                    <td>{randomPrice()}</td>
+                                    <td>{data.totalPrice}</td>
+                                    <td>{Math.floor(data.totalPrice * 0.7)}</td>
                                     <td><button>PDF</button></td>
                                 </tr>
                             );

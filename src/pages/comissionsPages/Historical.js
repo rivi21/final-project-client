@@ -20,7 +20,7 @@ export default function CurrentMonth() {
     return (
         <div className="container-page">
             <div className="page-title">
-                <h2>{texts.comissions[3]}</h2>
+                <h2>{texts.comissions[2]}</h2>
             </div>
             <ComissionsForm />
             <div className="page-table">

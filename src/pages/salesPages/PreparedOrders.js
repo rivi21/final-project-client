@@ -1,29 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { URL_DUMMY } from "../../Settings";
+import DataContext from "../../context/DataContext";
 import SalesForm from "../../components/forms/SalesForm";
 import "../FormPages.css";
 
 export default function PreparedOrders() {
-
-    const [preparedOrders, setPreparedOrders] = useState([])
+    const { ordersInfo, daysLate } = useContext(DataContext);
+    /* const [preparedOrders, setPreparedOrders] = useState([])
     
     useEffect(() => {
         fetch(URL_DUMMY)
             .then(response => response.json()
                 .then(json => setPreparedOrders(json)))
-    }, [])
+    }, [])*/
+    /* function daysLate(date) {
+        const date1 = Date.now();
+        const date2 = new Date(`${date}`).getTime();
+        const day_as_milliseconds = 86400000;
+        const diff_in_milliseconds = date1 - date2;
+        if (diff_in_milliseconds > 0) {
+            const diff_in_days = diff_in_milliseconds / day_as_milliseconds;
+            return Math.floor(diff_in_days);
+        } else {
+            return "";
+        }
 
-    let dummyDay = new Date();
+    } */
 
-    function dummyDate() {
-        return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 1} - ${dummyDay.getFullYear()}`;
-    };
-    function dummyDeliveryDate() {
+    /*  console.log(tiempoTranscurrido2); */
+    /* function dummyDate() {
+        return `${fecha.getDate()} - ${fecha.getMonth() + 1} - ${fecha.getFullYear()}`;
+    }; */
+    /*function dummyDeliveryDate() {
         dummyDay.setDate(dummyDay.getDate() + 31);
         return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 2} - ${dummyDay.getFullYear()}`;
     }
 
-    let randomPrice = () => Math.floor(Math.random() * 10000);
+    let randomPrice = () => Math.floor(Math.random() * 10000); */
 
     return (
         <div className="container-page">
@@ -44,22 +57,22 @@ export default function PreparedOrders() {
                             <th>Dias preparado</th>
                             <th>Importe</th>
                             <th>Importe pendiente</th>
-                            <th>PDF</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {preparedOrders.map((data) => {
+                        {ordersInfo.map((data) => {
                             return (
-                                <tr key={data.id}>
-                                    <td>{data.address.zipcode}</td>
-                                    <td>{data.id}</td>
-                                    <td>{data.company.name}</td>
-                                    <td>{dummyDate()}</td>
-                                    <td>{dummyDeliveryDate()}</td>
-                                    <td>EXW TAYG</td>
-                                    <td>¿?</td>
-                                    <td>{randomPrice()}</td>
-                                    <td>{randomPrice()}</td>
+                                <tr key={data.invoiceNumber}>
+                                    <td>{data.orderId}</td>
+                                    <td>{data.customerId}</td>
+                                    <td>{data.customerName}</td>
+                                    <td>{data.date}</td>
+                                    <td>{data.deliveryDate}</td>
+                                    <td>EXW </td>
+                                    <td>{daysLate(data.dueDate)}</td>
+                                    <td>{data.totalPrice}</td>
+                                    <td>{Math.floor(data.totalPrice * 0.7)}</td>
                                     <td><button>PDF</button></td>
                                 </tr>
                             );

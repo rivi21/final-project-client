@@ -8,7 +8,7 @@ import './App.css';
 
 export default function App() {
   const [token, setToken] = useState("");
-  
+
 
   if (!token) {
     return (
@@ -21,7 +21,7 @@ export default function App() {
       <div className="App">
         <LanguageProvider>
           <DataProvider>
-          <Router />
+            <Router />
           </DataProvider>
         </LanguageProvider>
       </div>

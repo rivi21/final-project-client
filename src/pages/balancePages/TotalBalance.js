@@ -1,25 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { URL_DUMMY } from "../../Settings";
+import DataContext from "../../context/DataContext";
 import BalanceForm from "../../components/forms/BalanceForm";
 import "../FormPages.css";
 
 export default function TotalBalance() {
-
-    const [totalBalance, setTotalBalance] = useState([]);
-
-    useEffect(() => {
-        fetch(URL_DUMMY)
-            .then(response => response.json()
-                .then(json => setTotalBalance(json)))
-    }, []);
-
-    let dummyDay = new Date();
-
-    function dummyDate() {
-        return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 1} - ${dummyDay.getFullYear()}`;
-    };
-
-    let randomPrice = () => Math.floor(Math.random() * 10000);
+    const { ordersInfo, daysLate } = useContext(DataContext);
+    /*     const [totalBalance, setTotalBalance] = useState([]);
+    
+        useEffect(() => {
+            fetch(URL_DUMMY)
+                .then(response => response.json()
+                    .then(json => setTotalBalance(json)))
+        }, []);
+    
+        let dummyDay = new Date();
+    
+        function dummyDate() {
+            return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 1} - ${dummyDay.getFullYear()}`;
+        };
+    
+        let randomPrice = () => Math.floor(Math.random() * 10000); */
     return (
         <div className="container-page">
             <div className="page-title">
@@ -37,13 +38,13 @@ export default function TotalBalance() {
                         </tr>
                     </thead>
                     <tbody>
-                        {totalBalance.map((data) => {
+                        {ordersInfo.map((data) => {
                             return (
-                                <tr key={data.id}>
-                                    <td>{data.id}</td>
-                                    <td>{data.company.name}</td>
-                                    <td>{dummyDate()}</td>
-                                    <td>{randomPrice()}</td>
+                                <tr key={data.orderId}>
+                                    <td>{data.customerId}</td>
+                                    <td>{data.customerName}</td>
+                                    <td>{data.dueDate}</td>
+                                    <td>{data.totalPrice}</td>
                                 </tr>
                             );
                         })}

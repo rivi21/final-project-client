@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import LanguageContext from "../../context/LanguageContext";
+import DataContext from "../../context/DataContext";
 import { URL_DUMMY } from "../../Settings";
 import ComissionsForm from "../../components/forms/ComissionsForm";
 import "../FormPages.css";
@@ -8,19 +9,19 @@ import "../FormPages.css";
 export default function CurrentMonth() {
 
     const { texts } = useContext(LanguageContext);
-
-    const [comissions, setComissions] = useState([])
+    const { ordersInfo, payments } = useContext(DataContext);
+    /* const [comissions, setComissions] = useState([])
 
     useEffect(() => {
         fetch(URL_DUMMY)
             .then(response => response.json()
                 .then(data => setComissions(data)))
-    }, [])
+    }, []) */
 
     return (
         <div className="container-page">
             <div className="page-title">
-                <h2>{texts.comissions[2]}</h2>
+                <h2>{texts.comissions[1]}</h2>
             </div>
             <ComissionsForm />
             <div className="page-table">
@@ -33,12 +34,12 @@ export default function CurrentMonth() {
                         </tr>
                     </thead>
                     <tbody>
-                        {comissions.map((object) => {
+                        {ordersInfo.map((data) => {
                             return (
-                                <tr key={object.id}>
-                                    <td>{object.id}</td>
-                                    <td>{object.name}</td>
-                                    <td>{object.email}</td>
+                                <tr key={data.orderId}>
+                                    <td>{data.invoiceNumber}</td>
+                                    <td>{data.customerName}</td>
+                                    <td>{data.email}</td>
                                 </tr>
                             );
                         })}

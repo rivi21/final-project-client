@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { URL_GET_INVOICES } from "../../Settings";
 import SalesForm from "../../components/forms/SalesForm";
+import DataContext from '../../context/DataContext';
 import "../FormPages.css";
-
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 /* import TotalBalance from "../balancePages/TotalBalance"; */
@@ -12,13 +12,14 @@ import "jspdf-autotable";
 
 export default function Invoices() {
 
-    const [invoicesList, setInvoicesList] = useState([]);
+    /* const [invoicesList, setInvoicesList] = useState([]); */
+    const { ordersInfo } = useContext(DataContext);
 
-    useEffect(() => {
+    /* useEffect(() => {
         fetch(URL_GET_INVOICES)
             .then(response => response.json()
                 .then(data => setInvoicesList(data)))
-    }, []);
+    }, []); */
 
     /*  let dummyDay = new Date();
      function dummyDate() {
@@ -64,7 +65,7 @@ export default function Invoices() {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>Número</th>
+                            <th>Número de pedido</th>
                             <th>iD_Cliente</th>
                             <th>Nombre</th>
                             <th>Fecha</th>
@@ -73,15 +74,15 @@ export default function Invoices() {
                         </tr>
                     </thead>
                     <tbody>
-                        {invoicesList.map((invoice) => {
+                        {ordersInfo.map((order) => {
                             return (
-                                <tr key={invoice.id}>
-                                    <td>{invoice.id}</td>
-                                    <td>id cliente</td>
-                                    <td>nombre cliente</td>
-                                    <td>{invoice.dueDate.date}</td>
-                                    <td>{invoice.totalPrice}</td>
-                                    <td><button onClick={() => generatePDF(invoice)}>PDF</button></td>
+                                <tr key={order.orderId}>
+                                    <td>{order.invoiceNumber}</td>
+                                    <td>{order.customerId}</td>
+                                    <td>{order.customerName}</td>
+                                    <td>{order.date}</td>
+                                    <td>{order.totalPrice} €</td>
+                                    <td><button onClick={() => generatePDF(order)}>PDF</button></td>
                                 </tr>
                             );
                         })}

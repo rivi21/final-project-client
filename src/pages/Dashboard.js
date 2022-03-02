@@ -7,7 +7,7 @@ import "./Dashboard.css"
 export default function Dashboard() {
 
     const { texts } = useContext(LanguageContext);
-    const { comissionsUnits, comissionsAmount } = useContext(DataContext);
+    const { comissionsUnits, comissionsAmount, ordersInfo, payments } = useContext(DataContext);
    
     let navigate = useNavigate();
 
@@ -57,7 +57,7 @@ export default function Dashboard() {
                     <div className="block-section" id="Offers" onClick={(e) => handleClick(e)}>
                         <p>{texts.sales[0]}:</p>
                         <hr />
-                        <p className="block-info">unidades: {/* offersList.length */}</p>
+                        <p className="block-info">unidades: {}</p>
                         <p className="block-info">sumatorios</p>
                     </div>
                     <div className="block-section" id="PendingOrders" onClick={(e) => handleClick(e)}>
@@ -97,8 +97,8 @@ export default function Dashboard() {
                     <div className="block-section" id="TotalBalance" onClick={(e) => handleClick(e)}>
                         <p>{texts.balance[0]}</p>
                         <hr />
-                        <p className="block-info">unidades</p>
-                        <p className="block-info">sumatorios</p>
+                        <p className="block-info">Facturas: {ordersInfo.length}</p>
+                        <p className="block-info">Importe: {payments}</p>
                     </div>
                     <div className="block-section" id="DueBalance" onClick={(e) => handleClick(e)}>
                         <p>{texts.balance[1]}</p>
