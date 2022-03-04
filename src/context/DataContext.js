@@ -14,15 +14,60 @@ getUrlData() */
 
 const DataProvider = ({ children }) => {
     const [comissionsUnits, setComissionsUnits] = useState([]);
+    const [comissionsThisMonth, setComissionsThisMonth] = useState([]);
+    const [comissionsThisYear, setComissionsThisYear] = useState([])
     const [comissionsAmount, setComissionsAmount] = useState([]);
     const [ordersInfo, setOrdersInfo] = useState([]);
     const [payments, setPayments] = useState([]);
     const [invoices, setInvoices] = useState([]);
 
+    const today = new Date();
+    const thisMonth = today.getMonth() + 1;
+    const thisYear = today.getFullYear();
+
+    function compareYear(d) {
+        const givenDate = new Date(`${d}`);
+        const givenYear = givenDate.getFullYear();
+        if (thisYear === givenYear) {
+            return true;
+        };
+    };
+
+    function comissionsPerYear(data) {
+        let comissionsThisYear = 0
+        let totalAmount = 0;
+        data.map(element => {
+            if (compareYear(element.isPaidDate) === true && (element.isPaid)) {
+                comissionsThisYear++;
+                totalAmount = totalAmount + element.comissionAmount
+            }
+        });
+        setComissionsThisYear([comissionsThisYear, totalAmount]);
+    };
+
+    function comissionsPerMonth(data) {
+        let paymentMonth = 0;
+        let comissionsThisMonth = 0
+        let totalAmount = 0;
+        data.map(element => {
+            if (element.isPaidDate !== "") {
+                const paymentDate = (new Date(element.isPaidDate));
+                paymentMonth = paymentDate.getMonth() + 1;
+
+            } if (paymentMonth === thisMonth) {
+                comissionsThisMonth++;
+                totalAmount = totalAmount + element.comissionAmount
+            };
+        });
+        setComissionsThisMonth([comissionsThisMonth, totalAmount]);
+    }
+
     useEffect(() => {
         fetch(URL_GET_INVOICES_BY_CUSTOMERS)
             .then(response => response.json())
             .then(data => {
+                comissionsPerMonth(data);
+                comissionsPerYear(data)
                 setInvoices(data);
                 setComissionsUnits(data);
                 let sum = 0;
@@ -58,7 +103,7 @@ const DataProvider = ({ children }) => {
 
     }
 
-    const data = { comissionsUnits, comissionsAmount, invoices, ordersInfo, payments, daysLate };
+    const data = { comissionsUnits, comissionsThisMonth, comissionsThisYear, comissionsAmount, invoices, ordersInfo, payments, daysLate };
 
     return <DataContext.Provider value={data}>{children}</DataContext.Provider>
 };

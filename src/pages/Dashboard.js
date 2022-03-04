@@ -7,8 +7,8 @@ import "./Dashboard.css"
 export default function Dashboard() {
 
     const { texts } = useContext(LanguageContext);
-    const { comissionsUnits, comissionsAmount, ordersInfo, payments, invoices } = useContext(DataContext);
-   
+    const { comissionsThisMonth, comissionsThisYear, ordersInfo, payments, invoices } = useContext(DataContext);
+
     let navigate = useNavigate();
 
     const handleClick = (e) => navigate(`/${e.currentTarget.id}`);
@@ -19,16 +19,16 @@ export default function Dashboard() {
                 <h1 className="section-title">{texts.titles[0]}</h1>
                 <div className="dashboard-section">
                     <div className="block-section" id="CurrentMonth" onClick={(e) => handleClick(e)}>
-                        <p>{texts.comissions[0]}: {comissionsUnits.length}</p>
+                        <p>{texts.comissions[0]}</p>
                         <hr />
-                        <p className="block-info">número de comisiones: {comissionsUnits.length}</p>
-                        <p className="block-info">importe total: {comissionsAmount} €</p>
+                        <p className="block-info">número de comisiones: {comissionsThisMonth[0]}</p>
+                        <p className="block-info">importe total: {comissionsThisMonth[1]} €</p>
                     </div>
                     <div className="block-section" id="CurrentYear" onClick={(e) => handleClick(e)}>
                         <p>{texts.comissions[1]}</p>
                         <hr />
-                        <p className="block-info">número de comisiones: {comissionsUnits.length}</p>
-                        <p className="block-info">Acumulado: {comissionsAmount} €</p>
+                        <p className="block-info">número de comisiones: {comissionsThisYear[0]}</p>
+                        <p className="block-info">Acumulado: {comissionsThisYear[1]} €</p>
 
                     </div>
                     <div className="block-section" id="Historical" onClick={(e) => handleClick(e)}>

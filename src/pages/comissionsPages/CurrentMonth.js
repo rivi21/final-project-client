@@ -11,7 +11,7 @@ export default function CurrentMonth() {
     const { texts } = useContext(LanguageContext);
     /* const { invoices } = useContext(DataContext); */
 
-     const [comissions, setComissions] = useState([])
+    const [comissions, setComissions] = useState([])
 
     useEffect(() => {
         fetch(URL_GET_INVOICES_BY_CUSTOMERS)
@@ -20,8 +20,20 @@ export default function CurrentMonth() {
     }, [])
 
     const today = new Date();
-    const thisMonth = String(today.getMonth());
-    const thisMonth2 = today.getMonth()
+    const thisMonth = today.getMonth()
+    /*     console.log(thisMonth);
+        console.log(thisMonth2); */
+   /*  let paymentDates = [];
+    comissions.map(element => {
+        if (element.isPaidDate !== "") {
+            const paymentDate = (new Date(element.isPaidDate));
+            const paymentMonth = paymentDate.getMonth();
+            paymentDates.push(paymentMonth);
+
+        }
+        console.log(paymentDates);
+    }); */
+
     return (
         <div className="container-page">
             <div className="page-title">
@@ -44,10 +56,12 @@ export default function CurrentMonth() {
                     </thead>
                     <tbody>
                         {comissions.map(data => {
-                            const date = new Date(data.orderDate);
-                            const dataDate = String(date.getMonth());
-                            console.log(dataDate);
-                            if (data.isPaid /* && dataDate == thisMonth */) {
+                            let paymentMonth = 0;
+                            if (data.isPaidDate !== "") {
+                                const paymentDate = (new Date(data.isPaidDate));
+                                paymentMonth = paymentDate.getMonth();
+
+                            } if (paymentMonth === thisMonth) {
                                 return (
                                     <tr key={data.invoiceId}>
                                         <td>{data.invoiceId}</td>

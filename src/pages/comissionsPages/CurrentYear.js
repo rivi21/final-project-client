@@ -21,13 +21,14 @@ export default function CurrentMonth() {
 
     function compareYear(d) {
         const today = new Date();
-        let thisYear = today.getFullYear();
+        const thisYear = today.getFullYear();
         const givenDate = new Date(`${d}`);
-        let givenYear = givenDate.getFullYear();
+        const givenYear = givenDate.getFullYear();
         if (thisYear === givenYear) {
             return true;
         };
     };
+
     return (
         <div className="container-page">
             <div className="page-title">
@@ -50,7 +51,7 @@ export default function CurrentMonth() {
                     </thead>
                     <tbody>
                         {comissions.map(data => {
-                            if (compareYear(data.dueDate) === true && (data.isPaid)) {
+                            if (compareYear(data.isPaidDate) === true && (data.isPaid)) {
                                 return (
                                     <tr key={data.invoiceId}>
                                         <td>{data.invoiceId}</td>
