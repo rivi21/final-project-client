@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { URL_GET_COMISSIONS, URL_GET_CUSTOMERS_ORDERS_INVOICES } from "../Settings";
+import { URL_GET_CUSTOMERS_ORDERS_INVOICES, URL_GET_INVOICES_BY_CUSTOMERS } from "../Settings";
 
 const DataContext = createContext();
 
@@ -17,11 +17,13 @@ const DataProvider = ({ children }) => {
     const [comissionsAmount, setComissionsAmount] = useState([]);
     const [ordersInfo, setOrdersInfo] = useState([]);
     const [payments, setPayments] = useState([]);
+    const [invoices, setInvoices] = useState([]);
 
     useEffect(() => {
-        fetch(URL_GET_COMISSIONS)
+        fetch(URL_GET_INVOICES_BY_CUSTOMERS)
             .then(response => response.json())
             .then(data => {
+                setInvoices(data);
                 setComissionsUnits(data);
                 let sum = 0;
                 data.forEach(element => {
@@ -41,6 +43,7 @@ const DataProvider = ({ children }) => {
                 setPayments(sum);
             })
     }, []);
+
     function daysLate(date) {
         const date1 = Date.now();
         const date2 = new Date(`${date}`).getTime();
@@ -55,10 +58,8 @@ const DataProvider = ({ children }) => {
 
     }
 
-    const data = {
-        comissionsUnits, comissionsAmount, ordersInfo, payments,
-        daysLate
-    };
+    const data = { comissionsUnits, comissionsAmount, invoices, ordersInfo, payments, daysLate };
+
     return <DataContext.Provider value={data}>{children}</DataContext.Provider>
 };
 export { DataProvider };

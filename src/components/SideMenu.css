@@ -4,7 +4,7 @@
 	bottom: 0;
 	left:-300px; /* Escondemos nuestro menú con un valor negativo */ 
 	width: 300px;
-	z-index: 1;
+	z-index: 2;
 	padding: 90px 30px 30px;
 	background: rgb(36, 37, 35);
 	opacity: 0;

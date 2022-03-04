@@ -7,7 +7,7 @@ import "./Dashboard.css"
 export default function Dashboard() {
 
     const { texts } = useContext(LanguageContext);
-    const { comissionsUnits, comissionsAmount, ordersInfo, payments } = useContext(DataContext);
+    const { comissionsUnits, comissionsAmount, ordersInfo, payments, invoices } = useContext(DataContext);
    
     let navigate = useNavigate();
 
