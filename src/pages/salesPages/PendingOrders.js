@@ -1,16 +1,14 @@
-import { useState, useEffect,/*  useContext */ } from "react";
-import { URL_GET_CUSTOMERS_ORDERS_INVOICES } from "../../Settings";
-/* import DataContext from "../../context/DataContext"; */
+import { useState, useEffect } from "react";
+import { URL_GET_SALES } from "../../Settings";
 import SalesForm from "../../components/forms/SalesForm";
 import "../FormPages.css";
 
 export default function PendingOrders() {
 
-    /* const { ordersInfo } = useContext(DataContext); */
     const [pendingOrders, setPendingOrders] = useState([])
 
     useEffect(() => {
-        fetch(URL_GET_CUSTOMERS_ORDERS_INVOICES)
+        fetch(URL_GET_SALES)
             .then(response => response.json()
                 .then(json => setPendingOrders(json)))
     }, []);
@@ -38,19 +36,22 @@ export default function PendingOrders() {
                     </thead>
                     <tbody>
                         {pendingOrders.map((data) => {
-                            return (
-                                <tr key={data.invoiceNumber}>
-                                    <td>{data.orderId}</td>
-                                    <td>{data.customerId}</td>
-                                    <td>{data.customerName}</td>
-                                    <td>{data.date}</td>
-                                    <td>{data.deliveryDate}</td>
-                                    <td>FCA</td>
-                                    <td>{data.totalPrice}</td>
-                                    <td>{Math.floor(data.totalPrice * 0.7)}</td>
-                                    <td><button>PDF</button></td>
-                                </tr>
-                            );
+                            if ((!data.isPreparing) && (!data.isPrepared)) {
+                                return (
+                                    <tr key={data.invoiceNumber}>
+                                        <td>{data.orderId}</td>
+                                        <td>{data.customerId}</td>
+                                        <td>{data.customerName}</td>
+                                        <td>{data.date}</td>
+                                        <td>{data.deliveryDate}</td>
+                                        <td>FCA</td>
+                                        <td>{data.totalPrice}</td>
+                                        <td>{Math.floor(data.totalPrice * 0.7)}</td>
+                                        <td><button>PDF</button></td>
+                                    </tr>
+                                );
+                            }
+
                         })}
                     </tbody>
                 </table>

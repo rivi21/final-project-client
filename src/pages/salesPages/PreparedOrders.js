@@ -1,5 +1,5 @@
 import { useState, useEffect /* useContext */ } from "react";
-import { URL_GET_CUSTOMERS_ORDERS_INVOICES } from "../../Settings";
+import { URL_GET_SALES } from "../../Settings";
 /* import DataContext from "../../context/DataContext"; */
 import SalesForm from "../../components/forms/SalesForm";
 import "../FormPages.css";
@@ -7,11 +7,11 @@ import "../FormPages.css";
 export default function PreparedOrders() {
     /* const { ordersInfo, daysLate } = useContext(DataContext); */
     const [preparedOrders, setPreparedOrders] = useState([])
-    
+
     useEffect(() => {
-        fetch(URL_GET_CUSTOMERS_ORDERS_INVOICES)
-            .then(response => response.json()
-                .then(json => setPreparedOrders(json)))
+        fetch(URL_GET_SALES)
+            .then(response => response.json())
+            .then(json => setPreparedOrders(json))
     }, [])
 
     function daysLate(date) {
@@ -52,20 +52,22 @@ export default function PreparedOrders() {
                     </thead>
                     <tbody>
                         {preparedOrders.map((data) => {
-                            return (
-                                <tr key={data.invoiceNumber}>
-                                    <td>{data.orderId}</td>
-                                    <td>{data.customerId}</td>
-                                    <td>{data.customerName}</td>
-                                    <td>{data.date}</td>
-                                    <td>{data.deliveryDate}</td>
-                                    <td>EXW</td>
-                                    <td id="dayslate-column">{daysLate(data.dueDate)}</td>
-                                    <td>{data.totalPrice}</td>
-                                    <td>{Math.floor(data.totalPrice * 0.7)}</td>
-                                    <td><button>PDF</button></td>
-                                </tr>
-                            );
+                            if (data.isPrepared) {
+                                return (
+                                    <tr key={data.invoiceNumber}>
+                                        <td>{data.orderId}</td>
+                                        <td>{data.customerId}</td>
+                                        <td>{data.customerName}</td>
+                                        <td>{data.date}</td>
+                                        <td>{data.deliveryDate}</td>
+                                        <td>EXW</td>
+                                        <td id="dayslate-column">{daysLate(data.dueDate)}</td>
+                                        <td>{data.totalPrice}</td>
+                                        <td>{Math.floor(data.totalPrice * 0.7)}</td>
+                                        <td><button>PDF</button></td>
+                                    </tr>
+                                );
+                            }
                         })}
                     </tbody>
                 </table>

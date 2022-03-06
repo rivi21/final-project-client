@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { URL_GET_CUSTOMERS_ORDERS_INVOICES, URL_GET_INVOICES_BY_CUSTOMERS } from "../Settings";
+import {  URL_GET_SALES, URL_GET_INVOICES_BY_CUSTOMERS } from "../Settings";
 
 const DataContext = createContext();
 
@@ -91,7 +91,7 @@ const DataProvider = ({ children }) => {
                 setComissionsAmount(sum);
             });
 
-        fetch(URL_GET_CUSTOMERS_ORDERS_INVOICES)
+        fetch( URL_GET_SALES)
             .then(response => response.json())
             .then(data => {
                 setOrdersInfo(data)
