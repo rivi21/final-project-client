@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useContext } from "react";
 import LanguageContext from "../../context/LanguageContext";
 /* import DataContext from "../../context/DataContext"; */
-import { URL_GET_INVOICES_BY_CUSTOMERS } from "../../Settings";
+import { URL_GET_COMISSIONS } from "../../Settings";
 import ComissionsForm from "../../components/forms/ComissionsForm";
 import "../FormPages.css";
 
@@ -14,7 +14,7 @@ export default function CurrentMonth() {
     const [comissions, setComissions] = useState([])
 
     useEffect(() => {
-        fetch(URL_GET_INVOICES_BY_CUSTOMERS)
+        fetch(URL_GET_COMISSIONS)
             .then(response => response.json())
             .then(data => setComissions(data))
 }, [])
