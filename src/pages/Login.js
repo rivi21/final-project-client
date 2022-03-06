@@ -26,6 +26,10 @@ export default function Login({ setToken }) {
             })
         });
         const token = await loginResponse.json();
+        console.log(token);
+
+        localStorage.setItem('token', JSON.stringify(token));
+
         setToken(token.token)
     }
     /*  async function loginUser(credentials) {
@@ -90,7 +94,7 @@ export default function Login({ setToken }) {
                         </label>
                     </div>
                     <div className="form-section">
-                        <button  type="submit" className="inline login"><h3>Log In</h3></button>
+                        <button type="submit" className="inline login"><h3>Log In</h3></button>
                     </div>
                 </form>
                 <div className="links"></div>

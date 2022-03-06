@@ -1,19 +1,20 @@
-import { useState, useEffect, useContext } from "react";
-import { URL_DUMMY } from "../../Settings";
-import DataContext from "../../context/DataContext";
+import { useState, useEffect /* useContext */ } from "react";
+import { URL_GET_CUSTOMERS_ORDERS_INVOICES } from "../../Settings";
+/* import DataContext from "../../context/DataContext"; */
 import SalesForm from "../../components/forms/SalesForm";
 import "../FormPages.css";
 
 export default function PreparedOrders() {
-    const { ordersInfo, daysLate } = useContext(DataContext);
-    /* const [preparedOrders, setPreparedOrders] = useState([])
+    /* const { ordersInfo, daysLate } = useContext(DataContext); */
+    const [preparedOrders, setPreparedOrders] = useState([])
     
     useEffect(() => {
-        fetch(URL_DUMMY)
+        fetch(URL_GET_CUSTOMERS_ORDERS_INVOICES)
             .then(response => response.json()
                 .then(json => setPreparedOrders(json)))
-    }, [])*/
-    /* function daysLate(date) {
+    }, [])
+
+    function daysLate(date) {
         const date1 = Date.now();
         const date2 = new Date(`${date}`).getTime();
         const day_as_milliseconds = 86400000;
@@ -25,18 +26,7 @@ export default function PreparedOrders() {
             return "";
         }
 
-    } */
-
-    /*  console.log(tiempoTranscurrido2); */
-    /* function dummyDate() {
-        return `${fecha.getDate()} - ${fecha.getMonth() + 1} - ${fecha.getFullYear()}`;
-    }; */
-    /*function dummyDeliveryDate() {
-        dummyDay.setDate(dummyDay.getDate() + 31);
-        return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 2} - ${dummyDay.getFullYear()}`;
     }
-
-    let randomPrice = () => Math.floor(Math.random() * 10000); */
 
     return (
         <div className="container-page">
@@ -61,7 +51,7 @@ export default function PreparedOrders() {
                         </tr>
                     </thead>
                     <tbody>
-                        {ordersInfo.map((data) => {
+                        {preparedOrders.map((data) => {
                             return (
                                 <tr key={data.invoiceNumber}>
                                     <td>{data.orderId}</td>
@@ -69,8 +59,8 @@ export default function PreparedOrders() {
                                     <td>{data.customerName}</td>
                                     <td>{data.date}</td>
                                     <td>{data.deliveryDate}</td>
-                                    <td>EXW </td>
-                                    <td>{daysLate(data.dueDate)}</td>
+                                    <td>EXW</td>
+                                    <td id="dayslate-column">{daysLate(data.dueDate)}</td>
                                     <td>{data.totalPrice}</td>
                                     <td>{Math.floor(data.totalPrice * 0.7)}</td>
                                     <td><button>PDF</button></td>

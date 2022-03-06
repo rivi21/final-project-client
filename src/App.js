@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Login from "./pages/Login";
 import { LanguageProvider } from "./context/LanguageContext";
 import { DataProvider } from './context/DataContext';
@@ -9,6 +9,12 @@ import './App.css';
 export default function App() {
   const [token, setToken] = useState("");
 
+  useEffect(() => {
+    setToken(JSON.parse(localStorage.getItem("token")));
+    return () => {
+      
+    }
+  }, [])
 
   if (!token) {
     return (

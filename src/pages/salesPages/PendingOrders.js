@@ -1,31 +1,19 @@
-import { useState, useEffect, useContext } from "react";
-import { URL_DUMMY } from "../../Settings";
-import DataContext from "../../context/DataContext";
+import { useState, useEffect,/*  useContext */ } from "react";
+import { URL_GET_CUSTOMERS_ORDERS_INVOICES } from "../../Settings";
+/* import DataContext from "../../context/DataContext"; */
 import SalesForm from "../../components/forms/SalesForm";
 import "../FormPages.css";
 
 export default function PendingOrders() {
 
-    const { ordersInfo } = useContext(DataContext);
-    /* const [pendingOrders, setPendingOrders] = useState([]) */
-    
-    /* useEffect(() => {
-        fetch(URL_DUMMY)
+    /* const { ordersInfo } = useContext(DataContext); */
+    const [pendingOrders, setPendingOrders] = useState([])
+
+    useEffect(() => {
+        fetch(URL_GET_CUSTOMERS_ORDERS_INVOICES)
             .then(response => response.json()
                 .then(json => setPendingOrders(json)))
-    }, []); */
-
-    /* let dummyDay = new Date();
-
-    function dummyDate() {
-        return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 1} - ${dummyDay.getFullYear()}`;
-    };
-    function dummyDeliveryDate() {
-        dummyDay.setDate(dummyDay.getDate() + 31);
-        return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 2} - ${dummyDay.getFullYear()}`;
-    };
-
-    let randomPrice = () => Math.floor(Math.random() * 10000); */
+    }, []);
 
     return (
         <div className="container-page">
@@ -37,9 +25,9 @@ export default function PendingOrders() {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>Número</th>
+                            <th>Número de pedido</th>
                             <th>iD_Cliente</th>
-                            <th>Nombre</th>
+                            <th>Nombre Cliente</th>
                             <th>Fecha</th>
                             <th>Fecha Entrega</th>
                             <th>Condiciones de envío</th>
@@ -49,7 +37,7 @@ export default function PendingOrders() {
                         </tr>
                     </thead>
                     <tbody>
-                        {ordersInfo.map((data) => {
+                        {pendingOrders.map((data) => {
                             return (
                                 <tr key={data.invoiceNumber}>
                                     <td>{data.orderId}</td>

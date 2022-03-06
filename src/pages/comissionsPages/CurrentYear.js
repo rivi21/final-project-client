@@ -15,8 +15,8 @@ export default function CurrentMonth() {
 
     useEffect(() => {
         fetch(URL_GET_INVOICES_BY_CUSTOMERS)
-            .then(response => response.json()
-                .then(data => setComissions(data)))
+            .then(response => response.json())
+            .then(data => setComissions(data))
     }, [])
 
     function compareYear(d) {

@@ -1,31 +1,19 @@
-import { useState, useEffect, useContext } from "react";
-import { URL_DUMMY } from "../../Settings";
-import DataContext from "../../context/DataContext";
+import { useState, useEffect, /* useContext */ } from "react";
+import { URL_GET_CUSTOMERS_ORDERS_INVOICES } from "../../Settings";
+/* import DataContext from "../../context/DataContext"; */
 import SalesForm from "../../components/forms/SalesForm";
 import "../FormPages.css";
 
 export default function PreparingOrders() {
 
-    const { ordersInfo } = useContext(DataContext);
-    /* const [preparingList, setPreparingList] = useState([]);
+    /* const { ordersInfo } = useContext(DataContext); */
+    const [preparingList, setPreparingList] = useState([]);
 
     useEffect(() => {
-        fetch(URL_DUMMY)
+        fetch(URL_GET_CUSTOMERS_ORDERS_INVOICES)
             .then(response => response.json()
                 .then(json => setPreparingList(json)))
-    }, []); */
-
-   /*  let dummyDay = new Date();
-
-    function dummyDate() {
-        return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 1} - ${dummyDay.getFullYear()}`;
-    };
-    function dummyDeliveryDate() {
-        dummyDay.setDate(dummyDay.getDate() + 31);
-        return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 2} - ${dummyDay.getFullYear()}`;
-    }
-
-    let randomPrice = () => Math.floor(Math.random() * 10000); */
+    }, []);
 
     return (
         <div className="container-page">
@@ -49,9 +37,9 @@ export default function PreparingOrders() {
                         </tr>
                     </thead>
                     <tbody>
-                        {ordersInfo.map((data) => {
+                        {preparingList.map((data) => {
                             return (
-                                <tr key={data.id}>
+                                <tr key={data.invoiceNumber}>
                                     <td>{data.orderId}</td>
                                     <td>{data.customerId}</td>
                                     <td>{data.customerName}</td>

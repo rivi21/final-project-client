@@ -62,6 +62,20 @@ const DataProvider = ({ children }) => {
         setComissionsThisMonth([comissionsThisMonth, totalAmount]);
     }
 
+    function daysLate(date) {
+        const date1 = Date.now();
+        const date2 = new Date(`${date}`).getTime();
+        const day_as_milliseconds = 86400000;
+        const diff_in_milliseconds = date1 - date2;
+        if (diff_in_milliseconds > 0) {
+            const diff_in_days = diff_in_milliseconds / day_as_milliseconds;
+            return Math.floor(diff_in_days);
+        } else {
+            return "";
+        }
+
+    }
+
     useEffect(() => {
         fetch(URL_GET_INVOICES_BY_CUSTOMERS)
             .then(response => response.json())
@@ -89,19 +103,7 @@ const DataProvider = ({ children }) => {
             })
     }, []);
 
-    function daysLate(date) {
-        const date1 = Date.now();
-        const date2 = new Date(`${date}`).getTime();
-        const day_as_milliseconds = 86400000;
-        const diff_in_milliseconds = date1 - date2;
-        if (diff_in_milliseconds > 0) {
-            const diff_in_days = diff_in_milliseconds / day_as_milliseconds;
-            return Math.floor(diff_in_days);
-        } else {
-            return "";
-        }
 
-    }
 
     const data = { comissionsUnits, comissionsThisMonth, comissionsThisYear, comissionsAmount, invoices, ordersInfo, payments, daysLate };
 
