@@ -1,16 +1,7 @@
 import { createContext, useState, useEffect } from "react";
-import {  URL_GET_SALES, URL_GET_INVOICES_BY_CUSTOMERS } from "../Settings";
+import {  URL_GET_SALES, URL_GET_COMISSIONS } from "../Settings";
 
 const DataContext = createContext();
-
-/* async function getUrlData() {
-    for (let i = 0; i < allURL.length; i++) {
-        const response = await fetch(allURL[i]);
-        const data = await response.json();
-        allData.push(data);
-    }
-};
-getUrlData() */
 
 const DataProvider = ({ children }) => {
     const [comissionsUnits, setComissionsUnits] = useState([]);
@@ -77,9 +68,10 @@ const DataProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        fetch(URL_GET_INVOICES_BY_CUSTOMERS)
+        fetch(URL_GET_COMISSIONS)
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 comissionsPerMonth(data);
                 comissionsPerYear(data)
                 setInvoices(data);
@@ -91,7 +83,7 @@ const DataProvider = ({ children }) => {
                 setComissionsAmount(sum);
             });
 
-        fetch( URL_GET_SALES)
+        fetch(URL_GET_SALES)
             .then(response => response.json())
             .then(data => {
                 setOrdersInfo(data)
@@ -102,8 +94,6 @@ const DataProvider = ({ children }) => {
                 setPayments(sum);
             })
     }, []);
-
-
 
     const data = { comissionsUnits, comissionsThisMonth, comissionsThisYear, comissionsAmount, invoices, ordersInfo, payments, daysLate };
 

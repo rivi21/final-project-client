@@ -1,27 +1,19 @@
 import { useState, useEffect, useContext } from "react";
-import { URL_GET_DUEBALANCES } from "../../Settings";
+import { URL_GET_SALES } from "../../Settings";
 import DataContext from "../../context/DataContext";
 import BalanceForm from "../../components/forms/BalanceForm";
 import "../FormPages.css";
 
 export default function DueBalance() {
 
-    const { ordersInfo, daysLate } = useContext(DataContext);
-    /*     const [dueBalance, setDueBalance] = useState([]);
-    
-        useEffect(() => {
-            fetch( URL_GET_DUEBALANCES)
-                .then(response => response.json())
-                .then(json => setDueBalance(json))
-        }, []);
-    
-        let dummyDay = new Date();
-    
-        function dummyDate() {
-            return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 1} - ${dummyDay.getFullYear()}`;
-        };
-    
-        let randomPrice = () => Math.floor(Math.random() * 10000); */
+    const { daysLate } = useContext(DataContext);
+    const [dueBalance, setDueBalance] = useState([]);
+
+    useEffect(() => {
+        fetch(URL_GET_SALES)
+            .then(response => response.json())
+            .then(data => setDueBalance(data))
+    }, []);
 
     return (
         <div className="container-page">
@@ -41,7 +33,7 @@ export default function DueBalance() {
                         </tr>
                     </thead>
                     <tbody>
-                        {ordersInfo.map((data) => {
+                        {dueBalance.map((data) => {
                             if (daysLate(data.dueDate) > 0) {
                                 return (
                                     <tr key={data.orderId}>
