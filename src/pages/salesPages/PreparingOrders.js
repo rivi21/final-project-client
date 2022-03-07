@@ -1,12 +1,14 @@
-import { useState, useEffect, /* useContext */ } from "react";
+import { useState, useEffect, useContext } from "react";
 import { URL_GET_SALES } from "../../Settings";
+import LanguageContext from "../../context/LanguageContext";
 /* import DataContext from "../../context/DataContext"; */
 import SalesForm from "../../components/forms/SalesForm";
 import "../FormPages.css";
 
 export default function PreparingOrders() {
 
-    /* const { ordersInfo } = useContext(DataContext); */
+    const { texts } = useContext(LanguageContext);
+
     const [preparingList, setPreparingList] = useState([]);
 
     useEffect(() => {
@@ -18,22 +20,22 @@ export default function PreparingOrders() {
     return (
         <div className="container-page">
             <div className="page-title">
-                <h2>Pedidos en preparación</h2>
+                <h2>{texts.sales[1]}</h2>
             </div>
             <SalesForm />
             <div className="page-table">
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>Número</th>
-                            <th>iD_Cliente</th>
-                            <th>Nombre</th>
-                            <th>Fecha</th>
-                            <th>Fecha Entrega</th>
-                            <th>Condiciones de envío</th>
-                            <th>Importe</th>
-                            <th>Importe pendiente</th>
-                            <th>PDF</th>
+                            <th>{texts.table[9]}</th>
+                            <th>{texts.table[4]}</th>
+                            <th>{texts.table[1]}</th>
+                            <th>{texts.table[10]}</th>
+                            <th>{texts.table[11]}</th>
+                            <th>{texts.table[12]}</th>
+                            <th>{texts.table[13]}</th>
+                            <th>{texts.table[14]}</th>
+                            {/* <th>PDF</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -49,7 +51,7 @@ export default function PreparingOrders() {
                                         <td>FCA</td>
                                         <td>{data.totalPrice}</td>
                                         <td>{Math.floor(data.totalPrice * 0.7)}</td>
-                                        <td><button>PDF</button></td>
+                                        {/* <td><button>PDF</button></td> */}
                                     </tr>
                                 );
                             }

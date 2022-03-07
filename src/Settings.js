@@ -15,7 +15,7 @@ const URL_POST_LOGIN = "http://localhost/final_project_server/public/index.php/a
 /* const URL_GET_DUEBALANCES = "http://localhost/final_project_server/public/index.php/dueBalance/2"; */
 /* const URL_GET_INVOICES_BY_CUSTOMERS = "http://localhost/final_project_server/public/index.php/api/invoicesByCustomers"; */
 
-const allURL = [URL_DUMMY, URL_GET_CUSTOMERS, URL_GET_PRODUCTS]
+/* const allURL = [URL_DUMMY, URL_GET_CUSTOMERS, URL_GET_PRODUCTS] */
 
 export {
     URL_DUMMY,
@@ -31,5 +31,5 @@ export {
     URL_GET_PRODUCTS,
     URL_GET_PRODUCTS_BY_ORDER,
     URL_POST_LOGIN,
-    allURL
+    /* allURL */
 }

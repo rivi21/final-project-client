@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import LanguageContext from "../../context/LanguageContext";
 /* import DataContext from "../../context/DataContext"; */
 import { URL_GET_COMISSIONS } from "../../Settings";
@@ -44,13 +43,13 @@ return (
             <table /* className="table" */>
                 <thead>
                     <tr>
-                        <th>{/* {texts.table[0]} */}Nº de Factura</th>
-                        <th>Nº de Cliente</th>
-                        <th>Nombre  de Cliente</th>
-                        <th>fecha de pago</th>
-                        <th>{/* {texts.table[2]} */}Base imponible Comisión</th>
-                        <th>{/* {texts.table[2]} */}Porcentaje Comisión</th>
-                        <th>{/* {texts.table[2]} */}Importe Comisión</th>
+                        <th>{texts.table[3]}</th>
+                        <th>{texts.table[4]}</th>
+                        <th>{texts.table[1]}</th>
+                        <th>{texts.table[5]}</th>
+                        <th>{texts.table[6]}</th>
+                        <th>{texts.table[7]}</th>
+                        <th>{texts.table[8]}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -71,7 +70,6 @@ return (
                                     <td>{data.totalPrice} €</td>
                                     <td>{data.salesComission}</td>
                                     <td>{data.comissionAmount} €</td>
-                                    <td><button>PDF</button></td>
                                 </tr>
                             );
                         }

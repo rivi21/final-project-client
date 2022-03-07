@@ -28,7 +28,7 @@ const DataProvider = ({ children }) => {
         let comissionsThisYear = 0
         let totalAmount = 0;
         data.map(element => {
-            if (compareYear(element.isPaidDate) === true && (element.isPaid)) {
+            if (compareYear(element.isPaidDate)) {
                 comissionsThisYear++;
                 totalAmount = totalAmount + element.comissionAmount
             }

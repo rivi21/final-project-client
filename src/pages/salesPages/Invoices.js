@@ -1,6 +1,7 @@
-import { useState, useEffect/* , useContext */ } from "react";
+import { useState, useEffect, useContext } from "react";
 import { URL_GET_INVOICES } from "../../Settings";
 import SalesForm from "../../components/forms/SalesForm";
+import LanguageContext from "../../context/LanguageContext";
 /* import DataContext from '../../context/DataContext'; */
 import "../FormPages.css";
 import jsPDF from "jspdf";
@@ -8,6 +9,8 @@ import "jspdf-autotable";
 /* import TotalBalance from "../balancePages/TotalBalance"; */
 
 export default function Invoices() {
+
+    const { texts } = useContext(LanguageContext);
 
     const [invoicesList, setInvoicesList] = useState([]);
     /* const [productsList, setProductsList] = useState([]); */
@@ -73,19 +76,19 @@ export default function Invoices() {
 
         <div className="container-page">
             <div className="page-title">
-                <h2>Facturas</h2>
+                <h2>{texts.sales[3]}</h2>
             </div>
             <SalesForm />
             <div className="page-table">
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>Número de factura</th>
-                            <th>iD_Cliente</th>
-                            <th>Nombre</th>
-                            <th>Fecha</th>
-                            <th>Importe</th>
-                            <th>PDF</th>
+                            <th>{texts.table[3]}</th>
+                            <th>{texts.table[4]}</th>
+                            <th>{texts.table[1]}</th>
+                            <th>{texts.table[10]}</th>
+                            <th>{texts.table[13]}</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

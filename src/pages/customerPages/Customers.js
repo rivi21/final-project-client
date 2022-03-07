@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { URL_GET_CUSTOMERS } from "../../Settings";
+import LanguageContext from "../../context/LanguageContext";
 import { useNavigate } from "react-router-dom";
 import CustomersForm from "../../components/forms/CustomersForm";
 import "./Customers.css";
@@ -7,6 +8,7 @@ import "../FormPages.css";
 
 
 export default function Customers() {
+    const { texts } = useContext(LanguageContext);
     const [customers, setCustomers] = useState([]);
 
     let navigate = useNavigate();
@@ -27,7 +29,7 @@ export default function Customers() {
     return (
         <div className="container-page">
             <div className="page-title">
-                <h2>Clientes</h2>
+                <h2>{texts.customers[0]}</h2>
             </div>
             <CustomersForm />
             <div className="page-table">
@@ -35,10 +37,10 @@ export default function Customers() {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Cliente</th>
-                            <th>Teléfono</th>
-                            <th>Email</th>
-                            <th>Web</th>
+                            <th>{texts.table[1]}</th>
+                            <th>{texts.customers[2]}</th>
+                            <th>{texts.customers[3]}</th>
+                            <th>{texts.customers[4]}</th>
                         </tr>
                     </thead>
                     <tbody>

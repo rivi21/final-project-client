@@ -1,9 +1,12 @@
-import { resetWarningCache } from 'prop-types/checkPropTypes';
-import { useState } from 'react';
+import LanguageContext from '../../context/LanguageContext';
+import { useState, useContext } from 'react';
 import { URL_POST_CUSTOMER } from "../../Settings";
 import "./Forms.css";
 
 export default function NewCustomerForm() {
+
+    const { texts } = useContext(LanguageContext);
+
     const [agentName, setAgentName] = useState("");
     const [name, setName] = useState("");
     const [web, setWeb] = useState("");
@@ -26,21 +29,21 @@ export default function NewCustomerForm() {
                 country: country,
                 address: address,
                 email: email,
-                phoneNumber: phoneNumber 
+                phoneNumber: phoneNumber
             })
         });
         document.getElementById("new-customer-form").reset();
     }
     return (
         <form id="new-customer-form" className="container-form" onSubmit={fetchDNewCustomer}>
-            <p>* (Información obligatoria)</p>
-            <h2>New Customer</h2>
+            <p>* ({texts.newCustomer[0]})</p>
+            <h2>{texts.newCustomer[1]}</h2>
             <div className="components-forms">
-                <label>Agente</label>
+                <label>{texts.newCustomer[2]}</label>
                 <input name="agentName" type="text" onChange={e => setAgentName(e.target.value)} />
             </div>
             <div className="components-forms">
-                <label>Nombre *</label>
+                <label>{texts.newCustomer[3]} *</label>
                 <input name="name" type="text" onChange={e => setName(e.target.value)} />
             </div>
             <div className="components-forms">
@@ -48,18 +51,18 @@ export default function NewCustomerForm() {
                 <input name="web" type="text" onChange={e => setWeb(e.target.value)} />
             </div>
             <div className="components-forms">
-                <label>Dirección *</label>
+                <label>{texts.newCustomer[4]} *</label>
                 <input name="address" type="text" placeholder="Dirección" onChange={e => setAddress(e.target.value)} />
-                <input name="country" type="text" placeholder="País" onChange={e => setCountry(e.target.value)} />               
+                <input name="country" type="text" placeholder="País" onChange={e => setCountry(e.target.value)} />
             </div>
             <div className="components-forms">
-                <label>Contacto *</label>
+                <label>{texts.newCustomer[5]} *</label>
                 <input name="email" type="text" placeholder="E-mail" onChange={e => setEmail(e.target.value)} />
                 <input name="phoneNumber" type="text" placeholder="Teléfono" onChange={e => setPhoneNumber(e.target.value)} />
             </div>
             <div className="buttons-container">
-                <button className="button-form back" type="reset">Borrar</button>
-                <button className="button-form go" type="submit">Aceptar</button>
+                <button className="button-form back" type="reset">{texts.newCustomer[6]}</button>
+                <button className="button-form go" type="submit">{texts.newCustomer[7]}</button>
             </div>
 
         </form>
