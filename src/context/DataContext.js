@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import {  URL_GET_SALES, URL_GET_COMISSIONS } from "../Settings";
+import { URL_GET_SALES, URL_GET_COMISSIONS } from "../Settings";
 
 const DataContext = createContext();
 
@@ -10,7 +10,12 @@ const DataProvider = ({ children }) => {
     const [comissionsAmount, setComissionsAmount] = useState([]);
     const [ordersInfo, setOrdersInfo] = useState([]);
     const [payments, setPayments] = useState([]);
+
+    const [pending, setPending] = useState([]);
+    const [preparing, setPreparing] = useState([]);
+    const [prepared, setPrepared] = useState([]);
     const [invoices, setInvoices] = useState([]);
+    const [due, setDue] = useState([]);
 
     const today = new Date();
     const thisMonth = today.getMonth() + 1;
@@ -25,20 +30,20 @@ const DataProvider = ({ children }) => {
     };
 
     function comissionsPerYear(data) {
-        let comissionsThisYear = 0
+        let comissions = 0
         let totalAmount = 0;
         data.map(element => {
             if (compareYear(element.isPaidDate)) {
-                comissionsThisYear++;
+                comissions++;
                 totalAmount = totalAmount + element.comissionAmount
             }
         });
-        setComissionsThisYear([comissionsThisYear, totalAmount]);
+        setComissionsThisYear([comissions, totalAmount]);
     };
 
     function comissionsPerMonth(data) {
         let paymentMonth = 0;
-        let comissionsThisMonth = 0
+        let comissions = 0
         let totalAmount = 0;
         data.map(element => {
             if (element.isPaidDate !== "") {
@@ -46,11 +51,11 @@ const DataProvider = ({ children }) => {
                 paymentMonth = paymentDate.getMonth() + 1;
 
             } if (paymentMonth === thisMonth) {
-                comissionsThisMonth++;
+                comissions++;
                 totalAmount = totalAmount + element.comissionAmount
             };
         });
-        setComissionsThisMonth([comissionsThisMonth, totalAmount]);
+        setComissionsThisMonth([comissions, totalAmount]);
     }
 
     function daysLate(date) {
@@ -67,14 +72,20 @@ const DataProvider = ({ children }) => {
 
     }
 
+    function totalAmount(data) {
+        let sum = 0;
+        data.forEach(element => {
+            sum = sum + element.totalPrice
+        });
+        return sum;
+    }
+
     useEffect(() => {
         fetch(URL_GET_COMISSIONS)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 comissionsPerMonth(data);
                 comissionsPerYear(data)
-                setInvoices(data);
                 setComissionsUnits(data);
                 let sum = 0;
                 data.forEach(element => {
@@ -83,19 +94,55 @@ const DataProvider = ({ children }) => {
                 setComissionsAmount(sum);
             });
 
+
         fetch(URL_GET_SALES)
             .then(response => response.json())
-            .then(data => {
-                setOrdersInfo(data)
+            .then(orders => {
+                let pendingOrders = [0, 0];
+                let preparingOrders = [0, 0];
+                let preparedOrders = [0, 0];
+                let deliveredOrders = [0, 0];
+                let dueOrders = [0, 0];
+                orders.forEach(order => {
+                    if (order.isPreparing) {
+                        preparingOrders[0]++;
+                        preparingOrders[1] += order.totalPrice;
+                    } else if (order.isPrepared) {
+                        preparedOrders[0]++;
+                        preparedOrders[1] += order.totalPrice;
+                    } else if (order.isDelivered) {
+                        deliveredOrders[0]++;
+                        deliveredOrders[1] += order.totalPrice;
+                    } else {
+                        pendingOrders[0]++;
+                        pendingOrders[1] += order.totalPrice
+                    }
+                    if (!order.isPaid) {
+                        dueOrders[0]++;
+                        dueOrders[1] += order.totalPrice
+                    }
+                })
+                setPending(pendingOrders);
+                setPreparing(preparingOrders);
+                setPrepared(preparedOrders);
+                setInvoices(deliveredOrders);
+                setDue(dueOrders);
+
+                setOrdersInfo(orders)
                 let sum = 0;
-                data.forEach(element => {
-                    sum = sum + element.totalPrice
+                orders.forEach(order => {
+                    sum = sum + order.totalPrice
                 });
                 setPayments(sum);
+                setComissionsAmount(sum);
             })
     }, []);
 
-    const data = { comissionsUnits, comissionsThisMonth, comissionsThisYear, comissionsAmount, invoices, ordersInfo, payments, daysLate };
+    const data = {
+        comissionsUnits, comissionsThisMonth, comissionsThisYear,
+        comissionsAmount, ordersInfo, payments, daysLate,
+        pending, preparing, prepared, invoices, due
+    };
 
     return <DataContext.Provider value={data}>{children}</DataContext.Provider>
 };

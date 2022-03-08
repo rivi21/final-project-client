@@ -7,7 +7,8 @@ import "./Dashboard.css"
 export default function Dashboard() {
 
     const { texts } = useContext(LanguageContext);
-    const { comissionsThisMonth, comissionsThisYear, ordersInfo, payments, invoices } = useContext(DataContext);
+    const { comissionsThisMonth, comissionsThisYear, ordersInfo, payments, 
+            pending, preparing, prepared, invoices, due } = useContext(DataContext);
 
     let navigate = useNavigate();
 
@@ -63,28 +64,28 @@ export default function Dashboard() {
                     <div className="block-section" id="PendingOrders" onClick={(e) => handleClick(e)}>
                         <p>{texts.sales[0]}:</p>
                         <hr />
-                        <p className="block-info">{texts.dashboard[0]}: </p>
-                        <p className="block-info">{texts.dashboard[1]}: </p>
+                        <p className="block-info">{texts.dashboard[0]}: {pending[0]}</p>
+                        <p className="block-info">{texts.dashboard[1]}: {pending[1]}</p>
                     </div>
                     <div className="block-section" id="PreparingOrders" onClick={(e) => handleClick(e)}>
                         <p>{texts.sales[1]}:</p>
                         <hr />
-                        <p className="block-info">{texts.dashboard[0]}: </p>
-                        <p className="block-info">{texts.dashboard[1]}: </p>
+                        <p className="block-info">{texts.dashboard[0]}: {preparing[0]}</p>
+                        <p className="block-info">{texts.dashboard[1]}: {preparing[1]}</p>
                     </div>
                 </div>
                 <div className="dashboard-section sales">
                     <div className="block-section" id="PreparedOrders" onClick={(e) => handleClick(e)}>
                         <p>{texts.sales[2]}:</p>
                         <hr />
-                        <p className="block-info">{texts.dashboard[0]}: </p>
-                        <p className="block-info">{texts.dashboard[1]}: </p>
+                        <p className="block-info">{texts.dashboard[0]}: {prepared[0]}</p>
+                        <p className="block-info">{texts.dashboard[1]}: {prepared[1]}</p>
                     </div>
                     <div className="block-section" id="Invoices" onClick={(e) => handleClick(e)}>
                         <p>{texts.sales[3]}:</p>
                         <hr />
-                        <p className="block-info">{texts.dashboard[0]}: </p>
-                        <p className="block-info">{texts.dashboard[1]}: </p>
+                        <p className="block-info">{texts.dashboard[0]}: {invoices[0]}</p>
+                        <p className="block-info">{texts.dashboard[1]}: {invoices[1]} €</p>
                     </div>
                     {/*  <div className="block-section" id="Payments" onClick={(e) => handleClick(e)}>
                         <p>{texts.sales[6]}: 
@@ -98,13 +99,13 @@ export default function Dashboard() {
                         <p>{texts.balance[0]}</p>
                         <hr />
                         <p className="block-info">{texts.dashboard[2]}: {ordersInfo.length}</p>
-                        <p className="block-info">{texts.dashboard[1]}: {payments}</p>
+                        <p className="block-info">{texts.dashboard[1]}: {payments} €</p>
                     </div>
                     <div className="block-section" id="DueBalance" onClick={(e) => handleClick(e)}>
                         <p>{texts.balance[1]}</p>
                         <hr />
-                        <p className="block-info">{texts.dashboard[2]}: </p>
-                        <p className="block-info">{texts.dashboard[1]}: </p>
+                        <p className="block-info">{texts.dashboard[2]}: {due[0]}</p>
+                        <p className="block-info">{texts.dashboard[1]}: {due[1]} €</p>
                     </div>
                 </div>
             </div>
