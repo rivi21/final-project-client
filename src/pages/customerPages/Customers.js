@@ -19,6 +19,7 @@ export default function Customers() {
             .then(response => response.json())
             .then(data => {
                 if (data) {
+                    
                     setCustomers(data);
                 } else {
                     throw alert('No se ha podido hacer la petición')

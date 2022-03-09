@@ -7,12 +7,11 @@ import { URL_POST_LOGIN } from "../Settings";
 import "./Login.css"
 
 
-export default function Login({ setToken }) {
+export default function Login({ setToken, userEmail, setUserEmail }) {
     const { texts, handleLanguage } = useContext(LanguageContext);
 
-    const [email, setEmail] = useState("");
+    /* const [email, setEmail] = useState(""); */
     const [password, setPassword] = useState("");
-
     const fetchData = async (e) => {
         e.preventDefault();
         const loginResponse = await fetch(URL_POST_LOGIN, {
@@ -21,16 +20,14 @@ export default function Login({ setToken }) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                username: email,
+                username: userEmail,
                 password: password
             })
         });
         const token = await loginResponse.json();
-        console.log(token);
-
+        setToken(token.token);
         localStorage.setItem('token', JSON.stringify(token));
 
-        setToken(token.token)
     }
     /*  async function loginUser(credentials) {
          return fetch(URL_POST_LOGIN, {
@@ -43,23 +40,6 @@ export default function Login({ setToken }) {
              .then(response => response.json())
              .then(data => console.log(setToken(data)));
      };*/
-
-    /*  const handleSubmit = async (e) => {
-         e.preventDefault();
-         await loginUser({
-             email,
-             password
-         });  
-     }  */
-
-    /*  let navigate = useNavigate();
-     const handleClick = () => navigate(`/Dashboard`); */
-
-    /* const [isActive, setActive] = useState("false");
-    const handleToggle = () => {
-        setActive(!isActive);
-    }; */
-
     return (
         <div className="wrapper">
             <div className="imagen"></div>
@@ -76,6 +56,7 @@ export default function Login({ setToken }) {
                             <option onClick={handleLanguage} className="language-option" value="es">Español</option>
                             <option onClick={handleLanguage} className="language-option" value="en">English</option>
                         </select> */}
+
                     </div>
                 </div>
                 <form className="formulario" onSubmit={fetchData}>
@@ -83,7 +64,7 @@ export default function Login({ setToken }) {
                         <label className="section-part" >
                             <p>{texts.user}</p>
                             <input className="section-part-2" type="" placeholder="write your email" name="email"
-                                onChange={e => setEmail(e.target.value)} />
+                                onChange={e => setUserEmail(e.target.value)} />
                         </label>
                     </div>
                     <div className="form-section">

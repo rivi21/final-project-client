@@ -1,20 +1,31 @@
 import { useState, useEffect, useContext } from "react";
 import { URL_GET_SALES } from "../../Settings";
 import LanguageContext from "../../context/LanguageContext";
-/* import DataContext from "../../context/DataContext"; */
+import DataContext from "../../context/DataContext";
 import SalesForm from "../../components/forms/SalesForm";
 import "../FormPages.css";
 
 export default function PreparedOrders() {
     
     const { texts } = useContext(LanguageContext);
+    const { userEmail } = useContext(DataContext);
 
     const [preparedOrders, setPreparedOrders] = useState([])
+
+    function setDataAgent(data) {
+        let agentData = [];
+        data.forEach(element => {
+            if (userEmail == element.agentEmail) {
+                agentData.push(element);
+            }
+        });
+        setPreparedOrders(agentData);
+    }
 
     useEffect(() => {
         fetch(URL_GET_SALES)
             .then(response => response.json())
-            .then(json => setPreparedOrders(json))
+            .then(data => setDataAgent(data))
     }, [])
 
     function daysLate(date) {

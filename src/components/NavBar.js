@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import DataContext from "../context/DataContext";
 import LanguageContext from "../context/LanguageContext";
 import { NavLink } from "react-router-dom";
 import SideMenu from "./SideMenu";
@@ -11,6 +12,7 @@ export default function NavBar() {
 
     const handleClick = (e) => navigate(`/${e.target.id}`);
 
+    const { userName } = useContext(DataContext)
     const { texts, handleLanguage } = useContext(LanguageContext);
 
     const [active, setActive] = useState(false);
@@ -26,7 +28,7 @@ export default function NavBar() {
                 <span></span>
             </div>
             <div className="element two">Logo</div>
-            <div className="element three">UserName</div>
+            <div className="element three">{userName[0]} {userName[1]}</div>
             <div className="element">
                 <NavLink to="/" className="four" >{texts.titles[3]}</NavLink>
             </div>

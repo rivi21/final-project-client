@@ -1,20 +1,31 @@
 import { useState, useEffect, useContext } from "react";
 import { URL_GET_SALES } from "../../Settings";
 import LanguageContext from "../../context/LanguageContext";
-/* import DataContext from "../../context/DataContext"; */
+import DataContext from "../../context/DataContext";
 import SalesForm from "../../components/forms/SalesForm";
 import "../FormPages.css";
 
 export default function PreparingOrders() {
 
     const { texts } = useContext(LanguageContext);
+    const { userEmail } = useContext(DataContext);
 
-    const [preparingList, setPreparingList] = useState([]);
+    const [preparingOrders, setPreparingOrders] = useState([]);
+
+    function setDataAgent(data) {
+        let agentData = [];
+        data.forEach(element => {
+            if (userEmail == element.agentEmail) {
+                agentData.push(element);
+            }
+        });
+        setPreparingOrders(agentData);
+    }
 
     useEffect(() => {
         fetch(URL_GET_SALES)
-            .then(response => response.json()
-                .then(json => setPreparingList(json)))
+            .then(response => response.json())
+            .then(data => setDataAgent(data))
     }, []);
 
     return (
@@ -39,7 +50,7 @@ export default function PreparingOrders() {
                         </tr>
                     </thead>
                     <tbody>
-                        {preparingList.map((data) => {
+                        {preparingOrders.map((data) => {
                             if (data.isPreparing) {
                                 return (
                                     <tr key={data.invoiceNumber}>

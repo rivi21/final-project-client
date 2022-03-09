@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { URL_GET_INVOICES } from "../../Settings";
 import SalesForm from "../../components/forms/SalesForm";
 import LanguageContext from "../../context/LanguageContext";
-/* import DataContext from '../../context/DataContext'; */
+import DataContext from '../../context/DataContext';
 import "../FormPages.css";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -11,23 +11,25 @@ import "jspdf-autotable";
 export default function Invoices() {
 
     const { texts } = useContext(LanguageContext);
+    const { userEmail } = useContext(DataContext);
 
     const [invoicesList, setInvoicesList] = useState([]);
     /* const [productsList, setProductsList] = useState([]); */
 
+    function setDataAgent(data) {
+        let agentData = [];
+        data.forEach(element => {
+            if (userEmail == element.agentEmail) {
+                agentData.push(element);
+            }
+        });
+        setInvoicesList(agentData);
+    }
+
     useEffect(() => {
         fetch(URL_GET_INVOICES)
             .then(response => response.json())
-            .then(data => setInvoicesList(data))
-        /* {
-            let validData = [];
-            data.map(element => {
-                if (element.isPaidDate !== "") {
-                    validData.push(element);
-                }
-            })
-            setInvoicesList(validData);
-        })*/
+            .then(data => setDataAgent(data))
     }, []);
     
     const GeneratePDF = orderId => {

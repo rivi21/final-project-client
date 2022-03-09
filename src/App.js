@@ -8,26 +8,27 @@ import './App.css';
 
 export default function App() {
   const [token, setToken] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
   useEffect(() => {
     setToken(JSON.parse(localStorage.getItem("token")));
-    return () => {
-      
-    }
   }, [])
 
   if (!token) {
     return (
       <LanguageProvider>
-        <Login setToken={setToken} />
+        <Login
+          setToken={setToken}
+          userEmail={userEmail}
+          setUserEmail={setUserEmail} />
       </LanguageProvider>
     )
   } else {
     return (
       <div className="App">
         <LanguageProvider>
-          <DataProvider>
-            <Router />
+          <DataProvider userEmail={userEmail}>
+            <Router token={token} userEmail={userEmail} />
           </DataProvider>
         </LanguageProvider>
       </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import LanguageContext from "../../context/LanguageContext";
-/* import DataContext from "../../context/DataContext"; */
+import DataContext from "../../context/DataContext";
 import { URL_GET_COMISSIONS } from "../../Settings";
 import ComissionsForm from "../../components/forms/ComissionsForm";
 import "../FormPages.css";
@@ -8,14 +8,24 @@ import "../FormPages.css";
 export default function CurrentMonth() {
 
     const { texts } = useContext(LanguageContext);
-    /* const { ordersInfo, payments, invoices } = useContext(DataContext); */
+    const { userEmail } = useContext(DataContext);
 
     const [comissions, setComissions] = useState([])
+
+    function setDataAgent(data) {
+        let agentData = [];
+        data.forEach(element => {
+            if (userEmail == element.agentEmail) {
+                agentData.push(element);
+            }
+        });
+        setComissions(agentData);
+    }
 
     useEffect(() => {
         fetch(URL_GET_COMISSIONS)
             .then(response => response.json())
-            .then(data => setComissions(data))
+            .then(data => setDataAgent(data))
     }, [])
 
     function compareYear(d) {

@@ -1,19 +1,31 @@
 import { useState, useEffect, useContext } from "react";
 import { URL_GET_SALES } from "../../Settings";
 import LanguageContext from "../../context/LanguageContext";
+import DataContext from "../../context/DataContext";
 import SalesForm from "../../components/forms/SalesForm";
 import "../FormPages.css";
 
 export default function PendingOrders() {
 
     const { texts } = useContext(LanguageContext);
+    const { userEmail } = useContext(DataContext);
 
     const [pendingOrders, setPendingOrders] = useState([])
 
+    function setDataAgent(data) {
+        let agentData = [];
+        data.forEach(element => {
+            if (userEmail == element.agentEmail) {
+                agentData.push(element);
+            }
+        });
+        setPendingOrders(agentData);
+    }
+
     useEffect(() => {
         fetch(URL_GET_SALES)
-            .then(response => response.json()
-                .then(json => setPendingOrders(json)))
+            .then(response => response.json())
+            .then(data => setDataAgent(data))
     }, []);
 
     return (

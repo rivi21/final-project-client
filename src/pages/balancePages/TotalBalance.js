@@ -1,20 +1,33 @@
 import { useState, useEffect, useContext } from "react";
-import { URL_GET_SALES } from "../../Settings";
+import { URL_GET_INVOICES_BY_CUSTOMER } from "../../Settings";
 import LanguageContext from "../../context/LanguageContext";
 import DataContext from "../../context/DataContext";
 import BalanceForm from "../../components/forms/BalanceForm";
 import "../FormPages.css";
 
 export default function TotalBalance() {
+
     const { texts } = useContext(LanguageContext);
-    const { daysLate } = useContext(DataContext);
+    const { userEmail } = useContext(DataContext);
+
     const [totalBalance, setTotalBalance] = useState([]);
 
+    function setDataAgent(data) {
+        let agentData = [];
+        data.forEach(element => {
+            if (userEmail == element.agentEmail) {
+                agentData.push(element);
+            }
+        });
+        setTotalBalance(agentData);
+    }
+
     useEffect(() => {
-        fetch(URL_GET_SALES)
+        fetch(URL_GET_INVOICES_BY_CUSTOMER)
             .then(response => response.json())
-            .then(json => setTotalBalance(json))
+            .then(data => setDataAgent(data))
     }, []);
+
 
     return (
         <div className="container-page">
@@ -26,20 +39,18 @@ export default function TotalBalance() {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>{texts.table[3]}</th>
+                            <th>{texts.table[4]}</th>
                             <th>{texts.table[1]}</th>
-                            <th>{texts.table[16]}</th>
-                            <th>{texts.table[14]}</th>
+                            <th>{texts.table[13]}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {totalBalance.map((data) => {
                             return (
-                                <tr key={data.orderId}>
-                                    <td>{data.invoiceId}</td>
+                                <tr key={data.customerId}>
+                                    <td>{data.customerId}</td>
                                     <td>{data.customerName}</td>
-                                    <td>{data.dueDate}</td>
-                                    <td>{data.totalPrice}</td>
+                                    <td>{data.totalAmount} €</td>
                                 </tr>
                             );
                         })}

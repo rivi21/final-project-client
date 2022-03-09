@@ -4,11 +4,11 @@ import DataContext from '../context/DataContext';
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css"
 
-export default function Dashboard() {
-
+export default function Dashboard({ userEmail }) {
+    
     const { texts } = useContext(LanguageContext);
-    const { comissionsThisMonth, comissionsThisYear, ordersInfo, payments, 
-            pending, preparing, prepared, invoices, due } = useContext(DataContext);
+    const { comissionsThisMonth, comissionsThisYear,/*  ordersInfo, payments, */ 
+            pending, preparing, prepared, invoices, due, total } = useContext(DataContext);
 
     let navigate = useNavigate();
 
@@ -30,7 +30,6 @@ export default function Dashboard() {
                         <hr />
                         <p className="block-info">{texts.dashboard[0]}: {comissionsThisYear[0]}</p>
                         <p className="block-info">{texts.dashboard[1]}: {comissionsThisYear[1]} €</p>
-
                     </div>
                     {/*  <div className="block-section" id="Historical" onClick={(e) => handleClick(e)}>
                         <p>{texts.comissions[2]}</p>
@@ -98,8 +97,8 @@ export default function Dashboard() {
                     <div className="block-section" id="TotalBalance" onClick={(e) => handleClick(e)}>
                         <p>{texts.balance[0]}</p>
                         <hr />
-                        <p className="block-info">{texts.dashboard[2]}: {ordersInfo.length}</p>
-                        <p className="block-info">{texts.dashboard[1]}: {payments} €</p>
+                        <p className="block-info">{/* {texts.dashboard[2]} : {total[0]} */}</p>
+                        <p className="block-info">{texts.dashboard[1]}: {total} €</p>
                     </div>
                     <div className="block-section" id="DueBalance" onClick={(e) => handleClick(e)}>
                         <p>{texts.balance[1]}</p>
