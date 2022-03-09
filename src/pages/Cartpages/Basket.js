@@ -1,10 +1,35 @@
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { URL_GET_ONE_CUSTOMER } from '../../Settings';
 
 export default function Basket() {
+
+    const { customerId } = useParams();
+    console.log(customerId);
+
+    const [customer, setCustomer] = useState([])
+
+    useEffect(() => {
+        fetch(`${URL_GET_ONE_CUSTOMER}/${customerId}`)
+            .then(response => response.json())
+            .then(data => setCustomer(data))
+    }, [])
+
+    let navigate = useNavigate();
+    const addProductsToBasket = (e) => {
+        navigate(`/${e.target.id}`)
+    };
+
+    let selectedDate = new Date();
+    function printDate() { return `${selectedDate.getDate()} - ${selectedDate.getMonth() + 1} - ${selectedDate.getFullYear()}`; }
+
+
     return (
 
         <div>
             <div>
-                <span>Cliente Activo: {"dinámico"}</span><span> Cesta Actual: {"dinámico"}</span>
+                <span>Cliente Activo: {customer.name}</span>
+                {/* <span>{"Cesta Actual:"}</span> */}
             </div>
             <div>
                 <h2>Cesta</h2>
@@ -13,7 +38,7 @@ export default function Basket() {
                 <table>
                     <thead>
                         <tr>
-                            <th>Facturado a: </th>
+                            <th>Facturado a:</th>
                             <th>Dirección de Envío:</th>
                             <th>Fecha de oferta:</th>
                         </tr>
@@ -21,17 +46,17 @@ export default function Basket() {
                     <tbody>
                         <tr>
                             <td>
-                                <p>{"nº de cliente"}</p>
-                                <p>{"Nombre de cliente"}</p>
-                                <p>{"Término de pago(30% in advance...)"}</p>
+                                <p>{customer.id}</p>
+                                <p>{customer.name}</p>
+                                <p>30</p>
                             </td>
                             <td>
-                                <p>{"dirección"}</p>
-                                <p>{"país"}</p>
+                                <p>{customer.address}</p>
+                                <p>{customer.country}</p>
                             </td>
                             <td>
-                                <p>Fecha</p>
-                                <p>cesta válida para {"(15 días al crear la cesta. Si llega a 0 se desecha)"} días</p>
+                                <p>{printDate()}</p>
+                                {/* <p>{"cesta válida para"} {"(15 días al crear la cesta. Si llega a 0 se desecha)"} días</p> */}
                             </td>
                         </tr>
                     </tbody>
@@ -59,11 +84,13 @@ export default function Basket() {
                             <th>Total €</th>
                         </tr>
                     </thead>
-                    <tbody>Aquí los productos que se vayan escogiendo. Al pulsar me lleva a la pag de productos</tbody>
+                    <tbody>
+                        <tr><td>Aquí los productos que se vayan escogiendo. Al pulsar me lleva a la pag de productos</td></tr>
+                    </tbody>
                 </table>
             </div>
-            <div onClick="">
-                Añadir productos
+            <div>
+                <button id={"Products"} onClick={addProductsToBasket}>Añadir productos</button>
             </div>
             <div>
                 <p>Base: €</p>

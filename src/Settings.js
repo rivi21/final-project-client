@@ -1,12 +1,12 @@
 const URL_DUMMY = "https://jsonplaceholder.typicode.com/users";
 
-const URL_GET_CUSTOMERS = "http://localhost/final_project_server/public/index.php/api/customer";
+const URL_GET_CUSTOMERS = "http://localhost/final_project_server/public/index.php/api/customers";
+const URL_GET_ONE_CUSTOMER = "http://localhost/final_project_server/public/index.php/api/customer"
 const URL_POST_CUSTOMER = "http://localhost/final_project_server/public/index.php/api/customer";
 const URL_GET_COMISSIONS = "http://localhost/final_project_server/public/index.php/api/comission";
 const URL_GET_SALES = "http://localhost/final_project_server/public/index.php/api/sales";
 const URL_GET_INVOICES = "http://localhost/final_project_server/public/index.php/api/invoices";
 const URL_GET_INVOICES_BY_CUSTOMER = "http://localhost/final_project_server/public/index.php/api/amount";
-
 
 const URL_ALL_DATA_FOR_INVOICES = "http://localhost/final_project_server/public/index.php/api/all_agent_orders";
 const URL_GET_ORDERS_INVOICES = "http://localhost/final_project_server/public/index.php/api/orderinvoices";
@@ -23,6 +23,7 @@ export {
     URL_DUMMY,
     URL_GET_CUSTOMERS,
     URL_POST_CUSTOMER,
+    URL_GET_ONE_CUSTOMER,
     URL_GET_COMISSIONS,
     /*  URL_GET_DUEBALANCES, */
     URL_GET_INVOICES,

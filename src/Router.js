@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CustomerContext } from "./pages/Cartpages/NewBasket";
 
 import NavBar from "./components/NavBar";
 import Dashboard from "./pages/Dashboard";
@@ -45,9 +46,9 @@ export default function Router() {
                     <Route path="/NewCustomer" element={<NewCustomer />} />
                     <Route path="/Products" element={<Products />} />
 
-                    <Route path="/ShoppingCart" element={<ShoppingCart />} />
-                    <Route path="/Basket" element={<Basket />} />
                     <Route path="/NewBasket" element={<NewBasket />} />
+                    <Route path="/Basket/:customerId" element={<Basket />} />
+                    <Route path="/ShoppingCart" element={<ShoppingCart />} />
 
                     <Route path="/Offers" element={<Offers />} />
                     <Route path="/PendingOrders" element={<PendingOrders />} />

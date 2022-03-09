@@ -57,6 +57,10 @@ th{
 td{      
     border-bottom-color: rgb(231, 231, 231);
 }
+.new-customer-row{
+    display: flex;
+    justify-content: space-between;
+}
 #dayslate-column{
     color: red;
 }
