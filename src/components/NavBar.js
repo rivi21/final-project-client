@@ -9,7 +9,6 @@ import "./Navbar.css";
 export default function NavBar() {
 
     let navigate = useNavigate();
-
     const handleClick = (e) => navigate(`/${e.target.id}`);
 
     const { userName } = useContext(DataContext)
@@ -39,7 +38,7 @@ export default function NavBar() {
                     <option onClick={handleLanguage} className="language-option" value="en">English</option>
                 </select>
             </div>
-            <div className="element shopping-cart" id="ShoppingCart" onClick={(e) => handleClick(e)}>
+            <div className="element shopping-cart" id="NewBasket" onClick={(e) => handleClick(e)}>
                {texts.shoppingcart[1]}
             </div>
         </nav>

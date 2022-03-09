@@ -10,8 +10,11 @@ import Historical from "./pages/comissionsPages/Historical";
 
 import Customers from "./pages/customerPages/Customers"
 import NewCustomer from "./pages/customerPages/NewCustomer"
+
 import Products from "./pages/Products"
-import ShoppingCart from "./pages/ShoppingCart";
+import Basket from "./pages/Cartpages/Basket";
+import NewBasket from "./pages/Cartpages/NewBasket";
+import ShoppingCart from "./pages/Cartpages/ShoppingCart";
 
 import Offers from "./pages/salesPages/Offers";
 import PendingOrders from "./pages/salesPages/PendingOrders";
@@ -41,7 +44,10 @@ export default function Router() {
                     <Route path="/Customers" element={<Customers />} />
                     <Route path="/NewCustomer" element={<NewCustomer />} />
                     <Route path="/Products" element={<Products />} />
+
                     <Route path="/ShoppingCart" element={<ShoppingCart />} />
+                    <Route path="/Basket" element={<Basket />} />
+                    <Route path="/NewBasket" element={<NewBasket />} />
 
                     <Route path="/Offers" element={<Offers />} />
                     <Route path="/PendingOrders" element={<PendingOrders />} />

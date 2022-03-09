@@ -40,7 +40,7 @@ export default function Dashboard({ userEmail }) {
                     </div> */}
                 </div>
             </div>
-            {/*  <div>
+             <div>
                 <h1 className="section-title">{texts.shoppingcart[0]}</h1>
                 <div className="dashboard-section">
                     <div className="block-section" id="ShoppingCart" onClick={(e) => handleClick(e)}>
@@ -50,7 +50,7 @@ export default function Dashboard({ userEmail }) {
                         <p className="block-info">sumatorios</p>
                     </div>
                 </div>
-            </div> */}
+            </div>
             <div>
                 <h1 className="section-title">{texts.titles[1]}</h1>
                 <div className="dashboard-section sales">
