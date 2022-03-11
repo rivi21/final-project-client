@@ -65,3 +65,14 @@ td{
     color: red;
 }
 
+.box{
+    padding: 1em;
+    margin: 1em;
+    box-shadow: 0 0 1em #00000025 inset;
+
+}
+.grid-responsive{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
+}

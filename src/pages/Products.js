@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useReducer } from "react";
+import { useState, useEffect, useContext } from "react";
 import { createContext } from "react";
 import LanguageContext from "../context/LanguageContext";
 import { URL_GET_PRODUCTS, URL_POST_PRODUCT_TO_BASKET } from "../Settings";
@@ -21,22 +21,6 @@ export default function Products({ setProductToBasket }) {
     }, []);
 
     /* let randomQuantity = () => Math.floor(Math.random() * 100 + 1); */
-    //UseReducer
-    const initialState = {contador:0};
-    function reducer(state, action){
-        switch (action.type) {
-            case :
-                
-                break;
-        
-            default:
-                break;
-        }
-        return state;
-    }
-    const contador = () => {
-        const[state, dispatch] = useReducer(reducer,initialState);
-    }
 
     const addProductToBasket = (product) => {
         setProductToBasket(product);
