@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { CustomerContext } from "./pages/Cartpages/NewBasket";
+/* import { CustomerContext } from "./pages/Cartpages/NewBasket"; */
+import { useState } from "react";
 
 import NavBar from "./components/NavBar";
 import Dashboard from "./pages/Dashboard";
@@ -31,6 +32,8 @@ import Error from "./pages/Error";
 
 export default function Router() {
 
+    const [productToBasket, setProductToBasket] = useState({})
+    console.log(productToBasket);
     return (
         <div>
             <BrowserRouter>
@@ -44,10 +47,10 @@ export default function Router() {
 
                     <Route path="/Customers" element={<Customers />} />
                     <Route path="/NewCustomer" element={<NewCustomer />} />
-                    <Route path="/Products" element={<Products />} />
+                    <Route path="/Products" element={<Products setProductToBasket={setProductToBasket} />} />
 
                     <Route path="/NewBasket" element={<NewBasket />} />
-                    <Route path="/Basket/:customerId" element={<Basket />} />
+                    <Route path="/Basket/:customerId" element={<Basket productToBasket={productToBasket} />} />
                     <Route path="/ShoppingCart" element={<ShoppingCart />} />
 
                     <Route path="/Offers" element={<Offers />} />

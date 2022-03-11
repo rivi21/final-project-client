@@ -1,13 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { BasketContext } from '../Products'
 import { useParams, useNavigate } from 'react-router-dom';
-import { URL_GET_ONE_CUSTOMER } from '../../Settings';
+import { URL_GET_ONE_CUSTOMER, URL_POST_ORDER } from '../../Settings';
+import "../FormPages.css";
 
-export default function Basket() {
+export default function Basket({ productToBasket }) {
 
     const { customerId } = useParams();
-    console.log(customerId);
 
-    const [customer, setCustomer] = useState([])
+    const { productData } = useContext(BasketContext);
+    console.log(productToBasket);
+
+    const [customer, setCustomer] = useState([]);
+    const [unit, setUnit] = useState("");
+    const [quantity, setQuantity] = useState(0);
 
     useEffect(() => {
         fetch(`${URL_GET_ONE_CUSTOMER}/${customerId}`)
@@ -16,25 +22,37 @@ export default function Basket() {
     }, [])
 
     let navigate = useNavigate();
-    const addProductsToBasket = (e) => {
+    const addToBasket = (e) => {
         navigate(`/${e.target.id}`)
     };
 
     let selectedDate = new Date();
     function printDate() { return `${selectedDate.getDate()} - ${selectedDate.getMonth() + 1} - ${selectedDate.getFullYear()}`; }
 
+    const confirm = async (e) => {
+        e.preventDefault();
+        const orderResponse = await fetch(URL_POST_ORDER, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
 
+            })
+        });
+        const token = await orderResponse.json();
+    }
     return (
-
-        <div>
+        <>
             <div>
                 <span>Cliente Activo: {customer.name}</span>
                 {/* <span>{"Cesta Actual:"}</span> */}
             </div>
-            <div>
-                <h2>Cesta</h2>
-            </div>
-            <div>
+
+            <div className="container-page">
+                <div className="page-title">
+                    <h2>Cesta</h2>
+                </div>
                 <table>
                     <thead>
                         <tr>
@@ -61,16 +79,14 @@ export default function Basket() {
                         </tr>
                     </tbody>
                 </table>
-            </div>
-            <div>
-                <label>Comentarios</label>
-                <input></input>
-            </div>
-            <div>
-                <button>Confirmar cesta</button>
-                <button>Eliminar cesta (al pulsar lanzar alert(seguro que..?))</button>
-            </div>
-            <div>
+                <div>
+                    <label>Comentarios</label>
+                    <input type="text"></input>
+                </div>
+                <div className="page-title">
+                    <button onClick={confirm}> Confirmar cesta</button>
+                    <button>Eliminar cesta (al pulsar lanzar alert(seguro que..?))</button>
+                </div>
                 <table>
                     <thead>
                         <tr>
@@ -85,18 +101,32 @@ export default function Basket() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Aquí los productos que se vayan escogiendo. Al pulsar me lleva a la pag de productos</td></tr>
+                        {productToBasket.map(() => {
+                            <tr>
+                                <td>
+                                    <p>{productToBasket.model}</p>
+                                    <p>{productToBasket.type}</p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td>{/* {productToBasket.} */}</td>
+                                <td>{productToBasket.price} €</td>
+                                <td>{/* {productToBasket.} */}</td>
+                                <td>{/* {productToBasket.} */}</td>
+                                <td>{/* {productToBasket.} */}</td>
+                            </tr>
+                        })}
                     </tbody>
                 </table>
+                <div>
+                    <button id={"Products"} onClick={addToBasket}>Añadir productos</button>
+                </div>
+                <div>
+                    <p>Base: €</p>
+                    <p>IVA 0%: 0,00 €</p>
+                    <p>Total: €</p>
+                </div>
             </div>
-            <div>
-                <button id={"Products"} onClick={addProductsToBasket}>Añadir productos</button>
-            </div>
-            <div>
-                <p>Base: €</p>
-                <p>IVA 0%: 0,00 €</p>
-                <p>Total: €</p>
-            </div>
-        </div>
+        </>
     )
 }

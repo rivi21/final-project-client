@@ -7,7 +7,6 @@ export const CustomerContext = createContext();
 
 export default function NewBasket() {
 
-
     let navigate = useNavigate();
     const handleClick = (e, customerId) => {
         navigate(`/${e.target.id}/${customerId}`)
