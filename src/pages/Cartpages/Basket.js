@@ -67,42 +67,27 @@ export default function Basket() {
                     </tr>
                 </tbody>
             </table>
-            <article className="box grid-responsive">
-                {products.map(product => <ProductItem key={product.id} data={product} addToCart={addToCart} />)}
-                {/* <table>
-                        <thead>
-                            <tr>
-                                <th>Tipo</th>
-                                <th>Modelo</th>
-                                
-                                <th>Precio unidad</th>
-                                
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table> */}
-                {/* </div> */}
+            <article className="box"> {/*  grid-responsive */}
+                {
+                    products.map(product => <ProductItem key={product.id} data={product} addToCart={addToCart} />)
+                }
             </article>
             <h3>Cesta</h3>
             <article className="box">
                 <button onClick={clearCart}>Limpiar Carrito</button>
-                <div>
-                    {cart.map((item, index) => {
-                        <CartItem key={index} data={item} delFromCart={delFromCart} />
-                    })}
-                </div>
+                {
+                    cart.map((item, index) => <CartItem key={index} data={item} delFromCart={delFromCart} />)
+                }
             </article>
-            {/* <div className="page-title">
-                <button onClick={confirm}> Confirmar cesta</button>
+            <div className="page-title">
+                <button /* onClick={confirm} */> Confirmar cesta</button>
                 <button>Eliminar cesta (al pulsar lanzar alert(seguro que..?))</button>
-            </div> */}
-            {/* <div>
+            </div>
+            <div>
                 <p>Base: €</p>
                 <p>IVA 0%: 0,00 €</p>
                 <p>Total: €</p>
-            </div> */}
+            </div>
         </div >
     )
 }

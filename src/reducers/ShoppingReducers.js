@@ -1,4 +1,3 @@
-
 import { TYPES } from "../actions/shoppingActions"
 
 export const shoppingInitialState = {
@@ -25,12 +24,21 @@ export function shoppingReducer(state, action) {
         case TYPES.ADD_TO_CART: {
             let newItem = state.products.find(
                 product => product.id === action.payload
-                )
-            console.log(newItem);
-            return ({
-                ...state,
-                cart: [...state.cart, newItem]
-            })
+            )
+            /*  console.log(newItem); */
+            let itemInCart = state.cart.find(item => item.id === newItem.id)
+
+            return itemInCart
+                ?
+                {
+                    ...state,
+                    cart: state.cart.map(item => item.id === newItem.id
+                        ? { ...item, quantity: item.quantity + 1 } : item)
+                }
+                : {
+                    ...state,
+                    cart: [...state.cart, { ...newItem, quantity: 1 }],
+                };
         }
 
         case TYPES.REMOVE_ONE_FROM_CART: {
