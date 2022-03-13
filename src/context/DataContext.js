@@ -3,7 +3,7 @@ import { URL_GET_SALES, URL_GET_COMISSIONS } from "../Settings";
 
 const DataContext = createContext();
 
-const DataProvider = ({ children, userEmail }) => {
+const DataProvider = ({ children, userEmail, token }) => {
     const [comissionsUnits, setComissionsUnits] = useState([]);
     const [comissionsThisMonth, setComissionsThisMonth] = useState([]);
     const [comissionsThisYear, setComissionsThisYear] = useState([])
@@ -77,7 +77,7 @@ const DataProvider = ({ children, userEmail }) => {
 
     }
 
-    useEffect(() => {
+    useEffect((token) => {
         fetch(URL_GET_COMISSIONS)
             .then(response => response.json())
             .then(data => {
@@ -111,7 +111,7 @@ const DataProvider = ({ children, userEmail }) => {
                         totalOrders += order.totalPrice;
                         if (daysLate(order.dueDate) != "") {
                             dueOrders[0]++;
-                            dueOrders[1] += Math.floor(order.totalPrice * 0.7);                           
+                            dueOrders[1] += Math.floor(order.totalPrice * 0.7);
                         } if (order.isPreparing) {
                             preparingOrders[0]++;
                             preparingOrders[1] += order.totalPrice;
@@ -134,15 +134,6 @@ const DataProvider = ({ children, userEmail }) => {
                 setInvoices(deliveredOrders);
                 setDue(dueOrders);
                 setTotal(totalOrders);
-                /* setOrdersInfo(orders);
-                let sum = 0;
-                orders.forEach(order => {
-                    if (order.agentEmail == userEmail) {
-                        sum = sum + order.totalPrice
-                    }
-                });
-                setPayments(sum);
-                setComissionsAmount(sum); */
 
             })
     }, []);

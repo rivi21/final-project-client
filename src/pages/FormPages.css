@@ -65,14 +65,21 @@ td{
     color: red;
 }
 
-.box{
+.box {
+    width: 650px;
     padding: 1em;
     margin: 1em;
     box-shadow: 0 0 1em #00000025 inset;
 
 }
-.grid-responsive{
+/* .grid-responsive{
     display:grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1em;
+} */
+.cart-flex{
+    display:flex;
+    justify-content: center;
+    padding-top: 3em;
+    
 }

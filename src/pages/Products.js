@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { createContext } from "react";
 import LanguageContext from "../context/LanguageContext";
-import { URL_GET_PRODUCTS, URL_POST_PRODUCT_TO_BASKET } from "../Settings";
+import { URL_GET_PRODUCTS } from "../Settings";
 import SalesForm from "../components/forms/SalesForm";
 import "./FormPages.css";
 
@@ -12,15 +12,12 @@ export default function Products({ setProductToBasket }) {
     const { texts } = useContext(LanguageContext);
     const [products, setProducts] = useState([]);
     const [productData, setProductData] = useState([]);
-    /* console.log(productData); */
-
+    
     useEffect(() => {
         fetch(URL_GET_PRODUCTS)
             .then(response => response.json())
             .then(data => setProducts(data))
     }, []);
-
-    /* let randomQuantity = () => Math.floor(Math.random() * 100 + 1); */
 
     const addProductToBasket = (product) => {
         setProductToBasket(product);

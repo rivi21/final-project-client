@@ -31,13 +31,6 @@ export default function Dashboard({ userEmail }) {
                         <p className="block-info">{texts.dashboard[0]}: {comissionsThisYear[0]}</p>
                         <p className="block-info">{texts.dashboard[1]}: {comissionsThisYear[1]} €</p>
                     </div>
-                    {/*  <div className="block-section" id="Historical" onClick={(e) => handleClick(e)}>
-                        <p>{texts.comissions[2]}</p>
-                        <hr />
-                        <p className="block-info">unidades</p>
-                        <p className="block-info">sumatorios</p>
-
-                    </div> */}
                 </div>
             </div>
              <div>
@@ -86,9 +79,6 @@ export default function Dashboard({ userEmail }) {
                         <p className="block-info">{texts.dashboard[0]}: {invoices[0]}</p>
                         <p className="block-info">{texts.dashboard[1]}: {invoices[1]} €</p>
                     </div>
-                    {/*  <div className="block-section" id="Payments" onClick={(e) => handleClick(e)}>
-                        <p>{texts.sales[6]}: 
-                         </div> */}
                 </div>
             </div>
             <div>

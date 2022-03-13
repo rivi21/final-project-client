@@ -8,10 +8,11 @@ import "./Login.css"
 
 
 export default function Login({ setToken, userEmail, setUserEmail }) {
-    const { texts, handleLanguage } = useContext(LanguageContext);
+    const { texts } = useContext(LanguageContext);
 
     /* const [email, setEmail] = useState(""); */
     const [password, setPassword] = useState("");
+
     const fetchData = async (e) => {
         e.preventDefault();
         const loginResponse = await fetch(URL_POST_LOGIN, {
@@ -25,21 +26,11 @@ export default function Login({ setToken, userEmail, setUserEmail }) {
             })
         });
         const token = await loginResponse.json();
-        setToken(token.token);
+        console.log(token);
         localStorage.setItem('token', JSON.stringify(token));
-
+        setToken(token.token);
     }
-    /*  async function loginUser(credentials) {
-         return fetch(URL_POST_LOGIN, {
-             method: 'POST',
-             headers: {
-                 'Content-Type': 'application/json',
-             },
-             body: JSON.stringify(credentials)
-         })
-             .then(response => response.json())
-             .then(data => console.log(setToken(data)));
-     };*/
+
     return (
         <div className="wrapper">
             <div className="imagen"></div>
@@ -47,16 +38,6 @@ export default function Login({ setToken, userEmail, setUserEmail }) {
                 <div className="titulo-idioma">
                     <h2 className="title">Login</h2>
                     <div className="content-select">
-                        {/*  <button onClick={handleToggle, handleLanguage} className={isActive ? "btn-language en" : "btn-language es"}
-                            value={ }>
-                            <span>{isActive ? "English" : "Español"}</span>
-                        </button> */}
-                        {/* <label htmlFor="language-select">{texts.select}</label>
-                        <select name="language-selection" id="language-select">
-                            <option onClick={handleLanguage} className="language-option" value="es">Español</option>
-                            <option onClick={handleLanguage} className="language-option" value="en">English</option>
-                        </select> */}
-
                     </div>
                 </div>
                 <form className="formulario" onSubmit={fetchData}>

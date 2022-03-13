@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { URL_DUMMY } from "../../Settings";
+import { URL_GET_SALES } from "../../Settings";
 import SalesForm from "../../components/forms/SalesForm";
 import "../FormPages.css";
 
@@ -7,10 +7,10 @@ export default function Offers() {
     const [offersList, setOffersList] = useState([]);
 
     useEffect(() => {
-        fetch(URL_DUMMY)
+        fetch(URL_GET_SALES)
             .then(response => response.json())
             .then(data => {
-                 setOffersList(data);
+                setOffersList(data);
             })
     }, []);
 

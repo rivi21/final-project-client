@@ -23,17 +23,16 @@ import PendingOrders from "./pages/salesPages/PendingOrders";
 import PreparingOrders from "./pages/salesPages/PreparingOrders";
 import PreparedOrders from "./pages/salesPages/PreparedOrders";
 import Invoices from "./pages/salesPages/Invoices";
-import Payments from "./pages/salesPages/Payments";
 
 import TotalBalance from "./pages/balancePages/TotalBalance";
 import DueBalance from "./pages/balancePages/DueBalance";
 
 import Error from "./pages/Error";
 
-export default function Router() {
+export default function Router({token}) {
 
     const [productToBasket, setProductToBasket] = useState({})
-    console.log(productToBasket);
+
     return (
         <div>
             <BrowserRouter>
@@ -58,7 +57,6 @@ export default function Router() {
                     <Route path="/PreparingOrders" element={<PreparingOrders />} />
                     <Route path="/PreparedOrders" element={<PreparedOrders />} />
                     <Route path="/invoices" element={<Invoices />} />
-                    <Route path="/Payments" element={<Payments />} />
 
                     <Route path="/TotalBalance" element={<TotalBalance />} />
                     <Route path="/DueBalance" element={<DueBalance />} />
