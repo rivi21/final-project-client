@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Login from "./pages/Login";
 import { LanguageProvider } from "./context/LanguageContext";
 import { DataProvider } from './context/DataContext';
@@ -8,48 +8,27 @@ import './App.css';
 
 export default function App() {
 
-  const [token, setToken] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-
-  useEffect(() => {
-    setToken(JSON.parse(localStorage.getItem("token")));
-  },[])
+  const [token, setToken] = useState();
+  const [agentEmail, setAgentEmail] = useState("");
 
   if (!token) {
     return (
       <LanguageProvider>
         <Login
           setToken={setToken}
-          userEmail={userEmail}
-          setUserEmail={setUserEmail} />
+          setAgentEmail={setAgentEmail} />
       </LanguageProvider>
     )
   } else {
     return (
       <div className="App">
         <LanguageProvider>
-          <DataProvider userEmail={userEmail} token={token}>
-            <Router token={token} userEmail={userEmail} />
+          <DataProvider token={token} agentEmail={agentEmail}>
+            <Router setToken={setToken} agentEmail={agentEmail} />
           </DataProvider>
         </LanguageProvider>
       </div>
     );
   }
-
-  /* if (isLogged) {
-    return (
-      <div className="App">
-        <LanguageProvider>
-          <Router />
-        </LanguageProvider>
-      </div>
-    )
-  } else {
-    return(
-    <>
-      <Login />
-    </>)
-  } */
-
 
 }

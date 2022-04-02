@@ -1,18 +1,24 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import LanguageContext from "../context/LanguageContext";
 import DataContext from '../context/DataContext';
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css"
 
 export default function Dashboard({ userEmail }) {
-    
+
     const { texts } = useContext(LanguageContext);
-    const { comissionsThisMonth, comissionsThisYear,/*  ordersInfo, payments, */ 
-            pending, preparing, prepared, invoices, due, total } = useContext(DataContext);
+    const { comissionsThisMonth, comissionsThisYear, offers,
+        pending, preparing, prepared, invoices, due, total } = useContext(DataContext);
 
     let navigate = useNavigate();
 
     const handleClick = (e) => navigate(`/${e.currentTarget.id}`);
+
+    useEffect(() => {
+        console.log(localStorage);
+    }, [])
+    /* const tokenDash = localStorage.getItem('token');
+    console.log(tokenDash); */
 
     return (
         <>
@@ -33,7 +39,7 @@ export default function Dashboard({ userEmail }) {
                     </div>
                 </div>
             </div>
-             <div>
+            {/*  <div>
                 <h1 className="section-title">{texts.shoppingcart[0]}</h1>
                 <div className="dashboard-section">
                     <div className="block-section" id="ShoppingCart" onClick={(e) => handleClick(e)}>
@@ -43,16 +49,16 @@ export default function Dashboard({ userEmail }) {
                         <p className="block-info">sumatorios</p>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <div>
                 <h1 className="section-title">{texts.titles[1]}</h1>
                 <div className="dashboard-section sales">
-                    {/* <div className="block-section" id="Offers" onClick={(e) => handleClick(e)}>
-                        <p>{texts.sales[0]}:</p>
+                    <div className="block-section" id="Offers" onClick={(e) => handleClick(e)}>
+                        <p>{texts.sales[4]}:</p>
                         <hr />
-                        <p className="block-info">unidades: {}</p>
-                        <p className="block-info">sumatorios</p>
-                    </div> */}
+                        <p className="block-info">{texts.dashboard[0]}: {offers[0]}</p>
+                        {<p className="block-info">{texts.dashboard[1]}: {offers[1]}</p>}
+                    </div>
                     <div className="block-section" id="PendingOrders" onClick={(e) => handleClick(e)}>
                         <p>{texts.sales[0]}:</p>
                         <hr />

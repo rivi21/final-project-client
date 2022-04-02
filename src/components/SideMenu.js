@@ -27,12 +27,12 @@ export default function SideMenu(props) {
                     </li>
                     <li>{texts.titles[1]}
                         <ul>
-                            {/*  <li className="section" id="Offers" onClick={(e) => handleClick(e)}>{texts.sales[1]}: </li> */}
+                             <li className="section" id="Offers" onClick={(e) => handleClick(e)}>{texts.sales[1]}: </li>
                             <li className="section" id="PendingOrders" onClick={(e) => handleClick(e)}>{texts.sales[0]}: </li>
                             <li className="section" id="PreparingOrders" onClick={(e) => handleClick(e)}>{texts.sales[1]}: </li>
                             <li className="section" id="PreparedOrders" onClick={(e) => handleClick(e)}>{texts.sales[2]}: </li>
                             <li className="section" id="Invoices" onClick={(e) => handleClick(e)}>{texts.sales[3]}: </li>
-                            <li className="section" id="Payments" onClick={(e) => handleClick(e)}>{texts.sales[4]}: </li>
+                            {/* <li className="section" id="Payments" onClick={(e) => handleClick(e)}>{texts.sales[4]}: </li> */}
                         </ul>
                     </li>
                     <li>{texts.titles[2]}
@@ -44,13 +44,13 @@ export default function SideMenu(props) {
             <div className="section" id="Products" onClick={(e) => handleClick(e)} >{texts.products[0]}</div>
             <div className="section" id="Customers" onClick={(e) => handleClick(e)}>{texts.customers[0]}</div>
             <div className="section" id="NewCustomer" onClick={(e) => handleClick(e)}>{texts.customers[1]}</div>
-            <div>{texts.settings[0]}
+            {/* <div>{texts.settings[0]}
                 <ul>
                     <li className="section">{texts.settings[1]}</li>
                     <li className="section">{texts.settings[2]}</li>
                 </ul>
-            </div>
-            <button className="section button" onClick={localStorage.clear()}>Log Out</button>
+            </div>*/}
+            <button className="section button" onClick={localStorage.clear()}>Log Out</button> 
         </div>
     )
 }

@@ -20,6 +20,9 @@
     margin-left: 2em;
     font-size: 1.5em;
 }
+.two {
+    cursor: pointer;  
+}
 
 .four{
     display: inline;
@@ -112,7 +115,7 @@
     margin: 0px;
 }
 .menu>li:hover>ul{
-    z-index: index 1;
+    z-index:  1;
     display:block;
     
 }

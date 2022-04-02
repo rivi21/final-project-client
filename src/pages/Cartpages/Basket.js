@@ -23,7 +23,7 @@ export default function Basket() {
     const printDate = `${selectedDate.getFullYear()}-${selectedDate.getMonth() + 1}-${selectedDate.getDate()}`;
 
     const [orderId, setOrderId] = useState(0);
-    
+
     useEffect(async () => {
         await fetch(URL_ORDER, {
             method: 'POST',
@@ -66,22 +66,34 @@ export default function Basket() {
         setSum(cartData.reduce(function (a, b) { return a + b }, 0))
     }, [cart])
 
-    function itemsInCart(cart) {
-        let items = [];
+    /*  function itemsInCart(cart) {
+         let items = [];
+         cart.map(item => {
+             const data = {
+                 id: item.id,
+                 quantity: item.quantity,
+             }
+             items.push(data);
+         })
+         return items;
+     } */
+
+    const confirmOrder = () => {
         cart.map(item => {
-            const data = {
-                id: item.id,
-                quantity: item.quantity,
-            }
-            items.push(data);         
+            fetch(URL_POST_ALL_PRODUCTS, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    orderId: orderId,
+                    id: item.id,
+                    quantity: item.quantity
+                }),
+            })
         })
-        return items;
     }
 
-    const confirmOrder = async (e) => {
-        e.preventDefault();
-        await fetch(URL_POST_ALL_PRODUCTS)
-    }
     return (
         <div>
             <div>
@@ -158,7 +170,6 @@ export default function Basket() {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

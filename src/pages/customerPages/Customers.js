@@ -1,18 +1,29 @@
 import { useState, useEffect, useContext } from "react";
 import { URL_GET_CUSTOMERS } from "../../Settings";
 import LanguageContext from "../../context/LanguageContext";
+import DataContext from "../../context/DataContext";
 import { useNavigate } from "react-router-dom";
 import CustomersForm from "../../components/forms/CustomersForm";
 import "./Customers.css";
 import "../FormPages.css";
 
-
 export default function Customers() {
     const { texts } = useContext(LanguageContext);
+    const { userEmail } = useContext(DataContext);
     const [customers, setCustomers] = useState([]);
 
     let navigate = useNavigate();
     const handleClick = (e) => navigate(`/${e.target.id}`);
+
+    function setDataAgent(data) {
+        let agentData = [];
+        data.forEach(element => {
+            if (userEmail == element.agentEmail) {
+                agentData.push(element);
+            }
+        });
+        setCustomers(agentData);
+    }
 
     useEffect(() => {
         fetch(URL_GET_CUSTOMERS)
@@ -20,7 +31,7 @@ export default function Customers() {
             .then(data => {
                 if (data) {
                     
-                    setCustomers(data);
+                    setDataAgent(data);
                 } else {
                     throw alert('No se ha podido hacer la petición')
                 }

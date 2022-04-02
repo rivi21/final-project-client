@@ -67,8 +67,8 @@ export default function Invoices() {
                 doc.setFontSize(30).text("Invoice", 85, 15);
                 doc.setFontSize(15).text("Customer", 14, 25);
                 doc.setFontSize(10).text(`${data[0].customerName}`, 40, 25);
-                /* doc.text(["Invoice Date: ", "Invoice Nº: ", "Forwarder: ", "Agent: "], 30, 35)
-                doc.text([invoice.deliveryDate, String(invoice.invoiceId), "Rippa Transport", invoice.agent], 10, 35) */
+                /* doc.text(["Invoice Date: ", "Invoice Nº: ", "Forwarder: ", "Agent: "], 30, 35)*/
+                /*doc.text([invoice.deliveryDate, String(invoice.invoiceId), "Rippa Transport", invoice.agent], 10, 35) */
                 // we define the name of our PDF file.
                 doc.save(`report_${dateStr}.pdf`);
             })

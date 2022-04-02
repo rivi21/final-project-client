@@ -1,5 +1,6 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import DataContext from "../../context/DataContext";
 import { URL_GET_CUSTOMERS } from "../../Settings";
 import "../FormPages.css";
 
@@ -7,17 +8,28 @@ export const CustomerContext = createContext();
 
 export default function NewBasket() {
 
+    const { userEmail } = useContext(DataContext);
+
     let navigate = useNavigate();
     const handleClick = (e, customerId) => {
         navigate(`/${e.target.id}/${customerId}`)
     };
 
-    const [customers, setCustomers] = useState([])
+    const [agentCustomers, setAgentCustomers] = useState([])
 
+    function setDataAgent(data) {
+        let agentData = [];
+        data.forEach(element => {
+            if (userEmail == element.agentEmail) {
+                agentData.push(element);
+            }
+        });
+        setAgentCustomers(agentData);
+    }
     useEffect(() => {
         fetch(URL_GET_CUSTOMERS)
             .then(response => response.json())
-            .then(data => setCustomers(data))
+            .then(data => setDataAgent(data))
     }, []);
 
     return (
@@ -33,7 +45,7 @@ export default function NewBasket() {
                         </tr>
                     </thead>
                     <tbody>
-                        {customers.map(data => {
+                        {agentCustomers.map(data => {
                             return (
                                 <tr key={data.id}>
                                     <td>

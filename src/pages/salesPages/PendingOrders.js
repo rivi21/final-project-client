@@ -46,7 +46,6 @@ export default function PendingOrders() {
                             <th>{texts.table[12]}</th>
                             <th>{texts.table[13]}</th>
                             <th>{texts.table[14]}</th>
-                            {/* <th>PDF</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -62,11 +61,9 @@ export default function PendingOrders() {
                                         <td>FCA</td>
                                         <td>{data.totalPrice}</td>
                                         <td>{Math.floor(data.totalPrice * 0.7)}</td>
-                                        {/* <td><button>PDF</button></td> */}
                                     </tr>
                                 );
                             }
-
                         })}
                     </tbody>
                 </table>

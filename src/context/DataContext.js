@@ -8,8 +8,8 @@ const DataProvider = ({ children, userEmail, token }) => {
     const [comissionsThisMonth, setComissionsThisMonth] = useState([]);
     const [comissionsThisYear, setComissionsThisYear] = useState([])
     const [comissionsAmount, setComissionsAmount] = useState([]);
-    /*     const [ordersInfo, setOrdersInfo] = useState([]);
-        const [payments, setPayments] = useState([]); */
+    /*     const [ordersInfo, setOrdersInfo] = useState([]);*/
+    const [offers, setOffers] = useState([]);
     const [pending, setPending] = useState([]);
     const [preparing, setPreparing] = useState([]);
     const [prepared, setPrepared] = useState([]);
@@ -25,7 +25,7 @@ const DataProvider = ({ children, userEmail, token }) => {
     function compareYear(d) {
         const givenDate = new Date(`${d}`);
         const givenYear = givenDate.getFullYear();
-        if (thisYear === givenYear) {
+        if (thisYear == givenYear) {
             return true;
         };
     };
@@ -34,7 +34,7 @@ const DataProvider = ({ children, userEmail, token }) => {
         let comissions = 0
         let totalAmount = 0;
         data.map(element => {
-            if (userEmail === element.agentEmail) {
+            if (userEmail == element.agentEmail) {
                 if (compareYear(element.isPaidDate)) {
                     comissions++;
                     totalAmount = totalAmount + element.comissionAmount
@@ -50,11 +50,11 @@ const DataProvider = ({ children, userEmail, token }) => {
         let totalAmount = 0;
         data.map(element => {
 
-            if (element.isPaidDate !== "") {
+            if (element.isPaidDate != "") {
                 const paymentDate = (new Date(element.isPaidDate));
                 paymentMonth = paymentDate.getMonth() + 1;
 
-            } if (paymentMonth === thisMonth) {
+            } if (paymentMonth == thisMonth) {
                 comissions++;
                 totalAmount = totalAmount + element.comissionAmount
             };
@@ -87,7 +87,7 @@ const DataProvider = ({ children, userEmail, token }) => {
                 let sum = 0;
                 data.forEach(element => {
                     sum = sum + element.comissionAmount;
-                    if (element.agentEmail === userEmail) {
+                    if (element.agentEmail == userEmail) {
                         setUserName([element.agentName, element.agentLastName]);
                     }
                 });
@@ -98,6 +98,7 @@ const DataProvider = ({ children, userEmail, token }) => {
             .then(response => response.json())
             .then(orders => {
 
+                let offers = [0, 0];
                 let pendingOrders = [0, 0];
                 let preparingOrders = [0, 0];
                 let preparedOrders = [0, 0];
@@ -108,7 +109,9 @@ const DataProvider = ({ children, userEmail, token }) => {
                 orders.forEach(order => {
                     if (order.agentEmail == userEmail) {
                         /*  totalOrders[0]++; */
-                        totalOrders += order.totalPrice;
+                        if (order.invoiceId) {
+                            totalOrders += order.totalPrice;
+                        }
                         if (daysLate(order.dueDate) != "") {
                             dueOrders[0]++;
                             dueOrders[1] += Math.floor(order.totalPrice * 0.7);
@@ -121,13 +124,17 @@ const DataProvider = ({ children, userEmail, token }) => {
                         } else if (order.isDelivered) {
                             deliveredOrders[0]++;
                             deliveredOrders[1] += order.totalPrice;
-                        } else {
+                        } else if (order.isPending) {
                             pendingOrders[0]++;
                             pendingOrders[1] += order.totalPrice
+                        } else if (order.shippingDate == null) {
+                            offers[0]++;
+                            /* if (order.totalPrice != null) { */
+                                offers[1] += order.totalPrice                           
                         };
                     };
                 });
-
+                setOffers(offers);
                 setPending(pendingOrders);
                 setPreparing(preparingOrders);
                 setPrepared(preparedOrders);
@@ -140,7 +147,7 @@ const DataProvider = ({ children, userEmail, token }) => {
 
     const data = {
         comissionsUnits, comissionsThisMonth, comissionsThisYear,
-        comissionsAmount, /* ordersInfo, payments, */ daysLate,
+        comissionsAmount, /* ordersInfo, payments, */ daysLate, offers,
         pending, preparing, prepared, invoices, due, total, userName, userEmail
     };
 

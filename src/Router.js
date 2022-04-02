@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-/* import { CustomerContext } from "./pages/Cartpages/NewBasket"; */
 import { useState } from "react";
 
 import NavBar from "./components/NavBar";
@@ -29,14 +28,14 @@ import DueBalance from "./pages/balancePages/DueBalance";
 
 import Error from "./pages/Error";
 
-export default function Router({token}) {
+export default function Router({setToken}) {
 
     const [productToBasket, setProductToBasket] = useState({})
 
     return (
         <div>
             <BrowserRouter>
-                <NavBar />
+                <NavBar setToken={setToken} />
                 <Routes>
                     <Route path="/" element={<Dashboard />} />
 
@@ -62,7 +61,6 @@ export default function Router({token}) {
                     <Route path="/DueBalance" element={<DueBalance />} />
 
                     <Route path="*" element={<Error />} />
-
                 </Routes>
                 <Footer />
             </BrowserRouter>

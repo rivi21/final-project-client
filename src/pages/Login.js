@@ -7,11 +7,11 @@ import { URL_POST_LOGIN } from "../Settings";
 import "./Login.css"
 
 
-export default function Login({ setToken, userEmail, setUserEmail }) {
+export default function Login({ setToken, setAgentEmail }) {
     const { texts } = useContext(LanguageContext);
 
-    /* const [email, setEmail] = useState(""); */
     const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
 
     const fetchData = async (e) => {
         e.preventDefault();
@@ -21,14 +21,19 @@ export default function Login({ setToken, userEmail, setUserEmail }) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                username: userEmail,
+                username: email,
                 password: password
             })
         });
-        const token = await loginResponse.json();
-        console.log(token);
-        localStorage.setItem('token', JSON.stringify(token));
-        setToken(token.token);
+        const responseToken = await loginResponse.json();
+        if (!responseToken.token) {
+            return alert("Invalid credentials");
+        } else {
+            localStorage.setItem('token', JSON.stringify(responseToken));
+            setToken(JSON.parse(localStorage.getItem("token")));
+            setAgentEmail(email);
+        }
+        
     }
 
     return (
@@ -45,7 +50,7 @@ export default function Login({ setToken, userEmail, setUserEmail }) {
                         <label className="section-part" >
                             <p>{texts.user}</p>
                             <input className="section-part-2" type="" placeholder="write your email" name="email"
-                                onChange={e => setUserEmail(e.target.value)} />
+                                onChange={e => setEmail(e.target.value)} />
                         </label>
                     </div>
                     <div className="form-section">

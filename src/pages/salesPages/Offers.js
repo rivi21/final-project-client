@@ -1,30 +1,49 @@
-import { useState, useEffect } from "react";
-import { URL_GET_SALES } from "../../Settings";
+import { useState, useEffect, useContext } from "react";
+import { URL_GET_OFFERS, URL_ORDER } from "../../Settings";
 import SalesForm from "../../components/forms/SalesForm";
+import LanguageContext from "../../context/LanguageContext";
+import DataContext from "../../context/DataContext";
 import "../FormPages.css";
 
 export default function Offers() {
+
+    const { texts } = useContext(LanguageContext);
+    const { userEmail } = useContext(DataContext);
+
     const [offersList, setOffersList] = useState([]);
 
-    useEffect(() => {
-        fetch(URL_GET_SALES)
-            .then(response => response.json())
-            .then(data => {
-                setOffersList(data);
-            })
-    }, []);
-
-    let dummyDay = new Date();
-
-    function dummyDate() {
-        return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 1} - ${dummyDay.getFullYear()}`;
-    };
-    function dummyDeliveryDate() {
-        dummyDay.setDate(dummyDay.getDate() + 31);
-        return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 2} - ${dummyDay.getFullYear()}`;
+    function setDataAgent(data) {
+        let agentData = [];
+        data.forEach(element => {
+            if (userEmail === element.agentEmail) {
+                agentData.push(element);
+            }
+        });
+        setOffersList(agentData);
     }
 
-    let randomPrice = () => Math.floor(Math.random() * 10000);
+    useEffect(() => {
+        fetch(URL_GET_OFFERS)
+            .then(response => response.json())
+            .then(data => setDataAgent(data))
+    },[])
+
+    const confirmOffer = (id)=> {
+        fetch(`${URL_ORDER}/${id}`)
+            .then(response => response.json())
+            .then(data => setDataAgent(data))
+    }
+    /* let dummyDay = new Date(); */
+
+    /*     function dummyDate() {
+            return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 1} - ${dummyDay.getFullYear()}`;
+        };
+        function dummyDeliveryDate() {
+            dummyDay.setDate(dummyDay.getDate() + 31);
+            return `${dummyDay.getDate()} - ${dummyDay.getMonth() + 2} - ${dummyDay.getFullYear()}`;
+        }
+    
+        let randomPrice = () => Math.floor(Math.random() * 10000); */
 
     return (
         <div className="container-page">
@@ -36,35 +55,31 @@ export default function Offers() {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>Número</th>
-                            <th>iD_Cliente</th>
-                            <th>Nombre</th>
-                            <th>Fecha</th>
-                            <th>Fecha Entrega</th>
+                            <th>{texts.table[9]}</th>
+                            <th>{texts.table[4]}</th>
+                            <th>{texts.table[1]}</th>
                             <th>Término de pago</th>
                             <th>Forma de pago</th>
-                            <th>Importe</th>
+                            <th>{texts.table[13]}</th>
                             <th>PDF</th>
                         </tr>
                     </thead>
                     <tbody>
                         {offersList.map((data) => {
-
-                            return (
-                                <tr key={data.id}>
-                                    <td>{data.address.zipcode}</td>
-                                    <td>{data.id}</td>
-                                    <td>{data.company.name}</td>
-                                    <td>{dummyDate()}</td>
-                                    <td>{dummyDeliveryDate()}</td>
-                                    <td><p>30% Deposit</p>
-                                        <p>70% Before Loading</p>
-                                    </td>
-                                    <td>Payment in advance</td>
-                                    <td>{randomPrice()}</td>
-                                    <td><button>PDF</button></td>
-                                </tr>
-                            );
+                            if (data.shippingDate == null) {
+                                return (
+                                    <tr key={data.orderId}>
+                                        <td>{data.orderId}</td>
+                                        <td>{data.customerId}</td>
+                                        <td>{data.customerName}</td>
+                                        <td><p>30% Deposit</p>
+                                            <p>70% Before Loading</p></td>
+                                        <td>Payment in advance</td>
+                                        <td>{data.totalPrice}</td>
+                                        <td><button onClick = {()=>confirmOffer(data.orderId)}>Confirm</button></td>
+                                    </tr>
+                                );
+                            }
                         })}
                     </tbody>
                 </table>

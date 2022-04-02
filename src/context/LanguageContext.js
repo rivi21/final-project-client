@@ -12,7 +12,7 @@ const translations = {
         shoppingcart: ["Carrito", "Nueva Cesta"],
         titles: ["Comisiones", "Ventas", "Saldo", "Panel de control"],
         comissions: ["Mes Actual", "Año en curso", "Histórico"],
-        sales: ["Pedidos pendientes", "Pedidos en preparación", "Pedidos preparados", "Facturas", "Abonos"],
+        sales: ["Pedidos pendientes", "Pedidos en preparación", "Pedidos preparados", "Facturas", "Ofertas"],
         balance: ["Saldo Acumulado", "Saldo vencido"],
         form: ["Nº Documento", "Nº de Cliente", "Nombre del Cliente", "Buscar"],
         table: ["ID", "Nombre", "Email", "Nº de Factura", "Nº de Cliente", "Fecha de Pago",
@@ -24,7 +24,8 @@ const translations = {
         newCustomer: ["Datos requeridos", "Nuevo Usuario", "Agente", "Nombre", "Dirección",
             "Contacto", "Vaciar", "Aceptar"],
         dashboard: ["Cantidad", "Importe total", "Facturas"],
-        settings: ["Configuración", "Usuarios", "Modificar contraseña"]
+        settings: ["Configuración", "Usuarios", "Modificar contraseña"],
+        log: ["Cerrar sesión"]
     },
     en: {
         select: "Language",
@@ -33,7 +34,7 @@ const translations = {
         shoppingcart: ["Shopping-Cart", "New Cart"],
         titles: ["Commissions", "Sales", "Balance", "Dashboard"],
         comissions: ["Current month", "Current Year", "Historical"],
-        sales: ["Pending orders", "Orders in preparation", "Prepared orders", "Invoices", "Credits"],
+        sales: ["Pending orders", "Orders in preparation", "Prepared orders", "Invoices", "Offers"],
         balance: ["Total Balance", "Due balance"],
         form: ["Document Number", "Customer number", "Customer Name", "Search"],
         table: ["ID", "Name", "Email", "Invoice Number", "Customer Number", "Payment Date",
@@ -45,7 +46,9 @@ const translations = {
         newCustomer: ["Data required", "New User", "Agent", "Name", "Address",
             "Contact", "Empty", "OK"],
         dashboard: ["Quantity", "Total amount", "Invoices"],
-        settings: ["Settings", "Users", "Change password"]
+        settings: ["Settings", "Users", "Change password"],
+        log: ["Log Out"]
+        
     }
 };
 
