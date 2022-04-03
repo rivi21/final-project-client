@@ -25,12 +25,6 @@ export default function CurrentYear() {
     }
     useFetch(URL_GET_COMISSIONS, setDataAgent);
 
-    /* useEffect(() => {
-        fetch(URL_GET_COMISSIONS)
-            .then(response => response.json())
-            .then(data => setDataAgent(data))
-    }, []) */
-
     function compareYear(d) {
         const today = new Date();
         const thisYear = today.getFullYear();

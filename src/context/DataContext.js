@@ -1,12 +1,12 @@
 import { createContext, useState, useEffect } from "react";
-import useToken from "../hooks/useToken";
+import { useToken } from "../hooks/useToken";
 import { URL_GET_SALES, URL_GET_COMISSIONS } from "../Settings";
 
 const DataContext = createContext();
 
 const DataProvider = ({ children, userEmail }) => {
 
-    const {token, setToken } = useToken()
+    const { token } = useToken()
 
     const [comissionsUnits, setComissionsUnits] = useState([]);
     const [comissionsThisMonth, setComissionsThisMonth] = useState([]);

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import useToken from './useToken';
+import { useToken } from './useToken';
 
 function useFetch(url, setState) {
     const { token } = useToken()

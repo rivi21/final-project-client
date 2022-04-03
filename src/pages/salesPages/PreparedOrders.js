@@ -1,9 +1,11 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
+import { useFetch } from "../../hooks/useFetch";
 import { URL_GET_SALES } from "../../Settings";
 import LanguageContext from "../../context/LanguageContext";
 import DataContext from "../../context/DataContext";
 import SalesForm from "../../components/forms/SalesForm";
 import "../FormPages.css";
+
 
 export default function PreparedOrders() {
     
@@ -21,12 +23,7 @@ export default function PreparedOrders() {
         });
         setPreparedOrders(agentData);
     }
-
-    useEffect(() => {
-        fetch(URL_GET_SALES)
-            .then(response => response.json())
-            .then(data => setDataAgent(data))
-    }, [])
+    useFetch(URL_GET_SALES, setDataAgent);
 
     function daysLate(date) {
         const date1 = Date.now();

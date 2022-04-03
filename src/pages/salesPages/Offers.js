@@ -1,9 +1,11 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
+import { useFetch } from "../../hooks/useFetch";
 import { URL_GET_OFFERS, URL_ORDER } from "../../Settings";
 import SalesForm from "../../components/forms/SalesForm";
 import LanguageContext from "../../context/LanguageContext";
 import DataContext from "../../context/DataContext";
 import "../FormPages.css";
+
 
 export default function Offers() {
 
@@ -15,18 +17,13 @@ export default function Offers() {
     function setDataAgent(data) {
         let agentData = [];
         data.forEach(element => {
-            if (userEmail === element.agentEmail) {
+            if (userEmail == element.agentEmail) {
                 agentData.push(element);
             }
         });
         setOffersList(agentData);
     }
-
-    useEffect(() => {
-        fetch(URL_GET_OFFERS)
-            .then(response => response.json())
-            .then(data => setDataAgent(data))
-    },[])
+    useFetch(URL_GET_OFFERS, setDataAgent);
 
     const confirmOffer = (id)=> {
         fetch(`${URL_ORDER}/${id}`)
