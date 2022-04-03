@@ -1,9 +1,13 @@
 import { createContext, useState, useEffect } from "react";
+import useToken from "../hooks/useToken";
 import { URL_GET_SALES, URL_GET_COMISSIONS } from "../Settings";
 
 const DataContext = createContext();
 
-const DataProvider = ({ children, userEmail, token }) => {
+const DataProvider = ({ children, userEmail }) => {
+
+    const {token, setToken } = useToken()
+
     const [comissionsUnits, setComissionsUnits] = useState([]);
     const [comissionsThisMonth, setComissionsThisMonth] = useState([]);
     const [comissionsThisYear, setComissionsThisYear] = useState([])
@@ -76,9 +80,14 @@ const DataProvider = ({ children, userEmail, token }) => {
         }
 
     }
-
-    useEffect((token) => {
-        fetch(URL_GET_COMISSIONS)
+    useEffect(() => {
+        fetch(URL_GET_COMISSIONS, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 comissionsPerMonth(data);
@@ -94,10 +103,17 @@ const DataProvider = ({ children, userEmail, token }) => {
                 setComissionsAmount(sum);
             });
 
-        fetch(URL_GET_SALES)
+        fetch(URL_GET_SALES, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        })
             .then(response => response.json())
             .then(orders => {
 
+                console.log(orders);
                 let offers = [0, 0];
                 let pendingOrders = [0, 0];
                 let preparingOrders = [0, 0];
@@ -130,7 +146,7 @@ const DataProvider = ({ children, userEmail, token }) => {
                         } else if (order.shippingDate == null) {
                             offers[0]++;
                             /* if (order.totalPrice != null) { */
-                                offers[1] += order.totalPrice                           
+                            offers[1] += order.totalPrice
                         };
                     };
                 });

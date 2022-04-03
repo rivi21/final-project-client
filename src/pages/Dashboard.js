@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import LanguageContext from "../context/LanguageContext";
 import DataContext from '../context/DataContext';
 import { useNavigate } from "react-router-dom";
@@ -13,12 +13,6 @@ export default function Dashboard({ userEmail }) {
     let navigate = useNavigate();
 
     const handleClick = (e) => navigate(`/${e.currentTarget.id}`);
-
-    useEffect(() => {
-        console.log(localStorage);
-    }, [])
-    /* const tokenDash = localStorage.getItem('token');
-    console.log(tokenDash); */
 
     return (
         <>

@@ -6,35 +6,57 @@ import { URL_POST_LOGIN } from "../Settings";
 /* import "../components/LanguageSelect.css"; */
 import "./Login.css"
 
+async function loginUser(credentials) {
+    return fetch(URL_POST_LOGIN, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    })
+        .then(data => data.json())
+}
 
-export default function Login({ setToken, setAgentEmail }) {
+export default function Login({ setToken, setUserEmail }) {
     const { texts } = useContext(LanguageContext);
 
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
-    const fetchData = async (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        const loginResponse = await fetch(URL_POST_LOGIN, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                username: email,
-                password: password
-            })
+        const token = await loginUser({
+            username: email,
+            password: password
         });
-        const responseToken = await loginResponse.json();
-        if (!responseToken.token) {
-            return alert("Invalid credentials");
-        } else {
-            localStorage.setItem('token', JSON.stringify(responseToken));
-            setToken(JSON.parse(localStorage.getItem("token")));
-            setAgentEmail(email);
-        }
-        
+        console.log(token);
+        setToken(token);
+        setUserEmail(email);
     }
+
+    /*  const loginUser = async (e) => {
+         e.preventDefault();
+         const loginResponse = await fetch(URL_POST_LOGIN, {
+             method: 'POST',
+             headers: {
+                 'Content-Type': 'application/json',
+             },
+             body: JSON.stringify({
+                 username: email,
+                 password: password
+             })
+         });
+         setUserEmail(email);
+         const token = await loginResponse.json();
+         if (!token.token) {
+             return alert("Invalid credentials");
+         }else {
+         const storedToken = localStorage.setItem('token', JSON.stringify(token.token));
+         console.log(localStorage);
+         setToken(JSON.parse(localStorage.getItem('token')));
+         }
+         
+     } */
 
     return (
         <div className="wrapper">
@@ -45,7 +67,7 @@ export default function Login({ setToken, setAgentEmail }) {
                     <div className="content-select">
                     </div>
                 </div>
-                <form className="formulario" onSubmit={fetchData}>
+                <form className="formulario" onSubmit={handleSubmit}>
                     <div className="form-section">
                         <label className="section-part" >
                             <p>{texts.user}</p>

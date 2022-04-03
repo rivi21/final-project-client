@@ -6,11 +6,11 @@ import { NavLink } from "react-router-dom";
 import SideMenu from "./SideMenu";
 import "./Navbar.css";
 
-export default function NavBar({setToken}) {
+export default function NavBar(/* {setToken} */) {
 
     let navigate = useNavigate();
     const handleClick = (e) => navigate(`/${e.target.id}`);
-    const logOut = () => setToken(localStorage.clear());
+    const logOut = () => sessionStorage.clear();
     const { userName } = useContext(DataContext)
     const { texts, handleLanguage } = useContext(LanguageContext);
 

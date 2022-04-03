@@ -1,11 +1,13 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
+import { useFetch } from "../../hooks/useFetch";
 import LanguageContext from "../../context/LanguageContext";
 import DataContext from "../../context/DataContext";
 import { URL_GET_COMISSIONS } from "../../Settings";
 import ComissionsForm from "../../components/forms/ComissionsForm";
 import "../FormPages.css";
 
-export default function CurrentMonth() {
+
+export default function CurrentYear() {
 
     const { texts } = useContext(LanguageContext);
     const { userEmail } = useContext(DataContext);
@@ -21,12 +23,13 @@ export default function CurrentMonth() {
         });
         setComissions(agentData);
     }
+    useFetch(URL_GET_COMISSIONS, setDataAgent);
 
-    useEffect(() => {
+    /* useEffect(() => {
         fetch(URL_GET_COMISSIONS)
             .then(response => response.json())
             .then(data => setDataAgent(data))
-    }, [])
+    }, []) */
 
     function compareYear(d) {
         const today = new Date();
