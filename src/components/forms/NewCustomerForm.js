@@ -1,10 +1,12 @@
 import LanguageContext from '../../context/LanguageContext';
 import { useState, useContext } from 'react';
+import { useCredentials } from '../../hooks/useCredentials';
 import { URL_POST_CUSTOMER } from "../../Settings";
 import "./Forms.css";
 
-export default function NewCustomerForm() {
 
+export default function NewCustomerForm() {
+    const { token } = useCredentials()
     const { texts } = useContext(LanguageContext);
 
     const [agentName, setAgentName] = useState("");
@@ -21,6 +23,7 @@ export default function NewCustomerForm() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'authorization': 'Bearer' + token
             },
             body: JSON.stringify({
                 agentName: agentName,

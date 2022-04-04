@@ -1,5 +1,7 @@
 import { useState, useEffect, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
+import { useFetch } from '../../hooks/useFetch';
+import { useCredentials } from '../../hooks/useCredentials';
 import { URL_GET_ONE_CUSTOMER, URL_POST_ALL_PRODUCTS, URL_ORDER } from '../../Settings';
 import { shoppingReducer, shoppingInitialState } from '../../reducers/ShoppingReducers';
 import ProductItem from '../../components/ProductItem';
@@ -7,28 +9,24 @@ import CartItem from '../../components/CartItem';
 import { TYPES } from '../../actions/shoppingActions';
 
 import "../TablePages.css";
+
 /* import SumCart from '../../components/SumCart'; */
 
 export default function Basket() {
 
     const { customerId } = useParams();
     const [customer, setCustomer] = useState([]);
-    useEffect(() => {
-        fetch(`${URL_GET_ONE_CUSTOMER}/${customerId}`)
-            .then(response => response.json())
-            .then(data => setCustomer(data))
-    }, [])
-
-    let selectedDate = new Date();
-    const printDate = `${selectedDate.getFullYear()}-${selectedDate.getMonth() + 1}-${selectedDate.getDate()}`;
-
     const [orderId, setOrderId] = useState(0);
+    const { token } = useCredentials()
+
+    useFetch(`${URL_GET_ONE_CUSTOMER}/${customerId}`, setCustomer);
 
     useEffect(async () => {
         await fetch(URL_ORDER, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+               /*  'authorization': 'Bearer' + token */
             },
             body: JSON.stringify({
                 customer: customerId,
@@ -39,7 +37,9 @@ export default function Basket() {
             .then(response => response.json())
             .then(data => setOrderId(data));
 
-    }, [])
+    }, []);
+    let selectedDate = new Date();
+    const printDate = `${selectedDate.getFullYear()}-${selectedDate.getMonth() + 1}-${selectedDate.getDate()}`;
 
     const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
     const { products, cart } = state;
@@ -84,6 +84,7 @@ export default function Basket() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'authorization': 'Bearer' + token
                 },
                 body: JSON.stringify({
                     orderId: orderId,

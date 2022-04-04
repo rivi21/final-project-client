@@ -1,6 +1,7 @@
-import { useState, useEffect, createContext, useContext } from "react";
+import { useState, createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../../context/DataContext";
+import { useFetch } from "../../hooks/useFetch";
 import { URL_GET_CUSTOMERS } from "../../Settings";
 import "../FormPages.css";
 
@@ -15,7 +16,7 @@ export default function NewBasket() {
         navigate(`/${e.target.id}/${customerId}`)
     };
 
-    const [agentCustomers, setAgentCustomers] = useState([])
+    const [agentCustomers, setAgentCustomers] = useState([]);
 
     function setDataAgent(data) {
         let agentData = [];
@@ -26,12 +27,8 @@ export default function NewBasket() {
         });
         setAgentCustomers(agentData);
     }
-    useEffect(() => {
-        fetch(URL_GET_CUSTOMERS)
-            .then(response => response.json())
-            .then(data => setDataAgent(data))
-    }, []);
-
+    useFetch(URL_GET_CUSTOMERS, setDataAgent);
+    
     return (
         <div className="container-page">
             <div className="page-title">

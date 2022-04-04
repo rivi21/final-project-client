@@ -1,8 +1,9 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { useFetch } from "../../hooks/useFetch";
 import { URL_GET_CUSTOMERS } from "../../Settings";
 import LanguageContext from "../../context/LanguageContext";
 import DataContext from "../../context/DataContext";
-import { useNavigate } from "react-router-dom";
 import CustomersForm from "../../components/forms/CustomersForm";
 import "./Customers.css";
 import "../FormPages.css";
@@ -24,19 +25,7 @@ export default function Customers() {
         });
         setCustomers(agentData);
     }
-
-    useEffect(() => {
-        fetch(URL_GET_CUSTOMERS)
-            .then(response => response.json())
-            .then(data => {
-                if (data) {
-                    
-                    setDataAgent(data);
-                } else {
-                    throw alert('No se ha podido hacer la petición')
-                }
-            });
-    }, []);
+    useFetch(URL_GET_CUSTOMERS, setDataAgent )
 
     return (
         <div className="container-page">
