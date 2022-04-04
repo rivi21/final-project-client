@@ -1,13 +1,13 @@
 import { createContext, useState, useEffect } from "react";
-import { useToken } from "../hooks/useToken";
+import { useCredentials } from "../hooks/useCredentials";
 import { URL_GET_SALES, URL_GET_COMISSIONS } from "../Settings";
 
 const DataContext = createContext();
 
-const DataProvider = ({ children, userEmail }) => {
-
-    const { token } = useToken()
-
+const DataProvider = ({ children }) => {
+    const { token, email } = useCredentials()
+    const userEmail = email;
+    
     const [comissionsUnits, setComissionsUnits] = useState([]);
     const [comissionsThisMonth, setComissionsThisMonth] = useState([]);
     const [comissionsThisYear, setComissionsThisYear] = useState([])
@@ -80,28 +80,27 @@ const DataProvider = ({ children, userEmail }) => {
         }
 
     }
-    useEffect(() => {
-        fetch(URL_GET_COMISSIONS, {
+    useEffect(async () => {
+        const dataResponse = await fetch(URL_GET_COMISSIONS, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
             }
         })
-            .then(response => response.json())
-            .then(data => {
-                comissionsPerMonth(data);
-                comissionsPerYear(data)
-                setComissionsUnits(data);
-                let sum = 0;
-                data.forEach(element => {
-                    sum = sum + element.comissionAmount;
-                    if (element.agentEmail == userEmail) {
-                        setUserName([element.agentName, element.agentLastName]);
-                    }
-                });
-                setComissionsAmount(sum);
-            });
+        const data = await dataResponse.json();
+        const user = data.find(element => element.agentEmail == userEmail);
+        const firstName = user.agentName;
+        const lastName = user.agentLastName;
+        setUserName([firstName, lastName]);
+        comissionsPerMonth(data);
+        comissionsPerYear(data)
+        setComissionsUnits(data);
+        let sum = 0;
+        data.forEach(element => {
+            sum = sum + element.comissionAmount;
+        });
+        setComissionsAmount(sum);
 
         fetch(URL_GET_SALES, {
             method: 'GET',
@@ -112,8 +111,6 @@ const DataProvider = ({ children, userEmail }) => {
         })
             .then(response => response.json())
             .then(orders => {
-
-                console.log(orders);
                 let offers = [0, 0];
                 let pendingOrders = [0, 0];
                 let preparingOrders = [0, 0];
@@ -157,14 +154,12 @@ const DataProvider = ({ children, userEmail }) => {
                 setInvoices(deliveredOrders);
                 setDue(dueOrders);
                 setTotal(totalOrders);
-
             })
     }, []);
-
     const data = {
         comissionsUnits, comissionsThisMonth, comissionsThisYear,
-        comissionsAmount, /* ordersInfo, payments, */ daysLate, offers,
-        pending, preparing, prepared, invoices, due, total, userName, userEmail
+        comissionsAmount, daysLate, offers, pending, preparing,
+        prepared, invoices, due, total, userName, userEmail
     };
 
     return <DataContext.Provider value={data}>{children}</DataContext.Provider>

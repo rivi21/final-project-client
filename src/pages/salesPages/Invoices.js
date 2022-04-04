@@ -1,17 +1,11 @@
 import { useState, useContext } from "react";
 import { useFetch } from "../../hooks/useFetch";
-/* import { genera } from "../../hooks/useToken"; */
+import { usePDF } from "../../hooks/usePDF";
 import { URL_GET_INVOICES } from "../../Settings";
 import SalesForm from "../../components/forms/SalesForm";
 import LanguageContext from "../../context/LanguageContext";
 import DataContext from '../../context/DataContext';
-/* import jsPDF from "jspdf"; */
-/* import "jspdf-autotable"; */
 import "../FormPages.css";
-import { usePDF } from "../../hooks/usePDF";
-
-
-/* import TotalBalance from "../balancePages/TotalBalance"; */
 
 export default function Invoices() {
 
@@ -19,7 +13,6 @@ export default function Invoices() {
     const { userEmail } = useContext(DataContext);
     const { generatePDF } = usePDF()
     const [invoicesList, setInvoicesList] = useState([]);
-    /* const [productsList, setProductsList] = useState([]); */
 
     function setDataAgent(data) {
         let agentData = [];
@@ -33,7 +26,6 @@ export default function Invoices() {
     useFetch(URL_GET_INVOICES, setDataAgent);
     
     return (
-
         <div className="container-page">
             <div className="page-title">
                 <h2>{texts.sales[3]}</h2>

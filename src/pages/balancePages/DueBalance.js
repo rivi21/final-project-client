@@ -6,23 +6,22 @@ import DataContext from "../../context/DataContext";
 import BalanceForm from "../../components/forms/BalanceForm";
 import "../FormPages.css";
 
-
 export default function DueBalance() {
 
     const { texts } = useContext(LanguageContext);
     const { daysLate, userEmail } = useContext(DataContext);
-
     const [dueBalance, setDueBalance] = useState([]);
 
     function setDataAgent(data) {
         let agentData = [];
         data.forEach(element => {
-            if (userEmail == element.agentEmail) {
+            if (userEmail === element.agentEmail) {
                 agentData.push(element);
             }
         });
         setDueBalance(agentData);
     }
+    
     useFetch(URL_GET_SALES, setDataAgent);
 
     return (
@@ -44,7 +43,7 @@ export default function DueBalance() {
                     </thead>
                     <tbody>
                         {dueBalance.map((data) => {
-                            if (daysLate(data.dueDate) != "") {
+                            if (daysLate(data.dueDate) !== "") {
                                 return (
                                     <tr key={data.orderId}>
                                         <td>{data.invoiceId}</td>

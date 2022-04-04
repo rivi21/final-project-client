@@ -1,10 +1,10 @@
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { useToken } from "./useToken";
+import { useCredentials } from "./useCredentials";
 
 function usePDF() {
 
-    const { token } = useToken();
+    const { token } = useCredentials();
 
     const generatePDF = orderId => {
         

@@ -1,9 +1,5 @@
-import { useState, useContext } from "react";
-import LanguageContext from "../context/LanguageContext";
+import { useState } from "react";
 import { URL_POST_LOGIN } from "../Settings";
-/* import { useNavigate } from "react-router-dom"; */
-/* import { NavLink } from "react-router-dom"; */
-/* import "../components/LanguageSelect.css"; */
 import "./Login.css"
 
 async function loginUser(credentials) {
@@ -17,46 +13,22 @@ async function loginUser(credentials) {
         .then(data => data.json())
 }
 
-export default function Login({ setToken, setUserEmail }) {
-    const { texts } = useContext(LanguageContext);
+export default function Login({ setToken, email, setEmail }) {
 
     const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const token = await loginUser({
+        const response = await loginUser({
             username: email,
             password: password
         });
-        console.log(token);
-        setToken(token);
-        setUserEmail(email);
+        if (!response.token) {
+            return alert("Invalid credentials");
+        } else {
+            setToken(response);
+        }
     }
-
-    /*  const loginUser = async (e) => {
-         e.preventDefault();
-         const loginResponse = await fetch(URL_POST_LOGIN, {
-             method: 'POST',
-             headers: {
-                 'Content-Type': 'application/json',
-             },
-             body: JSON.stringify({
-                 username: email,
-                 password: password
-             })
-         });
-         setUserEmail(email);
-         const token = await loginResponse.json();
-         if (!token.token) {
-             return alert("Invalid credentials");
-         }else {
-         const storedToken = localStorage.setItem('token', JSON.stringify(token.token));
-         console.log(localStorage);
-         setToken(JSON.parse(localStorage.getItem('token')));
-         }
-         
-     } */
 
     return (
         <div className="wrapper">
@@ -70,14 +42,14 @@ export default function Login({ setToken, setUserEmail }) {
                 <form className="formulario" onSubmit={handleSubmit}>
                     <div className="form-section">
                         <label className="section-part" >
-                            <p>{texts.user}</p>
+                            <p>Usuario</p>
                             <input className="section-part-2" type="" placeholder="write your email" name="email"
                                 onChange={e => setEmail(e.target.value)} />
                         </label>
                     </div>
                     <div className="form-section">
                         <label className="section-part" >
-                            <p>{texts.password}</p>
+                            <p>Contraseña</p>
                             <input className="section-part-2" type="password" placeholder="***********" name="password"
                                 onChange={e => setPassword(e.target.value)} />
                         </label>

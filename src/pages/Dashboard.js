@@ -7,6 +7,7 @@ import "./Dashboard.css"
 export default function Dashboard({ userEmail }) {
 
     const { texts } = useContext(LanguageContext);
+    
     const { comissionsThisMonth, comissionsThisYear, offers,
         pending, preparing, prepared, invoices, due, total } = useContext(DataContext);
 

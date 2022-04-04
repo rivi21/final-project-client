@@ -28,14 +28,14 @@ import DueBalance from "./pages/balancePages/DueBalance";
 
 import Error from "./pages/Error";
 
-export default function Router({setToken}) {
+export default function Router({ clearToken }) {
 
     const [productToBasket, setProductToBasket] = useState({})
 
     return (
         <div>
             <BrowserRouter>
-                <NavBar setToken={setToken} />
+                <NavBar clearToken={clearToken} />
                 <Routes>
                     <Route path="/" element={<Dashboard />} />
 

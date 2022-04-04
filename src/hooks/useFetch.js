@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { useToken } from './useToken';
+import { useCredentials } from './useCredentials';
 
 function useFetch(url, setState) {
-    const { token } = useToken()
+    const { token } = useCredentials()
     useEffect(() => {
         fetch(url, {
             method: 'GET',

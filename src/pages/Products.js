@@ -1,4 +1,5 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
+import { useFetch } from "../hooks/useFetch";
 import { createContext } from "react";
 import LanguageContext from "../context/LanguageContext";
 import { URL_GET_PRODUCTS } from "../Settings";
@@ -11,14 +12,10 @@ export default function Products({ setProductToBasket }) {
 
     const { texts } = useContext(LanguageContext);
     const [products, setProducts] = useState([]);
-    const [productData, setProductData] = useState([]);
+    /* const [productData, setProductData] = useState([]); */
     
-    useEffect(() => {
-        fetch(URL_GET_PRODUCTS)
-            .then(response => response.json())
-            .then(data => setProducts(data))
-    }, []);
-
+    useFetch(URL_GET_PRODUCTS, setProducts)
+    
     const addProductToBasket = (product) => {
         setProductToBasket(product);
     };
